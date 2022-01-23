@@ -6,6 +6,7 @@ SCNR::Engine::API.run do
     Scan {
 
         Session {
+          
             to :login do |browser|
                 # Login with whichever interface you prefer.
                 watir    = browser.watir
@@ -37,6 +38,7 @@ SCNR::Engine::API.run do
                     check.call( response )
                 end
             end
+            
         }
 
     }
