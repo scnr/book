@@ -59,6 +59,7 @@ SCNR::Engine::API.run do
             p browser
             # => #<SCNR::Engine::BrowserPool::Worker pid= job=#<SCNR::Engine::BrowserPool::Jobs::DOMExploration::EventTrigger:7680 @resource=#<SCNR::Engine::Page::DOM:7620 @url="http://testhtml5.vulnweb.com/#/popular" @transitions=17 @data_flow_sinks=0 @execution_flow_sinks=0> time= timed_out=false> last-url="http://testhtml5.vulnweb.com/" transitions=17>
         end
+        
     }
 
 end
