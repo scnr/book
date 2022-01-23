@@ -1,13 +1,30 @@
-# REST API
+# REST
 
-## Scan
+## Server
+
+To start the REST server daemon:
+
+```bash
+bin/scnr_rest_server
+```
+
+To see REST server daemon options:
+
+```bash
+bin/scnr_rest_server -h
+```
+
+
+## API
+
+### Scan
 
 | Method   | Resource                       | Parameters            | Description        |
 |----------|--------------------------------|-----------------------|--------------------|
 | `GET`    | `/instances/:id/scan/progress` |                       | Get scan progress. |
 
 
-## Instances
+### Instances
 
 | Method   | Resource                     | Parameters            | Description                                                          |
 |----------|------------------------------|-----------------------|----------------------------------------------------------------------|
@@ -21,7 +38,7 @@
 | `PUT`    | `/instances/:id/resume`      |                       | Resume the _Instance_.                                               |
 | `DELETE` | `/instances/:id`             |                       | Shutdown the _Instance_.                                             |
 
-## Dispatcher
+### Dispatcher
 
 | Method   | Resource          | Parameters   | Description                         |
 |----------|-------------------|--------------|-------------------------------------|
@@ -30,7 +47,7 @@
 | `DELETE` | `/dispatcher/url` |              | Remove the _Dispatcher_.         |
 
 
-## Grid
+### Grid
 
 | Method   | Resource            | Parameters | Description                                        |
 |----------|---------------------|------------|----------------------------------------------------|
@@ -39,7 +56,7 @@
 | `DELETE` | `/grid/:dispatcher` |            | Unplug _Dispatcher_ from the _Grid_ by URL. |
 
 
-## Scheduler
+### Scheduler
 
 | Method   | Resource                      | Parameters            | Description                                              |
 |----------|-------------------------------|-----------------------|----------------------------------------------------------|
