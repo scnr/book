@@ -13,7 +13,7 @@ You can access SCNR via multiple interfaces, such as:
 * Web -- Work in progress.
 * [Ruby API](./interfaces/ruby-api/index.md)
 * [RPC API]()
-* [REST API]()
+* [REST API](./interfaces/rest-api/index.md)
 
 ## DOM/Javascript
 

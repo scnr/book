@@ -37,4 +37,4 @@
      - [Scope](./interfaces/ruby-api/scan/scope.md)
      - [Session](./interfaces/ruby-api/scan/session.md)
  - [RPC API]()
- - [REST API](./interfaces/rest/index.md)
+ - [REST API](./interfaces/rest-api/index.md)
