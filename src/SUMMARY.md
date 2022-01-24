@@ -39,7 +39,7 @@
 
 # How to
 
- - [Generate reports]()
+ - [Generate reports](./how-to/generate-reports.md)
  - [Optimize for faster scans](./how-to/optimize-for-faster-scans.md)
  - [Maintain a valid session]()
  - [Scan services]()
