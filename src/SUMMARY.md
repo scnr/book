@@ -40,7 +40,7 @@
 # How to
 
  - [Generate reports]()
- - [Optimize for faster scans]()
+ - [Optimize for faster scans](./how-to/optimize-for-faster-scans.md)
  - [Maintain a valid session]()
  - [Scan services]()
  - [Set-up a SaaS]()
