@@ -36,3 +36,11 @@
      - [Scope](./interfaces/ruby-api/scan/scope.md)
      - [Session](./interfaces/ruby-api/scan/session.md)
  - [REST API](./interfaces/rest-api/index.md)
+
+# How to
+
+ - [Generate reports]()
+ - [Optimize for faster scans]()
+ - [Maintain a valid session]()
+ - [Scan services]()
+ - [Set-up a SaaS]()
