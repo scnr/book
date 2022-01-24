@@ -41,6 +41,6 @@
 
  - [Generate reports](./how-to/generate-reports.md)
  - [Optimize for faster scans](./how-to/optimize-for-faster-scans.md)
- - [Maintain a valid session]()
+ - [Maintain a valid session](./how-to/maintain-a-valid-session.md)
  - [Scan services]()
  - [Set-up a SaaS]()
