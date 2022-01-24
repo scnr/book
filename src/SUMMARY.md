@@ -16,7 +16,6 @@
 # Interfaces
 
  - [CLI](./interfaces/cli.md)
- - [Web]()
  - [Ruby API](./interfaces/ruby-api/index.md)
    - [Data](./interfaces/ruby-api/data/index.md)
      - [Sitemap](./interfaces/ruby-api/data/sitemap.md)
@@ -36,5 +35,4 @@
      - [Options](./interfaces/ruby-api/scan/options.md)
      - [Scope](./interfaces/ruby-api/scan/scope.md)
      - [Session](./interfaces/ruby-api/scan/session.md)
- - [RPC API]()
  - [REST API](./interfaces/rest-api/index.md)
