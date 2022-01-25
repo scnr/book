@@ -14,14 +14,14 @@ service test-suite and having its HTTP requests go through the proxy plugin.
 
 You can setup the proxy like so:
 
-    bin/scnr http://target-url --scope-page-limit=0 --checks=*,-common_*,-backup*,-backdoors,-directory_listing --plugin=proxy --audit-jsons --audit-xmls
+    bin/scnr http://target-url --scope-page-limit=0 --checks=*,-passive/* --plugin=proxy --audit-jsons --audit-xmls
 
 The default proxy URL will be: `http://localhost:8282`
 
 The `--scope-page-limit=0` option tells the system to not do any sort of crawl 
 and only use what has been made visible via the proxy.
 
-The set `--checks` option tells the system to load all but irrelevant checks for
+The `--checks` option tells the system to load all but irrelevant checks for
 service scans -- common files and directories and the like don't really apply in this case.
 
 The `--audit-jsons --audit-xmls` options restrict the scan to only JSON and XML inputs.
@@ -62,10 +62,10 @@ http_proxy=http://localhost:8282 curl http://scnr.engine.proxy/shutdown
 
 Data exported via the proxy plugin can be imported via the `vector_feed` plugin, like so:
 
-    bin/scnr http://target-url --scope-page-limit=0 --checks=*,-common_*,-backup*,-backdoors,-directory_listing --plugin=vector_feed:yaml_file=vectors.yml
+    bin/scnr http://target-url --scope-page-limit=0 --checks=*,-passive/* --plugin=vector_feed:yaml_file=vectors.yml
 
 Thus, you only have to run your test-suite scenarios once, for the initial training
-and then use the exported vector data for subsequent scans.
+and then reuse the exported vector data for subsequent scans.
 
 ## Debugging
 
