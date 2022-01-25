@@ -43,3 +43,5 @@
  - [Optimize for faster scans](./how-to/optimize-for-faster-scans.md)
  - [Maintain a valid session](./how-to/maintain-a-valid-session.md)
  - [Scan services](./how-to/scan-services.md)
+
+[Copyright](./COPYING.md)
