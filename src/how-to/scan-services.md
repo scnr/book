@@ -3,14 +3,12 @@
 At the moment the are no specialized service crawlers, however auditing web
 services is possible by first training the system via its `proxy` plugin.
 
-## Training
+## Capturing inputs
 
-### Initial
+The best way to capture web service inputs is by running your service test-suite
+and having its HTTP requests go through the `proxy` plugin.
 
-The best way to perform the initial training of the system is by running your
-service test-suite and having its HTTP requests go through the proxy plugin.
-
-#### Proxy plugin setup
+### Proxy plugin setup
 
 You can setup the proxy like so:
 
@@ -26,7 +24,7 @@ service scans -- common files and directories and the like don't really apply in
 
 The `--audit-jsons --audit-xmls` options restrict the scan to only JSON and XML inputs.
 
-#### Test-suite setup
+### Test-suite setup
 
 Test-suite configurations vary, however you can usually export the proxy setting
 as an environmental variable, prior to running your test-suite, like so:
@@ -37,7 +35,7 @@ export http_proxy=http://localhost:8282
 
 If this global setting is ignored, you will need to explicitly configure your test-suite.
 
-#### Exporting the input vectors
+### Exporting the input vectors
 
 After running the test-suite, the system will have been trained with the input
 vectors of the web service.
@@ -50,7 +48,7 @@ The data can be retrieved with:
 http_proxy=http://localhost:8282 curl http://scnr.engine.proxy/panel/vectors.yml -o vectors.yml
 ```
 
-#### Starting the scan
+### Starting the scan
 
 In order for the scan to start you will need to shutdown the proxy:
 
@@ -58,7 +56,7 @@ In order for the scan to start you will need to shutdown the proxy:
 http_proxy=http://localhost:8282 curl http://scnr.engine.proxy/shutdown
 ```
 
-### Re-using input vector data
+## Re-using input vector data
 
 Data exported via the proxy plugin can be imported via the `vector_feed` plugin, like so:
 
