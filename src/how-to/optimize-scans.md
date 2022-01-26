@@ -1,9 +1,13 @@
-# Optimize for faster scans
+# Optimize scans
 
 Left to its own devices, SCNR will try to optimize itself to match any given
-circumstance, but there are limitations to what it can do. If a scan is taking 
-too long, chances are that there are ways to make it go much faster by taking a 
-couple of minutes to configure the system to closer match your needs.
+circumstance, but there are limitations to what it can do automatically.
+
+If a scan is taking too long, chances are that there are ways to make it go much 
+faster by taking a couple of minutes to configure the system to closer match your needs.
+
+In addition to performance, the following options also affect resource usage so
+you can experiment with them to better match your available resources as well.
 
 1. [Only enable security checks that concern you](#only-enable-security-checks-that-concern-you)
 2. [Tailor the audit process to the platforms of the web application](#tailor-the-audit-process-to-the-platforms-of-the-web-application)
@@ -11,7 +15,7 @@ couple of minutes to configure the system to closer match your needs.
 4. [Balance RAM consumption and performance](#balance-ram-consumption-and-performance)
 5. [Reduce RAM consumption by avoiding large resources](#reduce-ram-consumption-by-avoiding-large-resources)
 6. [Don't follow redundant pages](#dont-follow-redundant-pages)
-7. [Increase the amount of browser workers](#increase-the-amount-of-browser-workers)
+7. [Adjust the amount of browser workers](#adjust-the-amount-of-browser-workers)
 
 ## Only enable security checks that concern you
 
@@ -133,7 +137,7 @@ SCNR provides 2 features to help deal with that:
   limited amount of times.
   * `--scope-auto-redundant` -- Default is `10`.
 
-## Increase the amount of browser workers
+## Adjust the amount of browser workers
 
 SCNR uses real browsers to support technologies such as HTML5, AJAX and DOM
 manipulation and perform deep analysis of client-side code.
@@ -147,3 +151,6 @@ especially when scanning web applications that make heavy use of client-side tec
 Finding the optimal pool size depends on the resources of your machine (especially 
 the amount of CPU cores) and will probably require some experimentation; on average,
 1-2 browsers for each logical CPU core serves as a good starting point.
+
+However, do keep in mind that more workers may lead to higher RAM consumption as
+they will also accelerate workload generation. 

@@ -4,6 +4,8 @@
 
 [Prerequisites](./prerequisites.md)
 
+[System requirements](./system-requirements.md)
+
 # Deployment
 
  - [Direct](./deployment/direct.md)
@@ -40,7 +42,7 @@
 # How to
 
  - [Generate reports](./how-to/generate-reports.md)
- - [Optimize for faster scans](./how-to/optimize-for-faster-scans.md)
+ - [Optimize scans](./how-to/optimize-scans.md)
  - [Maintain a valid session](./how-to/maintain-a-valid-session.md)
  - [Scan services](./how-to/scan-services.md)
 
