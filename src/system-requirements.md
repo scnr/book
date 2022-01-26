@@ -1,9 +1,8 @@
 # System requirements
 
-
-| OS    | Architecture | RAM | CPU       |
-|-------|--------------|-----|-----------|
-| Linux | x86 64bit    | 4GB | Multicore |
+| Operating System | Architecture | RAM | Disk | CPU         | 
+|------------------|--------------|-----|------|-------------|
+| Linux            | x86 64bit    | 4GB | 4GB  | Multicore   |
 
 ## Trial packages
 
