@@ -79,11 +79,17 @@ be much more focused, less resource intensive and require less time to complete.
 
 ## Front-end support
 
-Even though SCNR is a black-box testing tool, this changes when is comes to the
-DOM/JS environment of each page, as it then injects a custom environment to
-monitor JS objects and APIs in order to trace execution and data flows and thus 
-provide in-depth reports as to how a security issue was identified which also 
-greatly assists in its remediation.
+HTML5, modern Javascript APIs and modern DOM APIs are supported by basing their
+execution and analysis on Chrome (via chromedriver -- default) or Firefox (via geckodriver).
+
+By using those modern and cutting edge browsers you can count on modern and cutting
+edge continued support.
+
+Furthermore, even though SCNR is a black-box testing tool, this changes when is 
+comes to the DOM/JS environment of each page, as it will injects a custom environment
+to monitor JS objects and APIs in order to trace execution and data flows and thus 
+provide highly in-depth reporting as to how a client-side security issue was 
+identified which also greatly assists in its remediation.
 
 ## Extendability
 
