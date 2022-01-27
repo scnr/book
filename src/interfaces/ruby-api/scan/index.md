@@ -77,7 +77,8 @@ SCNR::UI::CLI::Output.mute
 
 api = SCNR::Engine::API.new
 
-api.scan.options.set url: 'http://testhtml5.vulnweb.com'
+api.scan.options.set url: 'http://testhtml5.vulnweb.com',
+                     checks: %w(allowed_methods interesting_responses)
 
 api.state.on :change do |state|
     puts "Status:"
