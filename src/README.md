@@ -91,6 +91,17 @@ to monitor JS objects and APIs in order to trace execution and data flows and th
 provide highly in-depth reporting as to how a client-side security issue was 
 identified which also greatly assists in its remediation.
 
+## Machine learning/behavioral analysis
+
+SCNR will study the web application/service to identify how each input interacts
+with the front and back ends and tailor the audit for each specific input's characteristics.
+
+This results in highly self-optimized scans using less resources and requiring
+less time to complete, as well as less server stress.
+
+Training also continues during the audit process and new inputs that may appear
+during that time will be incorporated into the scan in whole.
+
 ## Extendability
 
 Its modular architecture allows for easy augmentation when it comes to security checks,
