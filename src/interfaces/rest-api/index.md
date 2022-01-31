@@ -38,13 +38,13 @@ bin/scnr_rest_server -h
 | `PUT`    | `/instances/:id/resume`      |                       | Resume the _Instance_.                                               |
 | `DELETE` | `/instances/:id`             |                       | Shutdown the _Instance_.                                             |
 
-### Dispatcher
+### Agent
 
 | Method   | Resource          | Parameters   | Description                         |
 |----------|-------------------|--------------|-------------------------------------|
-| `GET`    | `/dispatcher/url` |              | Get the configured _Dispatcher_ URL. |
-| `PUT`    | `/dispatcher/url` | URL (`String`) | Set the _Dispatcher_ URL.           |
-| `DELETE` | `/dispatcher/url` |              | Remove the _Dispatcher_.         |
+| `GET`    | `/agent/url` |              | Get the configured _Agent_ URL. |
+| `PUT`    | `/agent/url` | URL (`String`) | Set the _Agent_ URL.           |
+| `DELETE` | `/agent/url` |              | Remove the _Agent_.         |
 
 
 ### Grid
@@ -52,8 +52,8 @@ bin/scnr_rest_server -h
 | Method   | Resource            | Parameters | Description                                        |
 |----------|---------------------|------------|----------------------------------------------------|
 | `GET`    | `/grid`             |            | Get _Grid_ info.                                   |
-| `GET`    | `/grid/:dispatcher` |            | Get info of _Grid_ member by URL.                  |
-| `DELETE` | `/grid/:dispatcher` |            | Unplug _Dispatcher_ from the _Grid_ by URL. |
+| `GET`    | `/grid/:agent` |            | Get info of _Grid_ member by URL.                  |
+| `DELETE` | `/grid/:agent` |            | Unplug _Agent_ from the _Grid_ by URL. |
 
 
 ### Scheduler

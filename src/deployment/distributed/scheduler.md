@@ -19,14 +19,14 @@ The main role of the _Scheduler_ is to:
 
 By default, scans will run on the same machine as the _Scheduler_.
 
-## With Dispatcher
+## With Agent
 
-When a _Dispatcher_ has been provided, `dispatch` calls are going to be issued
+When a _Agent_ has been provided, `spawn` calls are going to be issued
 in order to acquire _Instances_ to run the scans.
 
 ### Grid
 
-In the case where the given _Dispatcher_ is a _Grid_ member, scans will be 
+In the case where the given _Agent_ is a _Grid_ member, scans will be 
 load-balanced across the _Grid_ according the the configured _strategy_.
 
 ## Examples

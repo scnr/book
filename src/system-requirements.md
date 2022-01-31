@@ -26,7 +26,7 @@ To optimize the resources a scan may use please consult:
 
 * [Optimize scans](./how-to/optimize-scans.md)
 
-In addition, _Dispatchers_ and other servers can have their max-slots adjusted 
+In addition, _Agents_ and other servers can have their max-slots adjusted 
 to a user-specified value, instead of the default, which is `auto` and based
 on the aforementioned system requirements.
 

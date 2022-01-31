@@ -11,8 +11,8 @@
  - [Direct](./deployment/direct.md)
    - [Scripted](./deployment/scripted.md)
  - [Distributed](./deployment/distributed/index.md)
-   - [Dispatcher](./deployment/distributed/dispatcher.md)
-     - [Grid](./deployment/distributed/dispatcher/grid.md)
+   - [Agent](./deployment/distributed/agent.md)
+     - [Grid](./deployment/distributed/agent/grid.md)
    - [Scheduler](./deployment/distributed/scheduler.md)
 
 # Interfaces

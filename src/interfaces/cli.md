@@ -5,10 +5,10 @@ at the time of writing are:
 
 1. `scnr` -- Direct scanning utility.
 1. `scnr_console` -- A [REPL](https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop) Ruby console running from the context of `SCNR::Engine`.
-1. `scnr_dispatch` -- Issues `disptch` calls to _Dispatchers_ to start scans remotely.
-1. `scnr_dispatcher` -- Starts a _Dispatcher_ daemon.
-1. `scnr_dispatcher_monitor` -- Monitors a _Dispatcher_.
-1. `scnr_dispatcher_unplug` -- Unplugs a _Dispatcher_ from its _Grid_.
+1. `scnr_spawn` -- Issues `disptch` calls to _Agents_ to start scans remotely.
+1. `scnr_agent` -- Starts a _Agent_ daemon.
+1. `scnr_agent_monitor` -- Monitors a _Agent_.
+1. `scnr_agent_unplug` -- Unplugs a _Agent_ from its _Grid_.
 1. `scnr_instance_connect` -- Utility to connect to an _Instance_.
 1. `scnr_reporter` -- Generates reports from `.crf` (Cuboid report file) and `.ser` (SCNR Engine report) report files.
 1. `scnr_reproduce` -- Reproduces an issue(s) from a given report.
