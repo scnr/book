@@ -5,7 +5,7 @@ at the time of writing are:
 
 1. `scnr` -- Direct scanning utility.
 1. `scnr_console` -- A [REPL](https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop) Ruby console running from the context of `SCNR::Engine`.
-1. `scnr_spawn` -- Issues `disptch` calls to _Agents_ to start scans remotely.
+1. `scnr_spawn` -- Issues `spawn` calls to _Agents_ to start scans remotely.
 1. `scnr_agent` -- Starts a _Agent_ daemon.
 1. `scnr_agent_monitor` -- Monitors a _Agent_.
 1. `scnr_agent_unplug` -- Unplugs a _Agent_ from its _Grid_.
