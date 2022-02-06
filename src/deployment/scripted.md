@@ -18,6 +18,8 @@ SCNR::Engine::API.run do
 
         # Allow some time for the modal animation to complete in order for
         # the login form to appear.
+        # 
+        # (Not actually necessary, this is just an example on how to hande quirks.)
         on :event do |_, locator, event, *|
             next if locator.attributes['href'] != '#myModal' || event != :click
             sleep 1
@@ -156,6 +158,8 @@ SCNR::Engine::API.run do
 
         # Allow some time for the modal animation to complete in order for
         # the login form to appear.
+        # 
+        # (Not actually necessary, this is just an example on how to hande quirks.)
         on :event do |_, locator, event, *|
             next if locator.attributes['href'] != '#myModal' || event != :click
             sleep 1
