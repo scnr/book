@@ -2,6 +2,8 @@
 
 [Introduction](./README.md)
 
+[Dependencies](./dependencies.md)
+
 [System requirements](./system-requirements.md)
 
 # Deployment
