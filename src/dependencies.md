@@ -12,4 +12,4 @@ sudo apt -y install ./google-chrome-stable_current_amd64.deb
 
 # Other
 
-Please use the package manager of your OS to install the aforementioned packages.
+Please use the package manager of your OS to install the Chrome and its dependencies.
