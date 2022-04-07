@@ -10,9 +10,9 @@ security of modern web applications and web APIs.
 You can access SCNR via multiple interfaces, such as:
 
 * [CLI](./interfaces/cli.md)
-* Web UI -- Under development, demo available upon request.
 * [Ruby API](./interfaces/ruby-api/index.md)
-* [REST API](./interfaces/rest-api/index.md)
+* [Pro (Web UI)](./interfaces/web/index.md)
+* [Enterprise (REST API)](./interfaces/rest-api/index.md)
 
 ## Back-end support
 

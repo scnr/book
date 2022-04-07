@@ -37,7 +37,8 @@
      - [Options](./interfaces/ruby-api/scan/options.md)
      - [Scope](./interfaces/ruby-api/scan/scope.md)
      - [Session](./interfaces/ruby-api/scan/session.md)
- - [REST API](./interfaces/rest-api/index.md)
+ - [Pro (Web UI)](./interfaces/web/index.md)
+ - [Enterprise (REST API)](./interfaces/rest-api/index.md)
 
 # How to
 
