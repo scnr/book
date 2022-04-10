@@ -1,6 +1,6 @@
 # Agent
 
-To start a _Agent_ run the `scnr_agent` CLI executable.
+To start an _Agent_ run the `scnr_agent` CLI executable.
 
 To see all available options run:
 
@@ -52,7 +52,7 @@ the _Agent_ node.
 
 The `scnr_spawn` utility largely accepts the same options as `scnr`.
 
-If a the _Agent_ is out of _slots_ you will see the following message:
+If the _Agent_ is out of _slots_ you will see the following message:
 
 ```
 [~] Agent is at maximum utilization, please try again later.
