@@ -136,6 +136,16 @@ Scripts are written in Ruby and can thus be stored in your favorite CVS, this
 enables you to work side-by-side with the web application development team and
 have the right script revision alongside the respective web application revision.
 
+## Scalability
+
+No dependencies, no configuration; SCNR can build a cloud of itself that allows
+you to scale both horizontally and vertically.
+
+Scale up by plugging more nodes to its _Grid_, or down by unplugging them.
+
+Furthermore, with multi-process scans you can not only distribute multiple scans
+across nodes, but also individual scans, for super fast scanning of large sites.
+
 ## Deployment
 
 Deployment options range from command-line utilities for direct scans, 
