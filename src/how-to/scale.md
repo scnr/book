@@ -114,7 +114,7 @@ If the _Grid_ is out of _slots_ you will see the following message:
 
 In which case you can keep retrying until a _slot_ opens up.
 
-### Running multi-process scans
+### Running multi-Instance scans
 
 The above is useful when you have multiple scans to run and you want to run them
 at the same time; another cool feature of SCNR though is that it can parallelize
@@ -126,9 +126,9 @@ hundreds of thousands or even millions of pages.
 Even better, doing so is as easy as:
 
 ```bash
-bin/scnr_spawn --agent-url=127.0.0.1:7331 http://testhtml5.vulnweb.com --multi-processes=5
+bin/scnr_spawn --agent-url=127.0.0.1:7331 http://testhtml5.vulnweb.com --multi-instances=5
 ```
 
-The `--multi-processes=5` option will instruct SCNR to use 5 processes to run this
-particular scan, with the aforementioned processes being of course load-balanced
+The `--multi-instances=5` option will instruct SCNR to use 5 _Instances_ to run this
+particular scan, with the aforementioned _Instances_ being of course load-balanced
 across the _Grid_.

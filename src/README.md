@@ -143,8 +143,8 @@ you to scale both horizontally and vertically.
 
 Scale up by plugging more nodes to its _Grid_, or down by unplugging them.
 
-Furthermore, with multi-process scans you can not only distribute multiple scans
-across nodes, but also individual scans, for super fast scanning of large sites.
+Furthermore, with multi-_Instances_ scans you can not only distribute multiple 
+scans across nodes, but also individual scans, for super fast scanning of large sites.
 
 ## Deployment
 
