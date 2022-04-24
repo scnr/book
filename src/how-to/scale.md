@@ -9,13 +9,14 @@ scale up and/or down.
 
 In essence, _Grids_ are created by connecting multiple _Agents_ together, at which
 point a mesh network of _Agents_ is formed.
-Doing so require no configuration, other than specifying an already running _Agent_
+Doing so requires no configuration, other than specifying an already running _Agent_
 when booting up a new one.
 
 This allows for creating a private Cloud of scanners, with minimal configuration,
 that can handle an indefinite amount of workload.
 
-Prior to continuing, it would be best if took a look at SCNR's [distributed architecture](/deployment/distributed/index.md).
+Prior to continuing, it would be best if you took a look at SCNR's 
+[distributed architecture](/deployment/distributed/index.md).
 
 ## Strategies
 
