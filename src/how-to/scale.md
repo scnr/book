@@ -132,4 +132,3 @@ bin/scnr_spawn --agent-url=127.0.0.1:7331 http://testhtml5.vulnweb.com --multi-p
 The `--multi-processes=5` option will instruct SCNR to use 5 processes to run this
 particular scan, with the aforementioned processes being of course load-balanced
 across the _Grid_.
-`
