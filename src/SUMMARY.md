@@ -2,7 +2,7 @@
 
 [Introduction](./README.md)
 
-[Dependencies](./dependencies.md)
+[Installation](./installation.md)
 
 [System requirements](./system-requirements.md)
 
