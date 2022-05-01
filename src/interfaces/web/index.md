@@ -1,17 +1,14 @@
 # Pro (Web UI)
 
-## Installation
+The Pro interface allows you to easily run, manage and schedule scans and their 
+results via an intuitive web interface.
 
-### Database connection
+## DB configuration and setup
 
-Please edit `.system/scnr-ui-pro/config/database.yml` and update it with your
-[PostgreSQL](https://www.postgresql.org/) credentials.
+Prior to using the Pro interface please make sure that a PostgreSQL server is
+available and that a DB connection can be successfully established.
 
-### Database setup
-
-```
-bin/scnr_pro_task db:create db:migrate db:seed
-```
+For more information please refer to the [Installation](../../installation.md) page.
 
 ## Boot-up
 
