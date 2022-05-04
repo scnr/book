@@ -62,6 +62,9 @@ browser of choice.
 ##### Summary
 ![Scan summary](screenshots/Screenshot_20220504_083050.png)
 
+##### Issues
+![Issues list](screenshots/Screenshot_20220329_123849.png)
+
 ##### Coverage
 ![Scan coverage](screenshots/Screenshot_20220504_083104.png)
 ![Scan coverage](screenshots/Screenshot_20220504_083509.png)
