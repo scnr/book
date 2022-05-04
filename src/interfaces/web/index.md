@@ -65,6 +65,13 @@ browser of choice.
 ##### Issues
 ![Issues list](screenshots/Screenshot_20220329_123849.png)
 
+###### Issue
+![Scan issue](screenshots/Screenshot_20220504_083144.png)
+![Scan issue](screenshots/Screenshot_20220504_083154.png)
+![Scan issue](screenshots/Screenshot_20220504_083210.png)
+![Scan issue](screenshots/Screenshot_20220504_083243.png)
+![Scan issue](screenshots/Screenshot_20220504_083304.png)
+
 ##### Coverage
 ![Scan coverage](screenshots/Screenshot_20220504_083104.png)
 ![Scan coverage](screenshots/Screenshot_20220504_083509.png)
@@ -74,13 +81,6 @@ browser of choice.
 
 ##### Events
 ![Scan events](screenshots/Screenshot_20220504_083127.png)
-
-###### Issue
-![Scan issue](screenshots/Screenshot_20220504_083144.png)
-![Scan issue](screenshots/Screenshot_20220504_083154.png)
-![Scan issue](screenshots/Screenshot_20220504_083210.png)
-![Scan issue](screenshots/Screenshot_20220504_083243.png)
-![Scan issue](screenshots/Screenshot_20220504_083304.png)
 
 #### User roles
 
