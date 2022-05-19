@@ -3,13 +3,6 @@
 The Pro interface allows you to easily run, manage and schedule scans and their 
 results via an intuitive web interface.
 
-## DB configuration and setup
-
-Prior to using the Pro interface please make sure that a PostgreSQL server is
-available and that a DB connection can be successfully established.
-
-For more information please refer to the [Installation](../../installation.md) page.
-
 ## Boot-up
 
 To boot the Pro interface please issue:
