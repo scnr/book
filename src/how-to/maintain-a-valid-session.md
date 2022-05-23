@@ -50,14 +50,12 @@ Lastly, we **exclude** (`--scope-exclude-pattern`) the logout link from the audi
 The `login_script` plugin can be used to specify custom login procedures, as simple
 Ruby or JS scripts, to be executed prior to the scan and each time a logout is detected.
 
-### Ruby
-
 The script will be run under the context of a plugin, which means that it will 
 have access to all system components, allowing you to login in the most optimal
 way -- be that via a real browser, via HTTP requests, by loading an external 
 cookie-jar file and many more.
 
-#### With browser (slow)
+### With browser
 
 If a [browser](http://watir.com/) is available, it will be exposed to the script
 via the `browser` variable. Otherwise, that variable will have a value of `nil`.
@@ -77,7 +75,7 @@ framework.options.session.check_url     = browser.url
 framework.options.session.check_pattern = /Sign Off|MY ACCOUNT/
 ```
 
-#### Without browser (fast)
+### With HTTP Client
 
 If a real browser environment is not required for the login operation, then using 
 the system-wide HTTP interface is preferable, as it will be much faster and consume 
@@ -97,7 +95,7 @@ framework.options.session.check_url     = to_absolute( response.headers.location
 framework.options.session.check_pattern = /Sign Off|MY ACCOUNT/
 ```
 
-#### From cookie-jar
+### From cookie-jar
 
 If an external process is used to manage sessions, you can keep SCNR in sync by
 loading cookies from a shared Netscape-style cookie-jar file.
@@ -106,7 +104,7 @@ loading cookies from a shared Netscape-style cookie-jar file.
 http.cookie_jar.load 'cookies.txt'
 ```
 
-#### Advanced session check configuration
+### Advanced session check configuration
 
 In addition to just setting the `check_url` and `check_pattern` options, you can
 also set arbitrary HTTP request options for the login check, to cover cases where
@@ -135,18 +133,6 @@ framework.session.check_options = {
         'X-Custom-Header' => 'value'
     }
 }
-```
-
-### Javascript
-
-When the given script has a `.js` file extension, it will be loaded and executed
-in the browser, within the page of the target URL.
-
-```javascript
-document.getElementById( 'uid' ).value   = 'jsmith';
-document.getElementById( 'passw' ).value = 'Demo1234';
-
-document.getElementById( 'login' ).submit();
 ```
 
 ## Proxy plugin
