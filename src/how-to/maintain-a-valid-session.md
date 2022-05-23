@@ -71,8 +71,8 @@ form.submit
 
 # You can also configure the session check from the script, dynamically,
 # if you don't want to set static options via the user interface.
-framework.options.session.check_url     = browser.url
-framework.options.session.check_pattern = /Sign Off|MY ACCOUNT/
+SCNR::Engine::Options.session.check_url     = browser.url
+SCNR::Engine::Options.session.check_pattern = /Sign Off|MY ACCOUNT/
 ```
 
 ### With HTTP Client
@@ -91,8 +91,8 @@ response = http.post( 'http://testfire.net/bank/login.aspx',
     update_cookies: true
 )
 
-framework.options.session.check_url     = to_absolute( response.headers.location, response.url )
-framework.options.session.check_pattern = /Sign Off|MY ACCOUNT/
+SCNR::Engine::Options.session.check_url     = to_absolute( response.headers.location, response.url )
+SCNR::Engine::Options.session.check_pattern = /Sign Off|MY ACCOUNT/
 ```
 
 ### From cookie-jar
