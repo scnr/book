@@ -143,8 +143,11 @@ you to scale both horizontally and vertically.
 
 Scale up by plugging more nodes to its _Grid_, or down by unplugging them.
 
-Furthermore, with multi-_Instances_ scans you can not only distribute multiple 
+Furthermore, with multi-_Instance_ scans you can not only distribute multiple 
 scans across nodes, but also individual scans, for super fast scanning of large sites.
+
+Finally, with its quick suspend-to-disk/restore feature, running scans can easily be moved from node
+to node, accommodating highly optimized load-balancing and cost saving policies.
 
 ## Deployment
 
