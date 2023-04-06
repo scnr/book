@@ -11,8 +11,8 @@ You can access SCNR via multiple interfaces, such as:
 
 * [CLI](./interfaces/cli.md)
 * [Ruby API](./interfaces/ruby-api/index.md)
-* [Web UI (Pro)](./interfaces/web/index.md)
-* [REST API (Enterprise)](./interfaces/rest-api/index.md)
+* [REST API](./interfaces/rest-api/index.md)
+* [Web UI](./interfaces/web/index.md)
 
 ## Back-end support
 
