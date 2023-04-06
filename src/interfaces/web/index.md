@@ -1,7 +1,6 @@
 # Web UI
 
-The Pro interface allows you to easily run, manage and schedule scans and their 
-results via an intuitive web interface.
+The WebUI allows you to easily run, manage and schedule scans and their results via an intuitive web interface.
 
 ## Boot-up
 
