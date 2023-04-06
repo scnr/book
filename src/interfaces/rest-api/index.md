@@ -38,6 +38,84 @@ bin/scnr_rest_server -h
 | `PUT`    | `/instances/:id/resume`      |                       | Resume the _Instance_.                                               |
 | `DELETE` | `/instances/:id`             |                       | Shutdown the _Instance_.                                             |
 
+#### Scan options
+
+```
+{
+  "url": "http://example.com",
+  "session": {},
+  "audit": {
+    "paranoia": "medium",
+    "exclude_vector_patterns": [],
+    "include_vector_patterns": [],
+    "link_templates": []
+  },
+  "scope": {
+    "directory_depth_limit": 10,
+    "auto_redundant_paths": 15,
+    "redundant_path_patterns": {},
+    "dom_depth_limit": 4,
+    "dom_event_limit": 500,
+    "dom_event_inheritance_limit": 500,
+    "exclude_file_extensions": [],
+    "exclude_path_patterns": [],
+    "exclude_content_patterns": [],
+    "include_path_patterns": [],
+    "restrict_paths": [],
+    "extend_paths": [],
+    "url_rewrites": {}
+  },
+  "http": {
+    "request_timeout": 20000,
+    "request_redirect_limit": 5,
+    "request_concurrency": 10,
+    "request_queue_size": 50,
+    "request_headers": {},
+    "response_max_size": 500000,
+    "cookies": {},
+    "authentication_type": "auto"
+  },
+  "device": {
+    "visible": false,
+    "width": 1600,
+    "height": 1200,
+    "user_agent": "Mozilla/5.0 (Gecko) SCNR::Engine/v1.0dev",
+    "pixel_ratio": 1,
+    "touch": false
+  },
+  "dom": {
+    "engine": "chrome",
+    "local_storage": {},
+    "session_storage": {},
+    "wait_for_elements": {},
+    "pool_size": 10,
+    "job_timeout": 120,
+    "worker_time_to_live": 1000,
+    "wait_for_timers": false
+  },
+  "input": {
+    "values": {},
+    "default_values": {
+      "name": "scnr_engine_name",
+      "user": "scnr_engine_user",
+      "usr": "scnr_engine_user",
+      "pass": "5543!%scnr_engine_secret",
+      "txt": "scnr_engine_text",
+      "num": "132",
+      "amount": "100",
+      "mail": "scnr_engine@email.gr",
+      "account": "12",
+      "id": "1"
+    },
+  },
+  "checks": [],
+  "platforms": [],
+  "plugins": {},
+  "no_fingerprinting": false,
+  "authorized_by": null
+}
+```
+
 ### Agent
 
 | Method   | Resource          | Parameters   | Description                         |
