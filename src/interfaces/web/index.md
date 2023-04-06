@@ -64,6 +64,10 @@ cp .system/scnr-ui-pro/config/database.postgres.yml .system/scnr-ui-pro/config/d
 
 Now edit `.system/scnr-ui-pro/config/database.yml` to change the password from `secret`.
 
+#### Setup
+
+`bin/scnr_pro_task db:setup`
+
 ## Screenshots
 
 ### Sites
