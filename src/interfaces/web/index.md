@@ -1,4 +1,4 @@
-# Pro (Web UI)
+# Web UI
 
 The Pro interface allows you to easily run, manage and schedule scans and their 
 results via an intuitive web interface.
@@ -16,10 +16,14 @@ browser of choice.
 
 ## Features
 
+* Parallel scans.
+* Live scan progress.
+* Scan coverage display.
+* Server/scanner/network health display.
 * Powerful yet intuitive filtering.
-* Scheduled/recurring scans support.
-  * Simple frequency config support.
-  * Cronline frequency config support.
+* Scheduled/recurring scans.
+  * Simple frequency configuration.
+  * Cronline frequency configuration support.
   * Identification of conflicting future scans in calendar.
 * Automated issue review.
   * Fixed -- Issues that don't appear in subsequent scans.
@@ -30,74 +34,72 @@ browser of choice.
 * Device emulation.
 * Scan profiles.
 * Extensive scan log.
-* Live scan progress.
-* Scan coverage display.
-* Server/scanner/network health display.
 
 ## Screenshots
 
 ### Sites
 
 #### List
-![Sites list](screenshots/Screenshot_20220504_082733.png)
-![Sites list](screenshots/Screenshot_20220504_083434.png)
+
+[![Sites list](screenshots/Screenshot_20220504_082733.png)](screenshots/Screenshot_20220504_082733.png)
+[![Sites list](screenshots/Screenshot_20220504_083434.png)](screenshots/Screenshot_20220504_083434.png)
 
 #### Settings
-![Sites settings](screenshots/Screenshot_20220504_082801.png)
-![Sites settings](screenshots/Screenshot_20220504_082829.png)
+[![Sites settings](screenshots/Screenshot_20220504_082801.png)](screenshots/Screenshot_20220504_082801.png)
+[![Sites settings](screenshots/Screenshot_20220504_082829.png)](screenshots/Screenshot_20220504_082829.png)
 
 #### Scans
-![Scans](screenshots/Screenshot_20220504_082949.png)
+[![Scans](screenshots/Screenshot_20220504_082949.png)](screenshots/Screenshot_20220504_082949.png)
 
 ##### New
-![New scan](screenshots/Screenshot_20220504_083006.png)
+[![New scan](screenshots/Screenshot_20220504_083006.png)](screenshots/Screenshot_20220504_083006.png)
 
 ##### Summary
-![Scan summary](screenshots/Screenshot_20220504_083050.png)
+[![Scan summary](screenshots/Screenshot_20220504_083050.png)](screenshots/Screenshot_20220504_083050.png)
 
 ##### Issues
-![Issues list](screenshots/Screenshot_20220329_123849.png)
+[![Issues list](screenshots/Screenshot_20220329_123849.png)](screenshots/Screenshot_20220329_123849.png)
 
 ###### Issue
-![Scan issue](screenshots/Screenshot_20220504_083144.png)
-![Scan issue](screenshots/Screenshot_20220504_083154.png)
-![Scan issue](screenshots/Screenshot_20220504_083210.png)
-![Scan issue](screenshots/Screenshot_20220504_083243.png)
-![Scan issue](screenshots/Screenshot_20220504_083304.png)
+[![Scan issue](screenshots/Screenshot_20220504_083144.png)](screenshots/Screenshot_20220504_083144.png)
+[![Scan issue](screenshots/Screenshot_20220504_083154.png)](screenshots/Screenshot_20220504_083154.png)
+[![Scan issue](screenshots/Screenshot_20220504_083210.png)](screenshots/Screenshot_20220504_083210.png)
+[![Scan issue](screenshots/Screenshot_20220504_083243.png)](screenshots/Screenshot_20220504_083243.png)
+[![Scan issue](screenshots/Screenshot_20220504_083304.png)](screenshots/Screenshot_20220504_083304.png)
 
 ##### Coverage
-![Scan coverage](screenshots/Screenshot_20220504_083104.png)
-![Scan coverage](screenshots/Screenshot_20220504_083509.png)
+[![Scan coverage](screenshots/Screenshot_20220504_083104.png)](screenshots/Screenshot_20220504_083104.png)
+[![Scan coverage](screenshots/Screenshot_20220504_083509.png)](screenshots/Screenshot_20220504_083509.png)
 
 ##### Health
-![Scan health](screenshots/Screenshot_20220504_083113.png)
+[![Scan health](screenshots/Screenshot_20220504_083113.png)](screenshots/Screenshot_20220504_083113.png)
 
 ##### Events
-![Scan events](screenshots/Screenshot_20220504_083127.png)
+[![Scan events](screenshots/Screenshot_20220504_083127.png)](screenshots/Screenshot_20220504_083127.png)
 
 #### User roles
 
 ##### List
-![User roles list](screenshots/Screenshot_20220504_082852.png)
+[![User roles list](screenshots/Screenshot_20220504_082852.png)](screenshots/Screenshot_20220504_082852.png)
 
 ##### New
-![User roles new](screenshots/Screenshot_20220504_082906.png)
-![User roles new](screenshots/Screenshot_20220504_082914.png)
-![User roles new](screenshots/Screenshot_20220504_082926.png)
-![User roles new](screenshots/Screenshot_20220504_082934.png)
+[![User roles new](screenshots/Screenshot_20220504_082906.png)](screenshots/Screenshot_20220504_082906.png)
+[![User roles new](screenshots/Screenshot_20220504_082914.png)](screenshots/Screenshot_20220504_082914.png)
+[![User roles new](screenshots/Screenshot_20220504_082926.png)](screenshots/Screenshot_20220504_082926.png)
+[![User roles new](screenshots/Screenshot_20220504_082934.png)](screenshots/Screenshot_20220504_082934.png)
 
 ### Profiles
 
 #### List
-![Profiles list](screenshots/Screenshot_20220504_083319.png)
+[![Profiles list](screenshots/Screenshot_20220504_083319.png)](screenshots/Screenshot_20220504_083319.png)
 
 #### Show
-![Profile show](screenshots/Screenshot_20220504_083330.png)
+[![Profile show](screenshots/Screenshot_20220504_083330.png)](screenshots/Screenshot_20220504_083330.png)
 
 ### Devices
 
 #### List
-![Devices list](screenshots/Screenshot_20220504_083347.png)
+[![Devices list](screenshots/Screenshot_20220504_083347.png)](screenshots/Screenshot_20220504_083347.png)
 
 ### Settings
-![Settings](screenshots/Screenshot_20220504_083407.png)
+[![Settings](screenshots/Screenshot_20220504_083407.png)](screenshots/Screenshot_20220504_083407.png)
