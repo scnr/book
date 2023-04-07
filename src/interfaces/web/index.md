@@ -15,19 +15,19 @@ browser of choice.
 
 ## Features
 
-* Parallel scans.
 * Live scan progress.
 * Scan coverage display.
-* Server/scanner/network health display.
-* Powerful yet intuitive filtering.
-* Scheduled/recurring scans.
+* Parallel scans.
+* Recurring scans -- incremental scanning with automated issue reviews:
+  * Fixed issues -- Issues that don't appear in subsequent scans.
+  * Regressions -- Fixed issues that re-appeared in subsequent scans.
+* Scheduled scans.
   * Simple frequency configuration.
   * Cronline frequency configuration support.
   * Identification of conflicting future scans in calendar.
-* Automated issue review.
-  * Fixed -- Issues that don't appear in subsequent scans.
-  * Regressions -- Fixed issues that re-appeared in subsequent scans.
-* Website roles.
+* Server/scanner/network health display.
+* Powerful yet intuitive filtering.
+* Website role management.
   * Form login.
   * Script login.
 * Device emulation.
