@@ -19,9 +19,10 @@ bin/scnr_rest_server -h
 
 ### Scan
 
-| Method   | Resource                       | Parameters            | Description        |
-|----------|--------------------------------|-----------------------|--------------------|
-| `GET`    | `/instances/:id/scan/progress` |                       | Get scan progress. |
+| Method   | Resource                          | Parameters            | Description          |
+|----------|-----------------------------------|-----------------------|----------------------|
+| `GET`    | `/instances/:id/scan/progress`    |                       | Get scan progress.   |
+| `GET`    | `/instances/:id/scan/report.json` |                       | Get the scan report. |
 
 
 ### Instances
