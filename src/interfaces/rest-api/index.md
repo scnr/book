@@ -166,8 +166,6 @@ Start the server by issuing the following command:
 #!/usr/bin/env ruby
 
 require 'pp'
-
-# HTTP Helpers for REST requests, see the next section.
 require_relative 'http-helpers'
 
 # Create a new scanner Instance (process) and run a scan with the following options.
@@ -182,7 +180,7 @@ request :post, 'instances', {
   },
 
   # Load all active checks.
-  checks: 'active/*'
+  checks: 'xss'
 }
 
 # The ID is used to represent that instance and allow us to manage it from here on out.
@@ -207,7 +205,7 @@ end
 puts '*' * 88
 
 # Get the scan report.
-request :get, "instances/#{instance_id}/report.json"
+request :get, "instances/#{instance_id}/scan/report.json"
 # Print out the report.
 pp response_data
 
