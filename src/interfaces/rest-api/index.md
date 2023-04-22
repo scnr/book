@@ -151,3 +151,113 @@ bin/scnr_rest_server -h
 | `GET`    | `/scheduler/:instance`        |                       | Get _Instance_ info.                                     |
 | `PUT`    | `/scheduler/:instance/detach` |                       | Detach the given _Instance_ from the _Scheduler_.        |
 | `DELETE` | `/scheduler/:instance`        |                       | Remove queued _Instance_ job from the _Scheduler_ queue. |
+
+## Examples
+
+### Starting the REST server
+
+Start the server by issuing the following command:
+
+`bin/scnr_rest_server`
+
+### Client
+
+```ruby
+#!/usr/bin/env ruby
+
+require 'pp'
+
+# HTTP Helpers for REST requests, see the next section.
+require_relative 'http-helpers'
+
+# Create a new scanner Instance (process) and run a scan with the following options.
+request :post, 'instances', {
+
+  # Scan this URL.
+  url:    'http://testhtml5.vulnweb.com',
+
+  # Audit the following element types.
+  audit:  {
+    elements: [:links, :forms, :cookies, :ui_inputs, :ui_forms]
+  },
+
+  # Load all active checks.
+  checks: 'active/*'
+}
+
+# The ID is used to represent that instance and allow us to manage it from here on out.
+instance_id = response_data['id']
+
+while sleep( 1 )
+  request :get, "instances/#{instance_id}/scan/progress", {
+    # Get the hash-map representation of native objects, like issues.
+    as_hash: true,
+    # Include these types of objects only.
+    with: [:issues, :sitemap, :errors]
+  }
+
+  # Print out instance progress.
+  pp response_data
+
+  # Continue looping while instance status is 'busy'.
+  request :get, "instances/#{instance_id}"
+  break if !response_data['busy']
+end
+
+puts '*' * 88
+
+# Get the scan report.
+request :get, "instances/#{instance_id}/report.json"
+# Print out the report.
+pp response_data
+
+# Shutdown the Instance.
+request :delete, "instances/#{instance_id}"
+```
+
+#### HTTP helpers
+
+This client example included some helpers for the HTTP requests:
+
+```ruby
+require 'json'
+require 'tmpdir'
+require 'typhoeus'
+
+def response
+  if @last_response.headers['Content-Type'].include? 'json'
+    data = JSON.load( @last_response.body )
+  else
+    data = @last_response.body
+  end
+  {
+    code: @last_response.code,
+    data: data
+  }
+end
+
+def response_data
+  response[:data]
+end
+
+def request( method, resource = nil, parameters = nil )
+  options = {}
+
+  if parameters
+    if method == :get
+      options[:params] = parameters
+    else
+      options[:body] = parameters.to_json
+    end
+  end
+
+  options[:cookiejar]  = "#{Dir.tmpdir}/cookiejar.txt"
+  options[:cookiefile] = options[:cookiejar]
+
+  @last_response = Typhoeus.send(
+    method,
+    "http://127.0.0.1:7331/#{resource}",
+    options
+  )
+end
+```
