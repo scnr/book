@@ -11,6 +11,133 @@ Scan scripts can either be a form of configuration or standalone scanners.
 
 ### As configuration
 
+#### With helpers
+
+`html5.config.rb`:
+```ruby
+SCNR::Engine::API.run do
+  require '/home/user/script/helpers'
+
+  Dom {
+    on :event, &method(:on_event_handler)
+  }
+
+  Checks {
+
+    # This will run from the context of SCNR::Engine::Check::Base; it
+    # basically creates a new check component on the fly.
+    as :not_found, check_404_info, method(:check_404)
+ 
+  }
+
+  Plugins {
+
+    # This will run from the context of SCNR::Engine::Plugin::Base; it
+    # basically creates a new plugin component on the fly.
+    as :my_plugin, my_plugin_info, method(:my_plugin)
+
+  }
+
+  Scan {
+
+    Session {
+      to :login, &method(:login)
+      to :check, &method(:login_check)
+    }
+
+    Scope {
+      # Don't visit resources that will end the session.
+      reject :url, &method(:to_logout)
+    }
+  }
+
+end
+```
+
+`helpers.rb`:
+```ruby
+# Allow some time for the modal animation to complete in order for
+# the login form to appear.
+#
+# (Not actually necessary, this is just an example on how to hande quirks.)
+def on_event_handler( result, locator, event, options, browser )
+  return if locator.attributes['href'] != '#myModal' || event != :click
+  sleep 1
+end
+
+# Does something really simple, logs an issue for each 404 page.
+def check_404
+  response = page.response
+  return if response.code != 404
+
+  log(
+    proof:    response.status_line,
+    vector:   SCNR::Engine::Element::Server.new( response.url ),
+    response: response
+  )
+end
+
+def check_404_info
+  {
+    issue: {
+      name:     'Page not found',
+      severity: SCNR::Engine::Issue::Severity::INFORMATIONAL
+    }
+  }
+end
+
+def my_plugin
+  # Do stuff then wait until scan completes.
+  wait_while_framework_running
+  # Do stuff after scan completes.
+end
+
+def my_plugin_info
+  {
+    name: 'My Plugin',
+    description: 'Just waits for the scan to finish,'
+  }
+end
+
+def login( browser )
+  # Login with whichever interface you prefer.
+  watir    = browser.watir
+  selenium = browser.selenium
+
+  watir.goto SCNR::Engine::Options.url
+
+  watir.link( href: '#myModal' ).click
+  form = watir.form( id: 'loginForm' )
+
+  form.text_field( name: 'username' ).set 'admin'
+  form.text_field( name: 'password' ).set 'admin'
+  form.submit
+end
+
+def login_check( &in_async_mode )
+  http_client = SCNR::Engine::HTTP::Client
+  check       = proc { |r| r.body.optimized_include? '<b>admin' }
+
+  # If an async block is passed, then the framework would rather
+  # schedule it to run asynchronously.
+  if in_async_mode
+    http_client.get SCNR::Engine::Options.url do |response|
+      in_async_mode.call check.call( response )
+    end
+  else
+    response = http_client.get( SCNR::Engine::Options.url, mode: :sync )
+    check.call( response )
+  end
+end
+
+def to_logout( url )
+  url.path.optimized_include?( 'login' ) ||
+    url.path.optimized_include?( 'logout' )
+end
+```
+
+#### Single file
+
 ```ruby
 SCNR::Engine::API.run do
 
