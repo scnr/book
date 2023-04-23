@@ -375,4 +375,3 @@ Supposing the above is saved as `html5.scanner.rb`:
 ```bash
 bin/scnr_script html5.scanner.rb
 ```
-
