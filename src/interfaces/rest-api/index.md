@@ -181,7 +181,7 @@ request :post, 'instances', {
   },
 
   # Load all active checks.
-  checks: 'xss'
+  checks: 'active/*'
 }
 
 # The ID is used to represent that instance and allow us to manage it from here on out.
