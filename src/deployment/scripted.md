@@ -246,6 +246,253 @@ bin/scnr http://testhtml5.vulnweb.com --script=html5.config.rb
 
 This basically creates a custom scanner.
 
+#### With helpers
+
+```bash
+bin/scnr_script html5.scanner.rb
+```
+
+`html5.scanner.rb`:
+```ruby
+require 'scnr/engine/api'
+
+OPTIONS = {
+  url:    'http://testhtml5.vulnweb.com',
+  audit:  {
+    elements: [:links, :forms, :cookies]
+  },
+  checks: ['*']
+}
+
+# Mute output messages from the CLI interface, we've got our own output methods.
+SCNR::UI::CLI::Output.mute
+
+SCNR::Engine::API.run do
+  require '/home/user/script/helpers'
+
+  State {
+    on :change, &method(:handle_state_change)
+  }
+
+  Data {
+    Issues {
+      on :new, &method(:handle_issue)
+    }
+  }
+
+  Logging {
+    on :error, &method(:handle_error)
+  }
+
+  Dom {
+    on :event, &method(:handle_event)
+  }
+
+  Checks {
+    # This will run from the context of SCNR::Engine::Check::Base; it
+    # basically creates a new check component on the fly.
+    as :not_found, check_404_info, method(:check_404)
+  }
+
+  Plugins {
+    # This will run from the context of SCNR::Engine::Plugin::Base; it
+    # basically creates a new plugin component on the fly.
+    as :my_plugin, my_plugin_info, method(:my_plugin)
+  }
+
+  Scan {
+    Options {
+      set OPTIONS
+    }
+
+    Session {
+      to :login, &method(:login)
+      to :check, &method(:login_check)
+    }
+
+    Scope {
+      # Don't visit resources that will end the session.
+      reject :url, &method(:that_logs_out)
+    }
+
+    before :page do |page|
+      puts "Processing\t- [#{page.response.code}] #{page.dom.url}"
+    end
+
+    on :page do |page|
+      puts "Scanning\t- [#{page.response.code}] #{page.dom.url}"
+    end
+
+    after :page do |page|
+      puts "Scanned\t\t- [#{page.response.code}] #{page.dom.url}"
+    end
+
+    run! &method(:handle_results)
+  }
+
+end
+```
+
+`helpers.rb`:
+```ruby
+def handle_state_change( state )
+  puts "State\t\t- #{state.status.capitalize}"
+end
+
+def handle_issue( issue )
+  puts "Issue\t\t- #{issue.name} from `#{issue.referring_page.dom.url}`" <<
+         " in `#{issue.vector.type}`."
+end
+
+def handle_error( error )
+  $stderr.puts "Error\t\t- #{error}"
+end
+
+# Allow some time for the modal animation to complete in order for
+# the login form to appear.
+#
+# (Not actually necessary, this is just an example on how to hande quirks.)
+def handle_event( result, locator, event, options, browser )
+  return if locator.attributes['href'] != '#myModal' || event != :click
+  sleep 1
+end
+
+# Does something really simple, logs an issue for each 404 page.
+def check_404
+  response = page.response
+  return if response.code != 404
+
+  log(
+    proof:    response.status_line,
+    vector:   SCNR::Engine::Element::Server.new( response.url ),
+    response: response
+  )
+end
+
+def check_404_info
+  {
+    issue: {
+      name:     'Page not found',
+      severity: SCNR::Engine::Issue::Severity::INFORMATIONAL
+    }
+  }
+end
+
+def my_plugin
+  puts "#{shortname}\t- Running..."
+  wait_while_framework_running
+  puts "#{shortname}\t- Done!"
+end
+
+def my_plugin_info
+  {
+    name: 'My Plugin',
+    description: 'Just waits for the scan to finish,'
+  }
+end
+
+def login( browser )
+  print "Session\t\t- Logging in..."
+
+  # Login with whichever interface you prefer.
+  watir    = browser.watir
+  selenium = browser.selenium
+
+  watir.goto SCNR::Engine::Options.url
+
+  watir.link( href: '#myModal' ).click
+
+  form = watir.form( id: 'loginForm' )
+  form.text_field( name: 'username' ).set 'admin'
+  form.text_field( name: 'password' ).set 'admin'
+  form.submit
+
+  if browser.response.body =~ /<b>admin/
+    puts 'done!'
+  else
+    puts 'failed!'
+  end
+end
+
+def login_check( &async )
+  print "Session\t\t- Checking..."
+
+  http_client = SCNR::Engine::HTTP::Client
+  check       = proc { |r| r.body.optimized_include? '<b>admin' }
+
+  # If an async block is passed, then the framework would rather
+  # schedule it to run asynchronously.
+  if async
+    http_client.get SCNR::Engine::Options.url do |response|
+      result = check.call( response )
+
+      puts "logged #{result ? 'in' : 'out'}!"
+
+      async.call result
+    end
+  else
+    response = http_client.get( SCNR::Engine::Options.url, mode: :sync )
+    success = check.call( response )
+
+    puts "logged #{success ? 'in' : 'out'}!"
+
+    success
+  end
+end
+
+def that_logs_out( url )
+  url.path.optimized_include?( 'login' ) ||
+    url.path.optimized_include?( 'logout' )
+end
+
+def handle_results( report, statistics )
+  puts
+  puts '=' * 80
+  puts
+
+  puts "[#{report.sitemap.size}] Sitemap:"
+  puts
+  report.sitemap.sort_by { |url, _| url }.each do |url, code|
+    puts "\t[#{code}] #{url}"
+  end
+
+  puts
+  puts '-' * 80
+  puts
+
+  puts "[#{report.issues.size}] Issues:"
+  puts
+
+  report.issues.each.with_index do |issue, idx|
+
+    s = "\t[#{idx+1}] #{issue.name} in `#{issue.vector.type}`"
+    if issue.vector.respond_to?( :affected_input_name ) &&
+      issue.vector.affected_input_name
+      s << " input `#{issue.vector.affected_input_name}`"
+    end
+    puts s << '.'
+
+    puts "\t\tAt `#{issue.page.dom.url}` from `#{issue.referring_page.dom.url}`."
+
+    if issue.proof
+      puts "\t\tProof:\n\t\t\t#{issue.proof.gsub( "\n", "\n\t\t\t" )}"
+    end
+
+    puts
+  end
+
+  puts
+  puts '-' * 80
+  puts
+
+  puts "Statistics:"
+  puts
+  puts "\t" << statistics.ai.gsub( "\n", "\n\t" )
+end
+```
+
+#### Single file
+
 ```ruby
 require 'scnr/engine/api'
 
