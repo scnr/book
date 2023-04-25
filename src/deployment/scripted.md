@@ -246,88 +246,148 @@ bin/scnr http://testhtml5.vulnweb.com --script=html5.config.rb
 
 This basically creates a custom scanner.
 
+The difference is that these scripts will run a scan and handle its results on their own,
+and not just serve as configuration.
+
 #### With helpers
 
+When a scan script is large-ish and/or complicated it's better to split it into the main file and helper handler methods.
+
 ```bash
-bin/scnr_script html5.scanner.rb
+bin/scnr_script scanner.rb
 ```
 
-`html5.scanner.rb`:
+`scanner.rb`:
 ```ruby
 require 'scnr/engine/api'
 
-OPTIONS = {
-  url:    'http://testhtml5.vulnweb.com',
-  audit:  {
-    elements: [:links, :forms, :cookies]
-  },
-  checks: ['*']
-}
-
-# Mute output messages from the CLI interface, we've got our own output methods.
-SCNR::UI::CLI::Output.mute
+require "#{Options.paths.root}/tmp/scripts/with_helpers/helpers"
 
 SCNR::Engine::API.run do
-  require '/home/user/script/helpers'
 
-  State {
-    on :change, &method(:handle_state_change)
-  }
+  Scan {
 
-  Data {
-    Issues {
-      on :new, &method(:handle_issue)
+    # Can also be written as:
+    #
+    # options.set(
+    #   url:    'http://testhtml5.vulnweb.com',
+    #   audit:  {
+    #     elements: [:links, :forms, :cookies, :ui_inputs, :ui_forms]
+    #   },
+    #   checks: ['*']
+    # )
+    Options {
+      set url:    'http://my-site.com',
+          audit:  {
+            elements: [:links, :forms, :cookies, :ui_inputs, :ui_forms]
+          },
+          checks: ['*']
     }
+
+    # Scan session configuration.
+    Session {
+      # Login using the #fill_in_and_submit_the_login_form method from the helpers.rb file.
+      to :login, :fill_in_and_submit_the_login_form
+
+      # Check for a valid session using the #find_welcome_message method from the helpers.rb file.
+      to :check, :find_welcome_message
+    }
+
+    # Scan scope configuration.
+    Scope {
+
+      # Limit the scope of the scan based on URL.
+      select :url, :within_the_eshop
+
+      # Limit the scope of the scan based on Element.
+      reject :element, :with_sensitive_action; also :with_weird_nonce
+
+      # Only select pages that are in the admin panel.
+      select :page, :in_admin_panel
+
+      # Limit the scope of the scan based on Page.
+      reject :page, :with_error
+
+      # Limit the scope of the scan based on DOM events and DOM elements.
+      # In this case, never click the logout button!
+      reject :event, :that_clicks_the_logout_button
+
+    }
+
+    # Run the scan and handle the results (in this case print to STDOUT) using #handle_results.
+    run! :handle_results
   }
 
   Logging {
-    on :error, &method(:handle_error)
+
+    # Error and exception handling.
+    on :error,     :log_error
+    on :exception, :log_exception
+
   }
 
-  Dom {
-    on :event, &method(:handle_event)
+  Data {
+
+    # Don't store issues in memory, we'll send them to the DB.
+    issues.disable(:storage).on :new, :save_to_db
+
+    # Could also be written as:
+    #
+    #   Issues {
+    #       disable(:storage)
+    #       on :new, :save_to_db)
+    #   }
+    #
+    # Or:
+    #
+    #   Issues { disable(:storage); on :new, :save_to_db)  }
+
+    # Store every page in the DB too for later analysis.
+    pages.on :new, :save_to_db
+
+    # Or:
+    #
+    #   Pages {
+    #       on :new, :save_to_db
+    #   }
+
+  }
+
+  Http {
+    on :request, :add_special_auth_header
+    on :response, :gather_traffic_data; also :increment_http_performer_count
   }
 
   Checks {
-    # This will run from the context of SCNR::Engine::Check::Base; it
-    # basically creates a new check component on the fly.
-    as :not_found, check_404_info, method(:check_404)
+
+    # Add a custom check on the fly to check for something simple specifically
+    # for this scan.
+    as :missing_important_header, with_missing_important_header_info,
+       :log_pages_with_missing_important_headers
+
   }
 
-  Plugins {
-    # This will run from the context of SCNR::Engine::Plugin::Base; it
-    # basically creates a new plugin component on the fly.
-    as :my_plugin, my_plugin_info, method(:my_plugin)
+  # Been having trouble with this scan, collect some runtime statistics.
+  plugins.as :remote_debug, send_debugging_info_to_remote_server_info,
+             :send_debugging_info_to_remote_server
+
+  # Serves PHP scripts under the extension 'x'.
+  fingerprinters.as :php_x, :treat_x_as_php
+
+  Input {
+
+    # Vouchers and serial numbers need to come from an algorithm.
+    values :with_valid_role_id
+
   }
 
-  Scan {
-    Options {
-      set OPTIONS
-    }
+  Dom {
 
-    Session {
-      to :login, &method(:login)
-      to :check, &method(:login_check)
-    }
+    # Let's have a look inside the live JS env of those interesting pages,
+    # setup the data collection.
+    before :load, :start_js_data_gathering
+    after  :load, :retrieve_js_data; also :event, :retrieve_event_js_data
 
-    Scope {
-      # Don't visit resources that will end the session.
-      reject :url, &method(:that_logs_out)
-    }
-
-    before :page do |page|
-      puts "Processing\t- [#{page.response.code}] #{page.dom.url}"
-    end
-
-    on :page do |page|
-      puts "Scanning\t- [#{page.response.code}] #{page.dom.url}"
-    end
-
-    after :page do |page|
-      puts "Scanned\t\t- [#{page.response.code}] #{page.dom.url}"
-    end
-
-    run! &method(:handle_results)
   }
 
 end
@@ -335,114 +395,205 @@ end
 
 `helpers.rb`:
 ```ruby
-def handle_state_change( state )
-  puts "State\t\t- #{state.status.capitalize}"
+# State
+
+def log_error( error )
+  # ...
+end
+def log_exception( exception )
+  # ...
 end
 
-def handle_issue( issue )
-  puts "Issue\t\t- #{issue.name} from `#{issue.referring_page.dom.url}`" <<
-         " in `#{issue.vector.type}`."
+# Data
+
+def save_to_db( obj )
+  # Do stufff...
+end
+def save_js_data_to_db( data, element, event )
+  # Do other stufff...
 end
 
-def handle_error( error )
-  $stderr.puts "Error\t\t- #{error}"
+# Scope
+
+def within_the_eshop( url )
+  url.path.start_with? '/eshop'
 end
 
-# Allow some time for the modal animation to complete in order for
-# the login form to appear.
-#
-# (Not actually necessary, this is just an example on how to hande quirks.)
-def handle_event( result, locator, event, options, browser )
-  return if locator.attributes['href'] != '#myModal' || event != :click
-  sleep 1
+def with_error( page )
+  /Error/i.match? page.body
 end
 
-# Does something really simple, logs an issue for each 404 page.
-def check_404
-  response = page.response
-  return if response.code != 404
-
-  log(
-    proof:    response.status_line,
-    vector:   SCNR::Engine::Element::Server.new( response.url ),
-    response: response
-  )
+def in_admin_panel( page )
+  /Admin panel/i.match? page.body
 end
 
-def check_404_info
+def that_clicks_the_logout_button( event, element )
+  event == :click && element.tag_name == :button &&
+    element.attributes['id'] == 'logout'
+end
+
+def with_sensitive_action( element )
+  element.action.include? '/sensitive.php'
+end
+
+def with_weird_nonce( element )
+  element.inputs.include? 'weird_nonce'
+end
+
+# HTTP
+
+def generate_request_header
+  # ...
+end
+def save_raw_http_response( response )
+  # ...
+end
+def save_raw_http_request( request )
+  # ...
+end
+
+def add_special_auth_header( request )
+  request.headers['Special-Auth-Header'] ||= generate_request_header
+end
+
+def increment_http_performer_count( response )
+  # Count the amount of requests/responses this system component has
+  # performed/received.
+  #
+  # Performers can be browsers, checks, plugins, session, etc.
+  stuff( response.request.performer.class )
+end
+
+def gather_traffic_data( response )
+  # Collect raw HTTP traffic data.
+  save_raw_http_response( response.to_s )
+  save_raw_http_request( response.request.to_s )
+end
+
+# Checks
+
+def with_missing_important_header_info
   {
-    issue: {
-      name:     'Page not found',
-      severity: SCNR::Engine::Issue::Severity::INFORMATIONAL
+    name:        'Missing Important-Header',
+    description: %q{Checks pages for missing `Important-Header` headers.},
+    elements:    [ Element::Server ],
+    issue:       {
+      name:        %q{Missing 'Important-Header' header},
+      severity:    Severity::INFORMATIONAL
     }
   }
 end
 
-def my_plugin
-  puts "#{shortname}\t- Running..."
-  wait_while_framework_running
-  puts "#{shortname}\t- Done!"
+# This will run from the context of a Check::Base.
+def log_pages_with_missing_important_headers
+  return if audited?( page.parsed_url.host ) ||
+    page.response.headers['Important-Header']
+
+  audited( page.parsed_url.host )
+
+  log(
+    vector: Element::Server.new( page.url ),
+    proof:  page.response.headers_string
+  )
 end
 
-def my_plugin_info
+# Plugins
+
+# This will run from the context of a Plugin::Base.
+def send_debugging_info_to_remote_server
+  address = '192.168.0.11'
+  port    = 81
+  auth    = Utilities.random_seed
+
+  url = `start_remote_debug_server.sh -a #{address} -p #{port} --auth #{auth}`
+  url.strip!
+
+  http.post( url,
+             body: SCNR::Engine::SCNR::Engine::Options.to_h.to_json,
+             mode: :sync
+  )
+
+  while framework.running? && sleep( 5 )
+    http.post( "#{url}/statistics",
+               body: framework.statistics.to_json,
+               mode: :sync
+    )
+  end
+end
+
+def send_debugging_info_to_remote_server_info
   {
-    name: 'My Plugin',
-    description: 'Just waits for the scan to finish,'
+    name: 'Debugger'
   }
 end
 
-def login( browser )
-  print "Session\t\t- Logging in..."
+# Fingerprinters
 
-  # Login with whichever interface you prefer.
-  watir    = browser.watir
-  selenium = browser.selenium
-
-  watir.goto SCNR::Engine::Options.url
-
-  watir.link( href: '#myModal' ).click
-
-  form = watir.form( id: 'loginForm' )
-  form.text_field( name: 'username' ).set 'admin'
-  form.text_field( name: 'password' ).set 'admin'
-  form.submit
-
-  if browser.response.body =~ /<b>admin/
-    puts 'done!'
-  else
-    puts 'failed!'
-  end
+# This will run from the context of a Fingerprinter::Base.
+def treat_x_as_php
+  return if extension != 'x'
+  platforms << :php
 end
 
-def login_check( &async )
-  print "Session\t\t- Checking..."
+# Session
 
-  http_client = SCNR::Engine::HTTP::Client
-  check       = proc { |r| r.body.optimized_include? '<b>admin' }
+def fill_in_and_submit_the_login_form( browser )
+  browser.load "#{SCNR::Engine::SCNR::Engine::Options.url}/login"
 
-  # If an async block is passed, then the framework would rather
-  # schedule it to run asynchronously.
-  if async
-    http_client.get SCNR::Engine::Options.url do |response|
-      result = check.call( response )
+  form = browser.form
+  form.text_field( name: 'username' ).set 'john'
+  form.text_field( name: 'password' ).set 'doe'
 
-      puts "logged #{result ? 'in' : 'out'}!"
-
-      async.call result
-    end
-  else
-    response = http_client.get( SCNR::Engine::Options.url, mode: :sync )
-    success = check.call( response )
-
-    puts "logged #{success ? 'in' : 'out'}!"
-
-    success
-  end
+  form.input( name: 'submit' ).click
 end
 
-def that_logs_out( url )
-  url.path.optimized_include?( 'login' ) ||
-    url.path.optimized_include?( 'logout' )
+def find_welcome_message
+  http.get( SCNR::Engine::Options.url, mode: :sync ).body.include?( 'Welcome user!' )
+end
+
+# Inputs
+
+def with_valid_code( name, current_value )
+  {
+    'voucher-code'  => voucher_code_generator( current_value ),
+    'serial-number' => serial_number_generator( current_value )
+  }[name]
+end
+
+def with_valid_role_id( inputs )
+  return if !inputs.include?( 'role-type' )
+
+  inputs['role-id'] ||= (inputs['role-type'] == 'manager' ? 1 : 2)
+  inputs
+end
+
+# Browser
+
+def start_js_data_gathering( page, browser )
+  return if !page.url.include?( 'something/interesting' )
+
+  browser.javascript.inject <<JS
+    // Gather JS data from listeners etc.
+    window.secretJSData = {};
+JS
+end
+
+def retrieve_js_data( page, browser )
+  return if !page.url.include?( 'something/interesting' )
+
+  save_js_data_to_db(
+    browser.javascript.run( 'return window.secretJSData' ),
+    page, :load
+  )
+end
+
+def retrieve_event_js_data( event, element, browser )
+  return if !browser.url.include?( 'something/interesting' )
+
+  save_js_data_to_db(
+    browser.javascript.run( 'return window.secretJSData' ),
+    element, event
+  )
 end
 
 def handle_results( report, statistics )
