@@ -43,37 +43,144 @@ bin/scnr_rest_server -h
 
 ```
 {
-  "url": "http://example.com",
-  "session": {},
+  "url": "http://testhtml5.vulnweb.com",
+  "session": {
+  },
   "audit": {
-    "paranoia": "medium",
-    "exclude_vector_patterns": [],
-    "include_vector_patterns": [],
-    "link_templates": []
+    "parameter_values": true,
+    "mode": "moderate",
+    "exclude_vector_patterns": [
+
+    ],
+    "include_vector_patterns": [
+
+    ],
+    "link_templates": [
+
+    ],
+    "links": true,
+    "forms": true,
+    "cookies": true,
+    "headers": true,
+    "ui_inputs": true,
+    "ui_forms": true
   },
   "scope": {
     "directory_depth_limit": 10,
     "auto_redundant_paths": 15,
-    "redundant_path_patterns": {},
+    "redundant_path_patterns": {
+    },
     "dom_depth_limit": 4,
     "dom_event_limit": 500,
     "dom_event_inheritance_limit": 500,
-    "exclude_file_extensions": [],
-    "exclude_path_patterns": [],
-    "exclude_content_patterns": [],
-    "include_path_patterns": [],
-    "restrict_paths": [],
-    "extend_paths": [],
-    "url_rewrites": {}
+    "exclude_file_extensions": [
+      "gif",
+      "bmp",
+      "tif",
+      "tiff",
+      "jpg",
+      "jpeg",
+      "jpe",
+      "pjpeg",
+      "png",
+      "ico",
+      "psd",
+      "xcf",
+      "3dm",
+      "max",
+      "svg",
+      "eps",
+      "drw",
+      "ai",
+      "asf",
+      "rm",
+      "mpg",
+      "mpeg",
+      "mpe",
+      "3gp",
+      "3g2",
+      "avi",
+      "flv",
+      "mov",
+      "mp4",
+      "swf",
+      "vob",
+      "wmv",
+      "aif",
+      "mp3",
+      "mpa",
+      "ra",
+      "wav",
+      "wma",
+      "mid",
+      "m4a",
+      "ogg",
+      "flac",
+      "zip",
+      "zipx",
+      "tar",
+      "gz",
+      "7z",
+      "rar",
+      "bz2",
+      "bin",
+      "cue",
+      "dmg",
+      "iso",
+      "mdf",
+      "vcd",
+      "raw",
+      "exe",
+      "apk",
+      "app",
+      "jar",
+      "pkg",
+      "deb",
+      "rpm",
+      "msi",
+      "ttf",
+      "otf",
+      "woff",
+      "woff2",
+      "fon",
+      "fnt",
+      "css",
+      "js",
+      "pdf",
+      "docx",
+      "xlsx",
+      "pptx",
+      "odt",
+      "odp"
+    ],
+    "exclude_path_patterns": [
+
+    ],
+    "exclude_content_patterns": [
+
+    ],
+    "include_path_patterns": [
+
+    ],
+    "restrict_paths": [
+
+    ],
+    "extend_paths": [
+
+    ],
+    "url_rewrites": {
+    }
   },
   "http": {
     "request_timeout": 20000,
     "request_redirect_limit": 5,
     "request_concurrency": 10,
     "request_queue_size": 50,
-    "request_headers": {},
+    "request_headers": {
+    },
     "response_max_size": 500000,
-    "cookies": {},
+    "cookies": {
+    },
     "authentication_type": "auto"
   },
   "device": {
@@ -81,37 +188,34 @@ bin/scnr_rest_server -h
     "width": 1600,
     "height": 1200,
     "user_agent": "Mozilla/5.0 (Gecko) SCNR::Engine/v1.0dev",
-    "pixel_ratio": 1,
+    "pixel_ratio": 1.0,
     "touch": false
   },
   "dom": {
     "engine": "chrome",
-    "local_storage": {},
-    "session_storage": {},
-    "wait_for_elements": {},
+    "local_storage": {
+    },
+    "session_storage": {
+    },
+    "wait_for_elements": {
+    },
     "pool_size": 10,
     "job_timeout": 120,
     "worker_time_to_live": 1000,
     "wait_for_timers": false
   },
   "input": {
-    "values": {},
-    "default_values": {
-      "name": "scnr_engine_name",
-      "user": "scnr_engine_user",
-      "usr": "scnr_engine_user",
-      "pass": "5543!%scnr_engine_secret",
-      "txt": "scnr_engine_text",
-      "num": "132",
-      "amount": "100",
-      "mail": "scnr_engine@email.gr",
-      "account": "12",
-      "id": "1"
-    },
+    "values": {
+    }
   },
-  "checks": [],
-  "platforms": [],
-  "plugins": {},
+  "checks": [
+
+  ],
+  "platforms": [
+
+  ],
+  "plugins": {
+  },
   "no_fingerprinting": false,
   "authorized_by": null
 }
