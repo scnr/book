@@ -8,6 +8,14 @@ There are 2 reference report format types that you may encounter when using SCNR
 Both of these files can be handled by the CLI `scnr_reporter` utility in order
 to convert them to a multitude of formats or print the results to `STDOUT`.
 
+For example, to generate an HTML report:
+
+`bin/scnr_reporter --report=html:outfile=my_report.html.zip /home/user/.scnr/reports/report.ser`
+
+Or, to just print the report to STDOUT:
+
+`bin/scnr_reporter --report=stdout /home/user/.scnr/reports/report.ser`
+
 At the time of writing, `bin/scnr_reporter --reporters-list` yields:
 
 ```
