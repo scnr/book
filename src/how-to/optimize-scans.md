@@ -16,6 +16,7 @@ you can experiment with them to better match your available resources as well.
 5. [Reduce RAM consumption by avoiding large resources](#reduce-ram-consumption-by-avoiding-large-resources)
 6. [Don't follow redundant pages](#dont-follow-redundant-pages)
 7. [Adjust the amount of browser workers](#adjust-the-amount-of-browser-workers)
+8. [Pick the audit mode that suits you best](#Pick-the-audit-mode-that-suits-you-best)
 
 ## Only enable security checks that concern you
 
@@ -154,3 +155,16 @@ the amount of CPU cores) and will probably require some experimentation; on aver
 
 However, do keep in mind that more workers may lead to higher RAM consumption as
 they will also accelerate workload generation. 
+
+You can set this option via `--dom-pool-size`.
+The default is calculated based on the amount of available CPU cores your system has.
+
+## Pick the audit mode that suits you best
+
+This is a _Time_ vs _Thoroughness_ balancing option.
+
+`--audit-mode`:
+
+* `quick` -- For a quick scan, complex or rare payloads will be omitted.
+* `moderate` (default) -- Balanced payloads.
+* `super` -- All payloads and more DOM probing.
