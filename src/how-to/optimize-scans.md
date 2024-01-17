@@ -16,7 +16,7 @@ you can experiment with them to better match your available resources as well.
 5. [Reduce RAM consumption by avoiding large resources](#reduce-ram-consumption-by-avoiding-large-resources)
 6. [Don't follow redundant pages](#dont-follow-redundant-pages)
 7. [Adjust the amount of browser workers](#adjust-the-amount-of-browser-workers)
-8. [Pick the audit mode that suits you best](#Pick-the-audit-mode-that-suits-you-best)
+8. [Pick the audit mode that suits you best](#pick-the-audit-mode-that-suits-you-best)
 
 ## Only enable security checks that concern you
 
