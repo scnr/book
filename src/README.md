@@ -81,7 +81,7 @@ be much more focused, less resource intensive and require less time to complete.
 ## Front-end support
 
 HTML5, modern Javascript APIs and modern DOM APIs are supported by basing their
-execution and analysis on Chrome (via chromedriver -- default) or Firefox (via geckodriver).
+execution and analysis on Google Chromium.
 
 By using those modern and cutting edge browsers you can count on modern and cutting
 edge continued support.
