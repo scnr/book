@@ -14,7 +14,8 @@
    - [Agent](./deployment/distributed/agent.md)
      - [Grid](./deployment/distributed/agent/grid.md)
    - [Scheduler](./deployment/distributed/scheduler.md)
-
+- [IAST](./deployment/iast/index.md)
+   
 # Interfaces
 
  - [CLI](./interfaces/cli.md)
