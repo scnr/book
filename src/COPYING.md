@@ -1,5 +1,5 @@
 # Copyright
 
-Copyright 2022 [Tasos Laskos](mailto:tasos.laskos@gmail.com).
+Copyright 2024 [Ecsypno](https://ecsypno.com).
 
 All rights reserved.
