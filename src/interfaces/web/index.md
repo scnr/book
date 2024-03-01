@@ -4,14 +4,13 @@ The WebUI allows you to easily run, manage and schedule scans and their results 
 
 ## Boot-up
 
-To boot the Pro interface please issue:
+To boot the Pro interface please run:
 
 ```
 bin/scnr_pro
 ```
 
-After boot-up, you can [visit](http://localhost:9292) the interface via your
-browser of choice.
+After boot-up, you can [visit](http://localhost:9292) the interface via your browser of choice.
 
 ## Features
 
@@ -33,39 +32,6 @@ browser of choice.
 * Device emulation.
 * Scan profiles.
 * Extensive scan log.
-
-
-## Configuration
-
-### Database
-
-Out of the box, the WebUI comes configured with [SQLite](https://sqlite.org/index.html), however,
-for better results and performance please switch to [PostgreSQL](https://www.postgresql.org/).
-
-#### Configuration
-
-Please exchange `secret` with a secure password.
-
-##### Role creation
-
-```
-$ sudo -u postgres psql
-postgres=# CREATE USER "scnr-pro" WITH PASSWORD 'secret';
-postgres=# ALTER USER "scnr-pro" superuser;
-```
-
-##### Connection
-
-```
-mv .system/scnr-ui-pro/config/database.yml .system/scnr-ui-pro/config/database.yml.bak
-cp .system/scnr-ui-pro/config/database.postgres.yml .system/scnr-ui-pro/config/database.yml
-```
-
-Now edit `.system/scnr-ui-pro/config/database.yml` to change the password from `secret`.
-
-#### Setup
-
-`bin/scnr_pro_task db:setup`
 
 ## Screenshots
 
