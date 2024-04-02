@@ -279,9 +279,9 @@ request :post, 'instances', {
   # Scan this URL.
   url:    'http://testhtml5.vulnweb.com',
 
-  # Audit the following element types.
+  # Audit all element types.
   audit:  {
-    elements: [:links, :forms, :cookies, :ui_inputs, :ui_forms]
+    elements: [:links, :forms, :cookies, :headers, :jsons, :xmls, :ui_inputs, :ui_forms]
   },
 
   # Load all active checks.
