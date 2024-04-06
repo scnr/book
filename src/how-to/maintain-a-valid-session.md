@@ -2,8 +2,8 @@
 
 SCNR supports automated logout detection and re-login, as well as improved login procedures.
 
-* [Form-based login](#loginform-plugin)
-* [Script-based login](#loginscript-plugin)
+* [Form-based login](#login_form-plugin)
+* [Script-based login](#login_script-plugin)
 * [Proxy-based login](#proxy-plugin)
 * [Cookie-jar login](#cookie-jar)
 
