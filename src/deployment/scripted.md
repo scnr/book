@@ -15,7 +15,7 @@ Scan scripts can either be a form of configuration or standalone scanners.
 
 `html5.config.rb`:
 ```ruby
-SCNR::Engine::API.run do
+SCNR::Application::API.run do
   require '/home/user/script/helpers'
 
   Dom {
@@ -139,7 +139,7 @@ end
 #### Single file
 
 ```ruby
-SCNR::Engine::API.run do
+SCNR::Application::API.run do
 
     Dom {
 
@@ -263,7 +263,7 @@ require 'scnr/engine/api'
 
 require "#{Options.paths.root}/tmp/scripts/with_helpers/helpers"
 
-SCNR::Engine::API.run do
+SCNR::Application::API.run do
 
   Scan {
 
@@ -650,7 +650,7 @@ require 'scnr/engine/api'
 # Mute output messages from the CLI interface, we've got our own output methods.
 SCNR::UI::CLI::Output.mute
 
-SCNR::Engine::API.run do
+SCNR::Application::API.run do
 
     State {
         on :change do |state|

@@ -11,7 +11,7 @@ The API is separated into the following segments:
 
 ```ruby
 # Runs the DSL.
-SCNR::Engine::API.run do
+SCNR::Application::API.run do
 
     Data {
         Sitemap {}
@@ -54,7 +54,7 @@ end
 ### As configuration
 
 ```ruby
-SCNR::Engine::API.run do
+SCNR::Application::API.run do
 
     Dom {
 
@@ -167,7 +167,7 @@ require 'scnr/engine/api'
 # Mute output messages from the CLI interface, we've got our own output methods.
 SCNR::UI::CLI::Output.mute
 
-SCNR::Engine::API.run do
+SCNR::Application::API.run do
 
     State {
         on :change do |state|

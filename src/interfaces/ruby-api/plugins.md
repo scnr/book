@@ -1,7 +1,7 @@
 # Plugins
 
 ```ruby
-SCNR::Engine::API.run do
+SCNR::Application::API.run do
 
     Plugins {
 
