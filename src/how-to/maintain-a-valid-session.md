@@ -1,6 +1,6 @@
 # Maintain a valid session
 
-SCNR supports automated logout detection and re-login, as well as improved login procedures.
+Codename SCNR supports automated logout detection and re-login, as well as improved login procedures.
 
 * [Form-based login](#login_form-plugin)
 * [Script-based login](#login_script-plugin)
