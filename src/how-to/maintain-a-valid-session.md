@@ -33,7 +33,7 @@ to the same extent.
 For example, if the login form is by default hidden and requires a sequence of UI
 interactions in order to become visible, this plugin will not be able to submit it.
 
-For more complex sequences please use the [login_script](#login-script-plugin) plugin.
+For more complex sequences please use the [login_script](#login_script-plugin) plugin.
 
 ### Example
 
