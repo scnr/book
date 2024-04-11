@@ -2,7 +2,7 @@
 
 ## Pro
 
-You can export scan results in several formats from the "Export" tab of a successfully completed scan.
+You can export scan results in several formats from the "Export" tab of an aborted or completed scan.
 
 ## CLI
 
