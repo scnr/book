@@ -1,6 +1,6 @@
 # Optimize scans
 
-Left to its own devices, SCNR will try to optimize itself to match any given
+Left to its own devices, Codename SCNR will try to optimize itself to match any given
 circumstance, but there are limitations to what it can do automatically.
 
 If a scan is taking too long, chances are that there are ways to make it go much 
@@ -167,4 +167,4 @@ This is a _Time_ vs _Thoroughness_ balancing option.
 
 * `quick` -- For a quick scan, complex or rare payloads will be omitted.
 * `moderate` (default) -- Balanced payloads.
-* `super` -- All payloads and more DOM probing.
+* `super` -- All payloads, more DOM probing, disabled attack optimization heuristics.
