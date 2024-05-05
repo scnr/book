@@ -2,13 +2,13 @@
 
 ## Server
 
-To start the REST server daemon:
+To start the REST server:
 
 ```bash
 bin/scnr_rest_server
 ```
 
-To see REST server daemon options:
+To see REST server options:
 
 ```bash
 bin/scnr_rest_server -h
@@ -70,6 +70,7 @@ bin/scnr_rest_server -h
     "auto_redundant_paths": 15,
     "redundant_path_patterns": {
     },
+    "depth_limit": 10,
     "dom_depth_limit": 4,
     "dom_event_limit": 500,
     "dom_event_inheritance_limit": 500,
