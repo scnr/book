@@ -48,7 +48,7 @@
  - [Generate reports](./how-to/generate-reports.md)
  - [Optimize scans](./how-to/optimize-scans.md)
  - [Maintain a valid session](./how-to/maintain-a-valid-session.md)
- - [Scan services](./how-to/scan-services.md)
+ - [Scan APIs/services](./how-to/scan-services.md)
  - [Scale](./how-to/scale.md)
  
 [Copyright](./COPYING.md)
