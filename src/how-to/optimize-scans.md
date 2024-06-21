@@ -17,6 +17,7 @@ you can experiment with them to better match your available resources as well.
 6. [Don't follow redundant pages](#dont-follow-redundant-pages)
 7. [Adjust the amount of browser workers](#adjust-the-amount-of-browser-workers)
 8. [Pick the audit mode that suits you best](#pick-the-audit-mode-that-suits-you-best)
+9. [Scan incrementally](#scan-incrementally)
 
 ## Only enable security checks that concern you
 
@@ -168,3 +169,15 @@ This is a _Time_ vs _Thoroughness_ balancing option.
 * `quick` -- For a quick scan, complex or rare payloads will be omitted.
 * `moderate` (default) -- Balanced payloads.
 * `super` -- All payloads, more DOM probing, disabled attack optimization heuristics.
+
+## Scan incrementally
+
+In order to save valuable time on subsequent scans, Codename SCNR allows you to extract a session file from
+completed/aborted scans, in order to allow for incremental re-scans.
+
+This means that only newly introduced input vectors will be audited the next time around, which can save immense amounts
+of time.
+
+The location of the session file is printed at the end of each scan and can be restored via:
+
+    ./bin/scnr_restore SESSION_FILE
