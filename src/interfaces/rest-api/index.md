@@ -19,25 +19,26 @@ bin/scnr_rest_server -h
 
 ### Scan
 
-| Method   | Resource                          | Parameters            | Description          |
-|----------|-----------------------------------|-----------------------|----------------------|
-| `GET`    | `/instances/:id/scan/progress`    |                       | Get scan progress.   |
-| `GET`    | `/instances/:id/scan/report.json` |                       | Get the scan report. |
+| Method   | Resource                          | Parameters            | Description                                   |
+|----------|-----------------------------------|-----------------------|-----------------------------------------------|
+| `GET`    | `/instances/:id/scan/progress`    |                       | Get scan progress.                            |
+| `GET`    | `/instances/:id/scan/session`     |                       | Get scan session of a completed/aborted scan. |
+| `GET`    | `/instances/:id/scan/report.json` |                       | Get the scan report.                          |
 
 
 ### Instances
 
-| Method   | Resource                     | Parameters            | Description                                                          |
-|----------|------------------------------|-----------------------|----------------------------------------------------------------------|
-| `GET`    | `/instances`                 |                       | List all _Instances_.                                                |
-| `POST`   | `/instances`                 | Scan options (`Hash`) | Create a new _Instance_ with the given scan options.                 |
-| `GET`    | `/instances/:id`             |                       | Get progress info for _Instance_.                                    |
-| `PUT`    | `/instances/:id/scheduler`   |                       | If a _Scheduler_ has been set, put the _Instance_ under its purview. |
-| `GET`    | `/instances/:id/report.crf`  |                       | Get a Cuboid report for the _Instance_.                              |
-| `GET`    | `/instances/:id/report.json` |                       | Get a JSON report for the _Instance_.                                |
-| `PUT`    | `/instances/:id/pause`       |                       | Pause the _Instance_.                                                |
-| `PUT`    | `/instances/:id/resume`      |                       | Resume the _Instance_.                                               |
-| `DELETE` | `/instances/:id`             |                       | Shutdown the _Instance_.                                             |
+| Method   | Resource                   | Parameters               | Description                                                          |
+|----------|----------------------------|--------------------------|----------------------------------------------------------------------|
+| `GET`    | `/instances`               |                          | List all _Instances_.                                                |
+| `POST`   | `/instances`               | Scan options (`Hash`)    | Create a new _Instance_ with the given scan options.                 |
+| `POST`   | `/instances/restore`       | `{ 'session': 'path' }`  | Create a new _Instance_ from a restored _Scan_ session.              |
+| `GET`    | `/instances/:id`           |                          | Get progress info for _Instance_.                                    |
+| `PUT`    | `/instances/:id/scheduler` |                          | If a _Scheduler_ has been set, put the _Instance_ under its purview. |
+| `PUT`    | `/instances/:id/pause`     |                          | Pause the _Instance_.                                                |
+| `PUT`    | `/instances/:id/resume`    |                          | Resume the _Instance_.                                               |
+| `PUT`    | `/instances/:id/abort`     |                          | Abort the _Instance_.                                                |
+| `DELETE` | `/instances/:id`           |                          | Abort and shutdown the _Instance_.                                   |
 
 #### Scan options
 
@@ -294,8 +295,6 @@ instance_id = response_data['id']
 
 while sleep( 1 )
   request :get, "instances/#{instance_id}/scan/progress", {
-    # Get the hash-map representation of native objects, like issues.
-    as_hash: true,
     # Include these types of objects only.
     with: [:issues, :sitemap, :errors]
   }
@@ -364,4 +363,83 @@ def request( method, resource = nil, parameters = nil )
     options
   )
 end
+```
+
+### Incremental scans using sessions
+
+In order to save valuable time on subsequent scans, Codename SCNR allows you to extract a session file from
+completed/aborted scans, in order to allow for incremental re-scans.
+
+This means that only newly introduced input vectors will be audited the next time around, which can save immense amounts
+of time.
+
+```ruby
+# Utility method that polls for progress and prints out the report once the scan is done.
+def monitor_and_report( instance_id )
+    print 'Scanning.'
+    while sleep( 1 )
+        request :get, "instances/#{instance_id}/scan/progress", {
+          with: [:issues, :sitemap, :errors]
+        }
+        # pp response_data
+
+        print '.'
+
+        # Continue looping while instance status is 'busy'.
+        request :get, "instances/#{instance_id}"
+        break if !response_data['busy']
+    end
+
+    puts
+
+    # Get the scan report.
+    request :get, "instances/#{instance_id}/scan/report.json"
+    # Print out the report.
+    pp response_data
+end
+
+# Create a new scanner Instance (process) and run a scan with the following options.
+request :post, 'instances', {
+
+  # Scan this URL.
+  url:    'https://ginandjuice.shop/',
+
+  # Audit the following element types.
+  audit:  {
+    elements: [:links, :forms, :cookies, :headers, :jsons, :xmls, :ui_inputs, :ui_forms]
+  },
+
+  # Load all active checks.
+  checks: ['*']
+}
+
+# The ID is used to represent that instance and allow us to manage it from here on out.
+instance_id = response_data['id']
+
+monitor_and_report( instance_id )
+
+########################################################################################################################
+# Get the location of the scan session file, to later restore it, in order to save loads of time on rescans by only
+# checking for new input vectors.
+########################################################################################################################
+request :get, "instances/#{instance_id}/scan/session"
+session = response_data['session']
+
+# Shutdown the Instance.
+request :delete, "instances/#{instance_id}"
+
+#########################################################################################
+# Create a new Instance and restore the previous session to check new input vectors only.
+#########################################################################################
+puts '-' * 88
+puts 'RESCANNING'
+puts '-' * 88
+
+request :post, 'instances/restore', session: session
+instance_id = response_data['id']
+
+monitor_and_report( instance_id )
+
+# Shutdown the Instance.
+request :delete, "instances/#{instance_id}"
 ```

@@ -87,6 +87,19 @@ Codename SCNR injects a custom environment to monitor JS objects and APIs in ord
 to trace execution and data flows and thus provide highly in-depth reporting as to how a
 client-side security issue was identified which also greatly assists in its remediation.
 
+## Incremental scans
+
+Save valuable time by re-scanning only what has changed, rather than running full scans every single time.
+
+In order to save time on subsequent scans of the same target, Codename SCNR allows you to extract a session file from
+completed/aborted scans, in order to allow for incremental re-scans.
+
+This means that only newly introduced input vectors will be audited the next time around, which saves immense
+amounts of time from your workflow.
+
+For example, a _seed_ (first) scan of a website that requires an hour to complete, can result in re-scan times of less
+that 10 minutes -- depending on how many new input vectors were introduced.
+
 ## Behavioral analysis
 
 Codename SCNR will study the web application/service to identify how each input interacts
