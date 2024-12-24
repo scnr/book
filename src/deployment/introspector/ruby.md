@@ -20,7 +20,7 @@ use SCNR::Introspector, scope: {
 }
 ```
 
-### Example Sinatra app:
+### Example Sinatra application
 
 ```ruby
 require 'scnr/introspector'
@@ -46,7 +46,7 @@ class MyApp < Sinatra::Base
         local_variable = 1
 
         <<EOHTML
-#{process_params( params )}
+        #{process_params( params )}
         <a href="?v=stuff">XSS</a>
 EOHTML
     end
