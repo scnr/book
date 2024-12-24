@@ -1,10 +1,15 @@
 # Maintain a valid session
 
-SCNR supports automated logout detection and re-login, as well as improved login procedures.
+Codename SCNR supports automated logout detection and re-login, as well as improved login procedures.
 
-## form_login plugin
+* [Form-based login](#login_form-plugin)
+* [Script-based login](#login_script-plugin)
+* [Proxy-based login](#proxy-plugin)
+* [Cookie-jar login](#cookie-jar)
 
-The `form_login` plugin expects for following options:
+## login_form plugin
+
+The `login_form` plugin expects for following options:
 
 * `url` -- The URL containing the login form;
 * `parameters` -- A URL-query-like string of form parameters;
@@ -28,11 +33,11 @@ to the same extent.
 For example, if the login form is by default hidden and requires a sequence of UI
 interactions in order to become visible, this plugin will not be able to submit it.
 
-For more complex sequences please use the [login_script](#login-script-plugin) plugin.
+For more complex sequences please use the [login_script](#login_script-plugin) plugin.
 
 ### Example
 
-    bin/scnr http://testfire.net --plugin=autologin:url=http://testfire.net/bank/login.aspx,parameters="uid=jsmith&passw=Demo1234",check="Sign Off|MY ACCOUNT" --scope-exclude-pattern=logout
+    bin/scnr http://testfire.net --plugin=login_form:url=http://testfire.net/bank/login.aspx,parameters="uid=jsmith&passw=Demo1234",check="Sign Off|MY ACCOUNT" --scope-exclude-pattern=logout
 
 The login form found in `http://testfire.net/bank/login.aspx` which contains the
 `uid` and `passw` inputs will be **updated** with the given values and submitted.
@@ -59,6 +64,8 @@ cookie-jar file and many more.
 
 If a [browser](http://watir.com/) is available, it will be exposed to the script
 via the `browser` variable. Otherwise, that variable will have a value of `nil`.
+
+If you require access to Selenium, `browser.wd` will provide you access to the appropriate `WebDriver`.
 
 ```ruby
 browser.goto 'http://testfire.net/bank/login.aspx'

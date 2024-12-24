@@ -2,12 +2,12 @@
 
 ## Description
 
-SCNR is a modular, distributed, high-performance 
+Codename SCNR is a modular, distributed, high-performance 
 [DAST](https://en.wikipedia.org/wiki/Dynamic_application_security_testing) web
 application security scanner framework, capable of analyzing the behavior and
 security of modern web applications and web APIs.
 
-You can access SCNR via multiple interfaces, such as:
+You can access Codename SCNR via multiple interfaces, such as:
 
 * [CLI](./interfaces/cli.md)
 * [Ruby API](./interfaces/ruby-api/index.md)
@@ -73,7 +73,7 @@ A wide range of back-end technologies is supported, including:
    11. Express
 
 This list keeps growing but new platforms or failure to fingerprint supported 
-ones don't disable the SCNR framework, they merely force it to be more extensive in its scan.
+ones don't disable the Codename SCNR engine, they merely force it to be more extensive in its scan.
 
 Upon successful identification or configuration of platform types, the scan will 
 be much more focused, less resource intensive and require less time to complete.
@@ -83,18 +83,26 @@ be much more focused, less resource intensive and require less time to complete.
 HTML5, modern Javascript APIs and modern DOM APIs are supported by basing their
 execution and analysis on Google Chromium.
 
-By using those modern and cutting edge browsers you can count on modern and cutting
-edge continued support.
+Codename SCNR injects a custom environment to monitor JS objects and APIs in order
+to trace execution and data flows and thus provide highly in-depth reporting as to how a
+client-side security issue was identified which also greatly assists in its remediation.
 
-Furthermore, even though SCNR is a black-box testing tool, this changes when is 
-comes to the DOM/JS environment of each page, as it will injects a custom environment
-to monitor JS objects and APIs in order to trace execution and data flows and thus 
-provide highly in-depth reporting as to how a client-side security issue was 
-identified which also greatly assists in its remediation.
+## Incremental scans
 
-## Machine learning/behavioral analysis
+Save valuable time by re-scanning only what has changed, rather than running full scans every single time.
 
-SCNR will study the web application/service to identify how each input interacts
+In order to save time on subsequent scans of the same target, Codename SCNR allows you to extract a session file from
+completed/aborted scans, in order to allow for incremental re-scans.
+
+This means that only newly introduced input vectors will be audited the next time around, which saves immense
+amounts of time from your workflow.
+
+For example, a _seed_ (first) scan of a website that requires an hour to complete, can result in re-scan times of less
+that 10 minutes -- depending on how many new input vectors were introduced.
+
+## Behavioral analysis
+
+Codename SCNR will study the web application/service to identify how each input interacts
 with the front and back ends and tailor the audit for each specific input's characteristics.
 
 This results in highly self-optimized scans using less resources and requiring
@@ -127,7 +135,7 @@ Components are split into the following types:
 Furthermore, scripted scans allow for the creation of basically tailor made
 scans by moving decision making points and configuration to user-specified
 methods and can extend to even creating a custom scanner for any web application
-backed by the SCNR engine.
+backed by the Codename SCNR engine.
 
 The API is tidy and simple and easily allows you to plug-in to key API[^dsel] scan points
 in order to get the best results from any scan.
@@ -138,7 +146,7 @@ have the right script revision alongside the respective web application revision
 
 ## Scalability
 
-No dependencies, no configuration; SCNR can build a cloud of itself that allows
+No dependencies, no configuration; Codename SCNR can build a cloud of itself that allows
 you to scale both horizontally and vertically.
 
 Scale up by plugging more nodes to its _Grid_, or down by unplugging them.
@@ -161,7 +169,7 @@ the creation of private scanner clouds in either yours or a Cloud provider's inf
 
 ## Conclusion
 
-Thus, SCNR can in essence fit into any SDLC with great grace, ease and little care.
+Thus, Codename SCNR can in essence fit into any SDLC with great grace, ease and little care.
 
 [^dsel]: API/script functionality is provided by [DSeL](https://github.com/qadron/DSeL).
 

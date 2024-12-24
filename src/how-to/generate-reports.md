@@ -1,5 +1,11 @@
 # Generate reports
 
+## Pro
+
+You can export scan results in several formats from the "Export" tab of an aborted or completed revision scan.
+
+## CLI
+
 There are 2 reference report format types that you may encounter when using SCNR:
 
 1. `*.crf` -- Cuboid report file.

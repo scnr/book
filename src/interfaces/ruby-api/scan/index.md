@@ -3,7 +3,7 @@
 Encapsulates functionality that has to do with the scan.
 
 ```ruby
-SCNR::Engine::API.run do
+SCNR::Application::API.run do
 
     Scan {
         Options {}
@@ -75,7 +75,7 @@ end
 ```ruby
 SCNR::UI::CLI::Output.mute
 
-api = SCNR::Engine::API.new
+api = SCNR::Application::API.new
 
 api.scan.options.set url: 'http://testhtml5.vulnweb.com',
                      checks: %w(allowed_methods interesting_responses)

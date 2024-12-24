@@ -4,7 +4,7 @@ Determines which resources are in or out of scope. All return values will be cas
 to boolean.
 
 ```ruby
-SCNR::Engine::API.run do
+SCNR::Application::API.run do
 
     Scan {
         Scope {

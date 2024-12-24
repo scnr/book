@@ -1,7 +1,7 @@
 # State
 
 ```ruby
-SCNR::Engine::API.run do
+SCNR::Application::API.run do
 
     State {
         on :change do |state|

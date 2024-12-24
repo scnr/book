@@ -1,7 +1,7 @@
 # Session
 
 ```ruby
-SCNR::Engine::API.run do
+SCNR::Application::API.run do
 
     Scan {
 
