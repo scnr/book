@@ -1,4 +1,4 @@
-# Ruby -- Rack, Ruby on Rails, etc.
+# Ruby
 
 ## Install
 
@@ -6,7 +6,7 @@
 gem install scnr-introspector
 ```
 
-## Use
+## Use middleware
 
 ### Options
 
