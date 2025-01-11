@@ -12,8 +12,7 @@
 
 ## Download
 
-Download the latest `JAR` package from:
-[https://github.com/scnr/introspector-java-releases/releases](https://github.com/scnr/introspector-java-releases/releases)
+[Download](https://github.com/scnr/introspector-java-releases/releases/latest) the latest `JAR` archive.
 
 ## Install Middleware
 
