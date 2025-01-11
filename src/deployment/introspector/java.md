@@ -10,6 +10,11 @@
 | `path_exclude_pattern` | Exclude classes matching this regex pattern | none | `.*Test.*` |
 | `source_directory` | Root directory containing source files | `src/main/java/` | `/path/to/src` |
 
+## Download
+
+Download the latest `JAR` package from:
+[https://github.com/scnr/introspector-java-releases/releases](https://github.com/scnr/introspector-java-releases/releases)
+
 ## Install Middleware
 
 `webapp/WEB-INF/web.xml`:
