@@ -16,6 +16,8 @@
    - [Scheduler](./deployment/distributed/scheduler.md)
  - [Introspector](./deployment/introspector/index.md)
    - [Ruby (Rack) -- Ruby on Rails, etc.](./deployment/introspector/ruby.md)
+   - [Java](./deployment/introspector/java.md)
+   - [.NET](./deployment/introspector/dotnet.md)
 
 # Interfaces
 
