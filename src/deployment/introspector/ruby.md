@@ -70,7 +70,7 @@ You should see this at the beginning:
 Along with these types of messages:
 
 ```
-[INTROSPECTOR] Injecting trace code for MyApp#process_paramsin examples/sinatra/app.rb:12
+[INTROSPECTOR] Injecting trace code for MyApp#process_params in examples/sinatra/app.rb:12
 ```
 
 As an integration test, you can run:
