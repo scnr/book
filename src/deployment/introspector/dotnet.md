@@ -100,7 +100,7 @@ dotnet run --project Ecsypno.TestApp -c Release --no-build
 Should output:
 
 ```
-[INTROSPECTOR] Patched assembly loaded: Ecsypno.TestApp
+[INTROSPECTOR] Patched assembly loaded: Ecsypno.TestApp/bin/Release/net8.0/Ecsypno.TestApp.dll
 [INTROSPECTOR] Codename SCNR Introspector middleware initialized.
 ```
 
