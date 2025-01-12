@@ -78,13 +78,15 @@ Should output `[INTROSPECTOR] Codename SCNR Introspector middleware initialized.
 dotnet build Ecsypno.TestApp -c Release # Build first.
 introspector Ecsypno.TestApp/bin/Release/ --path-ends-with Ecsypno.TestApp.dll --path-exclude-pattern "ref|obj"
 # Processing: Ecsypno.TestApp/bin/Release/net8.0/Ecsypno.TestApp.dll
-# Instrumenting Program.<Main>$ at dotnet-instrumentation-example/Ecsypno.TestApp/Program.cs:4
-# Instrumenting Program.<Main>$ at dotnet-instrumentation-example/Ecsypno.TestApp/Program.cs:6
-# Instrumenting Program.<Main>$ at dotnet-instrumentation-example/Ecsypno.TestApp/Program.cs:9
-# Instrumenting Program.<Main>$ at dotnet-instrumentation-example/Ecsypno.TestApp/Program.cs:17
-# Instrumenting Program.<Main>$ at dotnet-instrumentation-example/Ecsypno.TestApp/Program.cs:20
-# Instrumenting Program.<Main>$ at dotnet-instrumentation-example/Ecsypno.TestApp/Program.cs:39
-# Instrumenting Program.<<Main>$>g__ProcessQuery|0_0 at dotnet-instrumentation-example/Ecsypno.TestApp/Program.cs:14
+# Instrumenting Program.<Main>$( args )
+# Instrumenting Program.<Main>$ at /home/zapotek/workspace/scnr/dotnet-instrumentation-example/Ecsypno.TestApp/Program.cs:4
+# Instrumenting Program.<Main>$ at /home/zapotek/workspace/scnr/dotnet-instrumentation-example/Ecsypno.TestApp/Program.cs:6
+# Instrumenting Program.<Main>$ at /home/zapotek/workspace/scnr/dotnet-instrumentation-example/Ecsypno.TestApp/Program.cs:9
+# Instrumenting Program.<Main>$ at /home/zapotek/workspace/scnr/dotnet-instrumentation-example/Ecsypno.TestApp/Program.cs:17
+# Instrumenting Program.<Main>$ at /home/zapotek/workspace/scnr/dotnet-instrumentation-example/Ecsypno.TestApp/Program.cs:20
+# Instrumenting Program.<Main>$ at /home/zapotek/workspace/scnr/dotnet-instrumentation-example/Ecsypno.TestApp/Program.cs:39
+# Instrumenting Program.<<Main>$>g__ProcessQuery|0_0( input )
+# Instrumenting Program.<<Main>$>g__ProcessQuery|0_0 at /home/zapotek/workspace/scnr/dotnet-instrumentation-example/Ecsypno.TestApp/Program.cs:14
 ```
 
 ## Verify
@@ -94,6 +96,14 @@ Run the Web App again:
 ```bash
 dotnet run --project Ecsypno.TestApp -c Release --no-build
 ```
+
+Should output:
+
+```
+[INTROSPECTOR] Patched assembly loaded: Ecsypno.TestApp
+[INTROSPECTOR] Codename SCNR Introspector middleware initialized.
+```
+
 
 ```bash
 curl -i http://localhost:5055/xss?input=test -H "X-Scnr-Engine-Scan-Seed:Test" -H "X-Scnr-Introspector-Trace:1" -H "X-SCNR-Request-ID:1"
