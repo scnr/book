@@ -3,6 +3,3 @@ authors = ["Tasos Laskos"]
 language = "en"
 src = "src"
 title = "Codename SCNR Documentation"
-
-[output.html]
-curly-quotes = true
