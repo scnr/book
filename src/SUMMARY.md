@@ -47,6 +47,7 @@
 
 # How to
 
+ - [Run air-gapped](./how-to/run-air-gapped.md)
  - [Generate reports](./how-to/generate-reports.md)
  - [Optimize scans](./how-to/optimize-scans.md)
  - [Maintain a valid session](./how-to/maintain-a-valid-session.md)
