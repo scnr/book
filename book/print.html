@@ -1,0 +1,3829 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Codename SCNR Documentation</title>
+        <meta name="robots" content="noindex">
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-2459343d.css">
+        <link rel="stylesheet" href="css/chrome-ae938929.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-f11d39ff.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-29fa3473.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Codename SCNR Documentation</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
+<h2 id="description"><a class="header" href="#description">Description</a></h2>
+<p>Codename SCNR is a modular, distributed, high-performance
+<a href="https://en.wikipedia.org/wiki/Dynamic_application_security_testing">DAST</a> web
+application security scanner framework, capable of analyzing the behavior and
+security of modern web applications and web APIs.</p>
+<p>You can access Codename SCNR via multiple interfaces, such as:</p>
+<ul>
+<li><a href="#cli">CLI</a></li>
+<li><a href="#ruby-api">Ruby API</a></li>
+<li><a href="#rest">REST API</a></li>
+<li><a href="#web-ui">Web UI</a></li>
+</ul>
+<h2 id="back-end-support"><a class="header" href="#back-end-support">Back-end support</a></h2>
+<p>A wide range of back-end technologies is supported, including:</p>
+<ol>
+<li>Operating systems
+<ol>
+<li>BSD</li>
+<li>Linux</li>
+<li>Unix</li>
+<li>Windows</li>
+<li>Solaris</li>
+</ol>
+</li>
+<li>Databases
+<ol>
+<li>SQL
+<ol>
+<li>MySQL</li>
+<li>PostreSQL</li>
+<li>MSSQL</li>
+<li>Oracle</li>
+<li>SQLite</li>
+<li>Ingres</li>
+<li>EMC</li>
+<li>DB2</li>
+<li>Interbase</li>
+<li>Informix</li>
+<li>Firebird</li>
+<li>MaxDB</li>
+<li>Sybase</li>
+<li>Frontbase</li>
+<li>HSQLDB</li>
+<li>Access</li>
+</ol>
+</li>
+<li>NoSQL
+<ol>
+<li>MongoDB</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>Web servers
+<ol>
+<li>Apache</li>
+<li>IIS</li>
+<li>Nginx</li>
+<li>Tomcat</li>
+<li>Jetty</li>
+<li>Gunicorn</li>
+</ol>
+</li>
+<li>Programming languages
+<ol>
+<li>PHP</li>
+<li>ASP</li>
+<li>ASPX</li>
+<li>Java</li>
+<li>Python</li>
+<li>Ruby</li>
+<li>Javascript</li>
+</ol>
+</li>
+<li>Frameworks
+<ol>
+<li>Rack</li>
+<li>CakePHP</li>
+<li>Rails</li>
+<li>Django</li>
+<li>ASP.NET MVC</li>
+<li>JSF</li>
+<li>CherryPy</li>
+<li>Nette</li>
+<li>Symfony</li>
+<li>NodeJS</li>
+<li>Express</li>
+</ol>
+</li>
+</ol>
+<p>This list keeps growing but new platforms or failure to fingerprint supported
+ones don’t disable the Codename SCNR engine, they merely force it to be more extensive in its scan.</p>
+<p>Upon successful identification or configuration of platform types, the scan will
+be much more focused, less resource intensive and require less time to complete.</p>
+<h2 id="front-end-support"><a class="header" href="#front-end-support">Front-end support</a></h2>
+<p>HTML5, modern Javascript APIs and modern DOM APIs are supported by basing their
+execution and analysis on Google Chromium.</p>
+<p>Codename SCNR injects a custom environment to monitor JS objects and APIs in order
+to trace execution and data flows and thus provide highly in-depth reporting as to how a
+client-side security issue was identified which also greatly assists in its remediation.</p>
+<h2 id="incremental-scans"><a class="header" href="#incremental-scans">Incremental scans</a></h2>
+<p>Save valuable time by re-scanning only what has changed, rather than running full scans every single time.</p>
+<p>In order to save time on subsequent scans of the same target, Codename SCNR allows you to extract a session file from
+completed/aborted scans, in order to allow for incremental re-scans.</p>
+<p>This means that only newly introduced input vectors will be audited the next time around, which saves immense
+amounts of time from your workflow.</p>
+<p>For example, a <em>seed</em> (first) scan of a website that requires an hour to complete, can result in re-scan times of less
+that 10 minutes – depending on how many new input vectors were introduced.</p>
+<h2 id="behavioral-analysis"><a class="header" href="#behavioral-analysis">Behavioral analysis</a></h2>
+<p>Codename SCNR will study the web application/service to identify how each input interacts
+with the front and back ends and tailor the audit for each specific input’s characteristics.</p>
+<p>This results in highly self-optimized scans using less resources and requiring
+less time to complete, as well as less server stress.</p>
+<p>Training also continues during the audit process and new inputs that may appear
+during that time will be incorporated into the scan in whole.</p>
+<h2 id="extendability"><a class="header" href="#extendability">Extendability</a></h2>
+<p>Its modular architecture allows for easy augmentation when it comes to security checks,
+arbitrary custom functionality in the form of plugins and bespoke reporting.</p>
+<p>Entities which perform tasks crucial to the operation of a web scanner have
+been abstracted to be components, more to be easily added by anyone in order to
+extend functionality.</p>
+<p>Components are split into the following types:</p>
+<ul>
+<li>Checks – Security checks.
+<ul>
+<li>Active – They actively engage the web application via its inputs.</li>
+<li>Passive – They passively look for objects.</li>
+</ul>
+</li>
+<li>Plugins – Add arbitrary functionality to the system, accept options and run in parallel to the scan.</li>
+<li>Reporters – They export the scan results in several formats.</li>
+<li>Path extractors – They extract paths for the crawler to follow.</li>
+<li>Fingerprinters – They identify OS version, platforms, servers, etc.</li>
+</ul>
+<h2 id="customization"><a class="header" href="#customization">Customization</a></h2>
+<p>Furthermore, scripted scans allow for the creation of basically tailor made
+scans by moving decision making points and configuration to user-specified
+methods and can extend to even creating a custom scanner for any web application
+backed by the Codename SCNR engine.</p>
+<p>The API is tidy and simple and easily allows you to plug-in to key API<sup class="footnote-reference" id="fr-dsel-1"><a href="#footnote-dsel">1</a></sup> scan points
+in order to get the best results from any scan.</p>
+<p>Scripts are written in Ruby and can thus be stored in your favorite CVS, this
+enables you to work side-by-side with the web application development team and
+have the right script revision alongside the respective web application revision.</p>
+<h2 id="scalability"><a class="header" href="#scalability">Scalability</a></h2>
+<p>No dependencies, no configuration; Codename SCNR can build a cloud of itself that allows
+you to scale both horizontally and vertically.</p>
+<p>Scale up by plugging more nodes to its <em>Grid</em>, or down by unplugging them.</p>
+<p>Furthermore, with multi-<em>Instance</em> scans you can not only distribute multiple
+scans across nodes, but also individual scans, for super fast scanning of large sites.</p>
+<p>Finally, with its quick suspend-to-disk/restore feature, running scans can easily be moved from node
+to node, accommodating highly optimized load-balancing and cost saving policies.</p>
+<h2 id="deployment"><a class="header" href="#deployment">Deployment</a></h2>
+<p>Deployment options range from command-line utilities for direct scans,
+scripted scans (for configuration and custom scanners) as well as distributed
+deployments to perform scans from remote hosts and Grid/cloud/SaaS setups.</p>
+<p>Its simple distributed architecture<sup class="footnote-reference" id="fr-cuboid-1"><a href="#footnote-cuboid">2</a></sup> allows for easy creation of self-healing,
+load-balanced (vertically and horizontally) scanner grids; basically allowing for
+the creation of private scanner clouds in either yours or a Cloud provider’s infrastructure.</p>
+<h2 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h2>
+<p>Thus, Codename SCNR can in essence fit into any SDLC with great grace, ease and little care.</p>
+<hr>
+<ol class="footnote-definition">
+<li id="footnote-dsel">
+<p>API/script functionality is provided by <a href="https://github.com/qadron/DSeL">DSeL</a>. <a href="#fr-dsel-1">↩</a></p>
+</li>
+<li id="footnote-cuboid">
+<p>Distributed functionality is provided by <a href="https://github.com/qadron/cuboid">Cuboid</a>. <a href="#fr-cuboid-1">↩</a></p>
+</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="installation"><a class="header" href="#installation">Installation</a></h1>
+<p>For installation instructions please refer to the <a href="https://github.com/scnr/installer/blob/main/README.md">installer</a>.</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="system-requirements"><a class="header" href="#system-requirements">System requirements</a></h1>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Operating System</th><th>Architecture</th><th>RAM</th><th>Disk</th><th>CPU</th></tr>
+</thead>
+<tbody>
+<tr><td>Linux</td><td>x86 64bit</td><td>2GB</td><td>4GB</td><td>Multicore</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="resource-constrained-environments"><a class="header" href="#resource-constrained-environments">Resource constrained environments</a></h2>
+<p>To optimize the resources a scan may use please consult:</p>
+<ul>
+<li><a href="#optimize-scans">Optimize scans</a></li>
+</ul>
+<p>In addition, <em>Agents</em> and other servers can have their max-slots adjusted
+to a user-specified value, instead of the default, which is <code>auto</code> and based
+on the aforementioned system requirements.</p>
+<p>Please issue the <code>-h</code> flag to see available options for each executable in order
+to examine the applicable overrides.</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="direct"><a class="header" href="#direct">Direct</a></h1>
+<p>The easiest approach is a direct scan using the <code>scnr</code> CLI executable.</p>
+<p>To see all available options run:</p>
+<pre><code class="language-bash">bin/scnr -h
+</code></pre>
+<h2 id="example"><a class="header" href="#example">Example</a></h2>
+<p>The following command will run a scan with default settings against <a href="http://testhmtml5.vulnweb.com">http://testhmtml5.vulnweb.com</a>.</p>
+<pre><code class="language-bash">bin/scnr http://testhmtml5.vulnweb.com
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="scripted"><a class="header" href="#scripted">Scripted</a></h1>
+<p>Scripted scans allow you to configure the system and take over decision making points
+for a much more fine-grained scan.
+Aside from that, scripts also allow you to quickly add custom components on the
+fly.</p>
+<p>Scan scripts can either be a form of configuration or standalone scanners.</p>
+<h2 id="examples"><a class="header" href="#examples">Examples</a></h2>
+<h3 id="as-configuration"><a class="header" href="#as-configuration">As configuration</a></h3>
+<h4 id="with-helpers"><a class="header" href="#with-helpers">With helpers</a></h4>
+<p><code>html5.config.rb</code>:</p>
+<pre><code class="language-ruby">SCNR::Application::API.run do
+  require '/home/user/script/helpers'
+
+  Dom {
+    on :event, &amp;method(:on_event_handler)
+  }
+
+  Checks {
+
+    # This will run from the context of SCNR::Engine::Check::Base; it
+    # basically creates a new check component on the fly.
+    as :not_found, check_404_info, method(:check_404)
+ 
+  }
+
+  Plugins {
+
+    # This will run from the context of SCNR::Engine::Plugin::Base; it
+    # basically creates a new plugin component on the fly.
+    as :my_plugin, my_plugin_info, method(:my_plugin)
+
+  }
+
+  Scan {
+
+    Session {
+      to :login, &amp;method(:login)
+      to :check, &amp;method(:login_check)
+    }
+
+    Scope {
+      # Don't visit resources that will end the session.
+      reject :url, &amp;method(:to_logout)
+    }
+  }
+
+end
+</code></pre>
+<p><code>helpers.rb</code>:</p>
+<pre><code class="language-ruby"># Allow some time for the modal animation to complete in order for
+# the login form to appear.
+#
+# (Not actually necessary, this is just an example on how to hande quirks.)
+def on_event_handler( result, locator, event, options, browser )
+  return if locator.attributes['href'] != '#myModal' || event != :click
+  sleep 1
+end
+
+# Does something really simple, logs an issue for each 404 page.
+def check_404
+  response = page.response
+  return if response.code != 404
+
+  log(
+    proof:    response.status_line,
+    vector:   SCNR::Engine::Element::Server.new( response.url ),
+    response: response
+  )
+end
+
+def check_404_info
+  {
+    issue: {
+      name:     'Page not found',
+      severity: SCNR::Engine::Issue::Severity::INFORMATIONAL
+    }
+  }
+end
+
+def my_plugin
+  # Do stuff then wait until scan completes.
+  wait_while_framework_running
+  # Do stuff after scan completes.
+end
+
+def my_plugin_info
+  {
+    name: 'My Plugin',
+    description: 'Just waits for the scan to finish,'
+  }
+end
+
+def login( browser )
+  # Login with whichever interface you prefer.
+  watir    = browser.watir
+  selenium = browser.selenium
+
+  watir.goto SCNR::Engine::Options.url
+
+  watir.link( href: '#myModal' ).click
+  form = watir.form( id: 'loginForm' )
+
+  form.text_field( name: 'username' ).set 'admin'
+  form.text_field( name: 'password' ).set 'admin'
+  form.submit
+end
+
+def login_check( &amp;in_async_mode )
+  http_client = SCNR::Engine::HTTP::Client
+  check       = proc { |r| r.body.optimized_include? '&lt;b&gt;admin' }
+
+  # If an async block is passed, then the framework would rather
+  # schedule it to run asynchronously.
+  if in_async_mode
+    http_client.get SCNR::Engine::Options.url do |response|
+      in_async_mode.call check.call( response )
+    end
+  else
+    response = http_client.get( SCNR::Engine::Options.url, mode: :sync )
+    check.call( response )
+  end
+end
+
+def to_logout( url )
+  url.path.optimized_include?( 'login' ) ||
+    url.path.optimized_include?( 'logout' )
+end
+</code></pre>
+<h4 id="single-file"><a class="header" href="#single-file">Single file</a></h4>
+<pre><code class="language-ruby">SCNR::Application::API.run do
+
+    Dom {
+
+        # Allow some time for the modal animation to complete in order for
+        # the login form to appear.
+        # 
+        # (Not actually necessary, this is just an example on how to hande quirks.)
+        on :event do |_, locator, event, *|
+            next if locator.attributes['href'] != '#myModal' || event != :click
+            sleep 1
+        end
+    }
+
+    Checks {
+
+        # This will run from the context of SCNR::Engine::Check::Base; it
+        # basically creates a new check component on the fly.
+        #
+        # Does something really simple, logs an issue for each 404 page.
+        as :not_found,
+           issue: {
+             name:     'Page not found',
+             severity: SCNR::Engine::Issue::Severity::INFORMATIONAL
+           } do
+            response = page.response
+            next if response.code != 404
+
+            log(
+              proof:    response.status_line,
+              vector:   SCNR::Engine::Element::Server.new( response.url ),
+              response: response
+            )
+        end
+
+    }
+
+    Plugins {
+
+        # This will run from the context of SCNR::Engine::Plugin::Base; it
+        # basically creates a new plugin component on the fly.
+        as :my_plugin do
+            # Do stuff then wait until scan completes.
+            wait_while_framework_running
+            # Do stuff after scan completes.
+        end
+
+    }
+
+    Scan {
+
+        Session {
+            to :login do |browser|
+                # Login with whichever interface you prefer.
+                watir    = browser.watir
+                selenium = browser.selenium
+
+                watir.goto SCNR::Engine::Options.url
+
+                watir.link( href: '#myModal' ).click
+
+                form = watir.form( id: 'loginForm' )
+                form.text_field( name: 'username' ).set 'admin'
+                form.text_field( name: 'password' ).set 'admin'
+                form.submit
+            end
+
+            to :check do |async|
+                http_client = SCNR::Engine::HTTP::Client
+                check       = proc { |r| r.body.optimized_include? '&lt;b&gt;admin' }
+
+                # If an async block is passed, then the framework would rather
+                # schedule it to run asynchronously.
+                if async
+                    http_client.get SCNR::Engine::Options.url do |response|
+                        success = check.call( response )
+                        async.call success
+                    end
+                else
+                    response = http_client.get( SCNR::Engine::Options.url, mode: :sync )
+                    check.call( response )
+                end
+            end
+        }
+
+        Scope {
+            # Don't visit resources that will end the session.
+            reject :url do |url|
+                url.path.optimized_include?( 'login' ) ||
+                  url.path.optimized_include?( 'logout' )
+            end
+        }
+    }
+
+end
+</code></pre>
+<p>Supposing the above is saved as <code>html5.config.rb</code>:</p>
+<pre><code class="language-bash">bin/scnr http://testhtml5.vulnweb.com --script=html5.config.rb
+</code></pre>
+<h3 id="standalone"><a class="header" href="#standalone">Standalone</a></h3>
+<p>This basically creates a custom scanner.</p>
+<p>The difference is that these scripts will run a scan and handle its results on their own,
+and not just serve as configuration.</p>
+<h4 id="with-helpers-1"><a class="header" href="#with-helpers-1">With helpers</a></h4>
+<p>When a scan script is large-ish and/or complicated it’s better to split it into the main file and helper handler methods.</p>
+<pre><code class="language-bash">bin/scnr_script scanner.rb
+</code></pre>
+<p><code>scanner.rb</code>:</p>
+<pre><code class="language-ruby">require 'scnr/engine/api'
+
+require "#{Options.paths.root}/tmp/scripts/with_helpers/helpers"
+
+SCNR::Application::API.run do
+
+  Scan {
+
+    # Can also be written as:
+    #
+    # options.set(
+    #   url:    'http://testhtml5.vulnweb.com',
+    #   audit:  {
+    #     elements: [:links, :forms, :cookies, :ui_inputs, :ui_forms]
+    #   },
+    #   checks: ['*']
+    # )
+    Options {
+      set url:    'http://my-site.com',
+          audit:  {
+            elements: [:links, :forms, :cookies, :ui_inputs, :ui_forms]
+          },
+          checks: ['*']
+    }
+
+    # Scan session configuration.
+    Session {
+      # Login using the #fill_in_and_submit_the_login_form method from the helpers.rb file.
+      to :login, :fill_in_and_submit_the_login_form
+
+      # Check for a valid session using the #find_welcome_message method from the helpers.rb file.
+      to :check, :find_welcome_message
+    }
+
+    # Scan scope configuration.
+    Scope {
+
+      # Limit the scope of the scan based on URL.
+      select :url, :within_the_eshop
+
+      # Limit the scope of the scan based on Element.
+      reject :element, :with_sensitive_action; also :with_weird_nonce
+
+      # Only select pages that are in the admin panel.
+      select :page, :in_admin_panel
+
+      # Limit the scope of the scan based on Page.
+      reject :page, :with_error
+
+      # Limit the scope of the scan based on DOM events and DOM elements.
+      # In this case, never click the logout button!
+      reject :event, :that_clicks_the_logout_button
+
+    }
+
+    # Run the scan and handle the results (in this case print to STDOUT) using #handle_results.
+    run! :handle_results
+  }
+
+  Logging {
+
+    # Error and exception handling.
+    on :error,     :log_error
+    on :exception, :log_exception
+
+  }
+
+  Data {
+
+    # Don't store issues in memory, we'll send them to the DB.
+    issues.disable(:storage).on :new, :save_to_db
+
+    # Could also be written as:
+    #
+    #   Issues {
+    #       disable(:storage)
+    #       on :new, :save_to_db)
+    #   }
+    #
+    # Or:
+    #
+    #   Issues { disable(:storage); on :new, :save_to_db)  }
+
+    # Store every page in the DB too for later analysis.
+    pages.on :new, :save_to_db
+
+    # Or:
+    #
+    #   Pages {
+    #       on :new, :save_to_db
+    #   }
+
+  }
+
+  Http {
+    on :request, :add_special_auth_header
+    on :response, :gather_traffic_data; also :increment_http_performer_count
+  }
+
+  Checks {
+
+    # Add a custom check on the fly to check for something simple specifically
+    # for this scan.
+    as :missing_important_header, with_missing_important_header_info,
+       :log_pages_with_missing_important_headers
+
+  }
+
+  # Been having trouble with this scan, collect some runtime statistics.
+  plugins.as :remote_debug, send_debugging_info_to_remote_server_info,
+             :send_debugging_info_to_remote_server
+
+  # Serves PHP scripts under the extension 'x'.
+  fingerprinters.as :php_x, :treat_x_as_php
+
+  Input {
+
+    # Vouchers and serial numbers need to come from an algorithm.
+    values :with_valid_role_id
+
+  }
+
+  Dom {
+
+    # Let's have a look inside the live JS env of those interesting pages,
+    # setup the data collection.
+    before :load, :start_js_data_gathering
+    after  :load, :retrieve_js_data; also :event, :retrieve_event_js_data
+
+  }
+
+end
+</code></pre>
+<p><code>helpers.rb</code>:</p>
+<pre><code class="language-ruby"># State
+
+def log_error( error )
+  # ...
+end
+def log_exception( exception )
+  # ...
+end
+
+# Data
+
+def save_to_db( obj )
+  # Do stufff...
+end
+def save_js_data_to_db( data, element, event )
+  # Do other stufff...
+end
+
+# Scope
+
+def within_the_eshop( url )
+  url.path.start_with? '/eshop'
+end
+
+def with_error( page )
+  /Error/i.match? page.body
+end
+
+def in_admin_panel( page )
+  /Admin panel/i.match? page.body
+end
+
+def that_clicks_the_logout_button( event, element )
+  event == :click &amp;&amp; element.tag_name == :button &amp;&amp;
+    element.attributes['id'] == 'logout'
+end
+
+def with_sensitive_action( element )
+  element.action.include? '/sensitive.php'
+end
+
+def with_weird_nonce( element )
+  element.inputs.include? 'weird_nonce'
+end
+
+# HTTP
+
+def generate_request_header
+  # ...
+end
+def save_raw_http_response( response )
+  # ...
+end
+def save_raw_http_request( request )
+  # ...
+end
+
+def add_special_auth_header( request )
+  request.headers['Special-Auth-Header'] ||= generate_request_header
+end
+
+def increment_http_performer_count( response )
+  # Count the amount of requests/responses this system component has
+  # performed/received.
+  #
+  # Performers can be browsers, checks, plugins, session, etc.
+  stuff( response.request.performer.class )
+end
+
+def gather_traffic_data( response )
+  # Collect raw HTTP traffic data.
+  save_raw_http_response( response.to_s )
+  save_raw_http_request( response.request.to_s )
+end
+
+# Checks
+
+def with_missing_important_header_info
+  {
+    name:        'Missing Important-Header',
+    description: %q{Checks pages for missing `Important-Header` headers.},
+    elements:    [ Element::Server ],
+    issue:       {
+      name:        %q{Missing 'Important-Header' header},
+      severity:    Severity::INFORMATIONAL
+    }
+  }
+end
+
+# This will run from the context of a Check::Base.
+def log_pages_with_missing_important_headers
+  return if audited?( page.parsed_url.host ) ||
+    page.response.headers['Important-Header']
+
+  audited( page.parsed_url.host )
+
+  log(
+    vector: Element::Server.new( page.url ),
+    proof:  page.response.headers_string
+  )
+end
+
+# Plugins
+
+# This will run from the context of a Plugin::Base.
+def send_debugging_info_to_remote_server
+  address = '192.168.0.11'
+  port    = 81
+  auth    = Utilities.random_seed
+
+  url = `start_remote_debug_server.sh -a #{address} -p #{port} --auth #{auth}`
+  url.strip!
+
+  http.post( url,
+             body: SCNR::Engine::SCNR::Engine::Options.to_h.to_json,
+             mode: :sync
+  )
+
+  while framework.running? &amp;&amp; sleep( 5 )
+    http.post( "#{url}/statistics",
+               body: framework.statistics.to_json,
+               mode: :sync
+    )
+  end
+end
+
+def send_debugging_info_to_remote_server_info
+  {
+    name: 'Debugger'
+  }
+end
+
+# Fingerprinters
+
+# This will run from the context of a Fingerprinter::Base.
+def treat_x_as_php
+  return if extension != 'x'
+  platforms &lt;&lt; :php
+end
+
+# Session
+
+def fill_in_and_submit_the_login_form( browser )
+  browser.load "#{SCNR::Engine::SCNR::Engine::Options.url}/login"
+
+  form = browser.form
+  form.text_field( name: 'username' ).set 'john'
+  form.text_field( name: 'password' ).set 'doe'
+
+  form.input( name: 'submit' ).click
+end
+
+def find_welcome_message
+  http.get( SCNR::Engine::Options.url, mode: :sync ).body.include?( 'Welcome user!' )
+end
+
+# Inputs
+
+def with_valid_code( name, current_value )
+  {
+    'voucher-code'  =&gt; voucher_code_generator( current_value ),
+    'serial-number' =&gt; serial_number_generator( current_value )
+  }[name]
+end
+
+def with_valid_role_id( inputs )
+  return if !inputs.include?( 'role-type' )
+
+  inputs['role-id'] ||= (inputs['role-type'] == 'manager' ? 1 : 2)
+  inputs
+end
+
+# Browser
+
+def start_js_data_gathering( page, browser )
+  return if !page.url.include?( 'something/interesting' )
+
+  browser.javascript.inject &lt;&lt;JS
+    // Gather JS data from listeners etc.
+    window.secretJSData = {};
+JS
+end
+
+def retrieve_js_data( page, browser )
+  return if !page.url.include?( 'something/interesting' )
+
+  save_js_data_to_db(
+    browser.javascript.run( 'return window.secretJSData' ),
+    page, :load
+  )
+end
+
+def retrieve_event_js_data( event, element, browser )
+  return if !browser.url.include?( 'something/interesting' )
+
+  save_js_data_to_db(
+    browser.javascript.run( 'return window.secretJSData' ),
+    element, event
+  )
+end
+
+def handle_results( report, statistics )
+  puts
+  puts '=' * 80
+  puts
+
+  puts "[#{report.sitemap.size}] Sitemap:"
+  puts
+  report.sitemap.sort_by { |url, _| url }.each do |url, code|
+    puts "\t[#{code}] #{url}"
+  end
+
+  puts
+  puts '-' * 80
+  puts
+
+  puts "[#{report.issues.size}] Issues:"
+  puts
+
+  report.issues.each.with_index do |issue, idx|
+
+    s = "\t[#{idx+1}] #{issue.name} in `#{issue.vector.type}`"
+    if issue.vector.respond_to?( :affected_input_name ) &amp;&amp;
+      issue.vector.affected_input_name
+      s &lt;&lt; " input `#{issue.vector.affected_input_name}`"
+    end
+    puts s &lt;&lt; '.'
+
+    puts "\t\tAt `#{issue.page.dom.url}` from `#{issue.referring_page.dom.url}`."
+
+    if issue.proof
+      puts "\t\tProof:\n\t\t\t#{issue.proof.gsub( "\n", "\n\t\t\t" )}"
+    end
+
+    puts
+  end
+
+  puts
+  puts '-' * 80
+  puts
+
+  puts "Statistics:"
+  puts
+  puts "\t" &lt;&lt; statistics.ai.gsub( "\n", "\n\t" )
+end
+</code></pre>
+<h4 id="single-file-1"><a class="header" href="#single-file-1">Single file</a></h4>
+<pre><code class="language-ruby">require 'scnr/engine/api'
+
+# Mute output messages from the CLI interface, we've got our own output methods.
+SCNR::UI::CLI::Output.mute
+
+SCNR::Application::API.run do
+
+    State {
+        on :change do |state|
+            puts "State\t\t- #{state.status.capitalize}"
+        end
+    }
+
+    Data {
+        Issues {
+            on :new do |issue|
+                puts "Issue\t\t- #{issue.name} from `#{issue.referring_page.dom.url}`" &lt;&lt;
+                       " in `#{issue.vector.type}`."
+            end
+        }
+    }
+
+    Logging {
+        on :error do |error|
+            $stderr.puts "Error\t\t- #{error}"
+        end
+
+        # Way too much noise.
+        # on :exception do |exception|
+        #     ap exception
+        #     ap exception.backtrace
+        # end
+    }
+
+    Dom {
+
+        # Allow some time for the modal animation to complete in order for
+        # the login form to appear.
+        # 
+        # (Not actually necessary, this is just an example on how to hande quirks.)
+        on :event do |_, locator, event, *|
+            next if locator.attributes['href'] != '#myModal' || event != :click
+            sleep 1
+        end
+    }
+
+    Checks {
+
+        # This will run from the context of SCNR::Engine::Check::Base; it
+        # basically creates a new check component on the fly.
+        #
+        # Does something really simple, logs an issue for each 404 page.
+        as :not_found,
+           issue: {
+             name:     'Page not found',
+             severity: SCNR::Engine::Issue::Severity::INFORMATIONAL
+           } do
+            response = page.response
+            next if response.code != 404
+
+            log(
+              proof:    response.status_line,
+              vector:   SCNR::Engine::Element::Server.new( response.url ),
+              response: response
+            )
+        end
+
+    }
+
+    Plugins {
+
+        # This will run from the context of SCNR::Engine::Plugin::Base; it
+        # basically creates a new plugin component on the fly.
+        as :my_plugin do
+            puts "#{shortname}\t- Running..."
+            wait_while_framework_running
+            puts "#{shortname}\t- Done!"
+        end
+
+    }
+
+    Scan {
+        Options {
+            set url:    'http://testhtml5.vulnweb.com',
+                audit:  {
+                  elements: [:links, :forms, :cookies]
+                },
+                checks: ['*']
+        }
+
+        Session {
+            to :login do |browser|
+                print "Session\t\t- Logging in..."
+
+                # Login with whichever interface you prefer.
+                watir    = browser.watir
+                selenium = browser.selenium
+
+                watir.goto SCNR::Engine::Options.url
+
+                watir.link( href: '#myModal' ).click
+
+                form = watir.form( id: 'loginForm' )
+                form.text_field( name: 'username' ).set 'admin'
+                form.text_field( name: 'password' ).set 'admin'
+                form.submit
+
+                if browser.response.body =~ /&lt;b&gt;admin/
+                    puts 'done!'
+                else
+                    puts 'failed!'
+                end
+            end
+
+            to :check do |async|
+                print "Session\t\t- Checking..."
+
+                http_client = SCNR::Engine::HTTP::Client
+                check       = proc { |r| r.body.optimized_include? '&lt;b&gt;admin' }
+
+                # If an async block is passed, then the framework would rather
+                # schedule it to run asynchronously.
+                if async
+                    http_client.get SCNR::Engine::Options.url do |response|
+                        success = check.call( response )
+
+                        puts "logged #{success ? 'in' : 'out'}!"
+
+                        async.call success
+                    end
+                else
+                    response = http_client.get( SCNR::Engine::Options.url, mode: :sync )
+                    success = check.call( response )
+
+                    puts "logged #{success ? 'in' : 'out'}!"
+
+                    success
+                end
+            end
+        }
+
+        Scope {
+            # Don't visit resources that will end the session.
+            reject :url do |url|
+                url.path.optimized_include?( 'login' ) ||
+                  url.path.optimized_include?( 'logout' )
+            end
+        }
+
+        before :page do |page|
+            puts "Processing\t- [#{page.response.code}] #{page.dom.url}"
+        end
+
+        on :page do |page|
+            puts "Scanning\t- [#{page.response.code}] #{page.dom.url}"
+        end
+
+        after :page do |page|
+            puts "Scanned\t\t- [#{page.response.code}] #{page.dom.url}"
+        end
+
+        run! do |report, statistics|
+            puts
+            puts '=' * 80
+            puts
+
+            puts "[#{report.sitemap.size}] Sitemap:"
+            puts
+            report.sitemap.sort_by { |url, _| url }.each do |url, code|
+                puts "\t[#{code}] #{url}"
+            end
+
+            puts
+            puts '-' * 80
+            puts
+
+            puts "[#{report.issues.size}] Issues:"
+            puts
+            report.issues.each.with_index do |issue, idx|
+                s = "\t[#{idx+1}] #{issue.name} in `#{issue.vector.type}`"
+                if issue.vector.respond_to?( :affected_input_name ) &amp;&amp;
+                  issue.vector.affected_input_name
+                    s &lt;&lt; " input `#{issue.vector.affected_input_name}`"
+                end
+                puts s &lt;&lt; '.'
+
+                puts "\t\tAt `#{issue.page.dom.url}` from `#{issue.referring_page.dom.url}`."
+
+                if issue.proof
+                    puts "\t\tProof:\n\t\t\t#{issue.proof.gsub( "\n", "\n\t\t\t" )}"
+                end
+
+                puts
+            end
+
+            puts
+            puts '-' * 80
+            puts
+
+            puts "Statistics:"
+            puts
+            puts "\t" &lt;&lt; statistics.ai.gsub( "\n", "\n\t" )
+        end
+    }
+
+end
+</code></pre>
+<p>Supposing the above is saved as <code>html5.scanner.rb</code>:</p>
+<pre><code class="language-bash">bin/scnr_script html5.scanner.rb
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="distributed"><a class="header" href="#distributed">Distributed</a></h1>
+<p>Distribution features are deferred to <a href="https://github.com/qadron/cuboid">Cuboid</a>;
+hence, a quick read through its <a href="https://github.com/qadron/cuboid/blob/master/README.md">readme</a>
+will outline the architecture.</p>
+<p>In this case, the Cuboid application is SCNR.</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="agent"><a class="header" href="#agent">Agent</a></h1>
+<p>To start an <em>Agent</em> run the <code>scnr_agent</code> CLI executable.</p>
+<p>To see all available options run:</p>
+<pre><code class="language-bash">bin/scnr_agent -h
+</code></pre>
+<p>Each <em>Agent</em> should run on a different machine and its main role is to
+provide <em>Instances</em> to clients; each <em>Instance</em> is a scanner process.</p>
+<p>The <em>Agent</em> will also split the available resources of the machine on which
+it runs into <em>slots</em>, with each <em>slot</em> corresponding to enough space for one
+<em>Instance</em>.</p>
+<p>(To see how many slots a machine has you can use the <code>scnr_system_info</code> utility.)</p>
+<h1 id="example-1"><a class="header" href="#example-1">Example</a></h1>
+<h2 id="server"><a class="header" href="#server">Server</a></h2>
+<p>In one terminal run:</p>
+<pre><code class="language-bash">bin/scnr_agent
+</code></pre>
+<p>The default port at the time of writing is <code>7331</code>, so you should see something like:</p>
+<pre><code>I, [2022-01-23T09:54:21.849679 #1121060]  INFO -- System: RPC Server started.
+I, [2022-01-23T09:54:21.849730 #1121060]  INFO -- System: Listening on 127.0.0.1:7331
+</code></pre>
+<h2 id="client"><a class="header" href="#client">Client</a></h2>
+<p>To start a scan originating from that <em>Agent</em> you must issue a <code>spawn</code>
+call in order to obtain an <em>Instance</em>; this can be achieved using the <code>scnr_spawn</code>
+CLI executable.</p>
+<p>In another terminal run:</p>
+<pre><code class="language-bash">bin/scnr_spawn --agent-url=127.0.0.1:7331 http://testhtml5.vulnweb.com
+</code></pre>
+<p>The above will run a scan with the default options against
+<a href="http://testhtml5.vulnweb.com">http://testhtml5.vulnweb.com</a>, originating from
+the <em>Agent</em> node.</p>
+<p>The <code>scnr_spawn</code> utility largely accepts the same options as <code>scnr</code>.</p>
+<p>If the <em>Agent</em> is out of <em>slots</em> you will see the following message:</p>
+<pre><code>[~] Agent is at maximum utilization, please try again later.
+</code></pre>
+<p>In which case you can keep retrying until a <em>slot</em> opens up.</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="grid"><a class="header" href="#grid">Grid</a></h1>
+<p>A <em>Grid</em> is simply a group of <em>Agents</em> and its setup is as simple as specifying
+an already running <em>Agent</em> as a <em>peer</em> to a future <em>Agent</em>.</p>
+<p>The order in which you start or specify <em>peers</em> is irrelevant, <em>Agents</em>
+will reach convergence on their own and keep track of their connectivity status
+with each other.</p>
+<p>After a <em>Grid</em> is configured, when a <code>spawn</code> call is issued to any <em>Grid</em>
+member it will be served by any of its <em>Agents</em> based on the desired
+distribution strategy and not necessarily by the one receiving it.</p>
+<h2 id="strategies"><a class="header" href="#strategies">Strategies</a></h2>
+<h3 id="horizontal-default"><a class="header" href="#horizontal-default">Horizontal (default)</a></h3>
+<p><code>spawn</code> calls will be served by the least burdened <em>Agent</em>, i.e. the
+<em>Agent</em> with the least utilization of its <em>slots</em>.</p>
+<p>This strategy helps to keep the overall <em>Grid</em> health good by spreading the
+workload across as many nodes as possible.</p>
+<h3 id="vertical"><a class="header" href="#vertical">Vertical</a></h3>
+<p><code>spawn</code> calls will be served by the most burdened <em>Agent</em>, i.e. the
+<em>Agent</em> with the most utilization of its <em>slots</em>.</p>
+<p>This strategy helps to keep the overall <em>Grid</em> size (and thus cost) low by
+utilizing as few <em>Grid</em> nodes as possible.</p>
+<p>It will also let you know if you have over-provisioned as extra nodes will not
+be receiving any workload.</p>
+<h2 id="examples-1"><a class="header" href="#examples-1">Examples</a></h2>
+<h3 id="server-1"><a class="header" href="#server-1">Server</a></h3>
+<p>In one terminal run:</p>
+<pre><code class="language-bash">bin/scnr_agent
+</code></pre>
+<p>In another terminal run:</p>
+<pre><code class="language-bash">bin/scnr_agent --port=7332 --peer=127.0.0.1:7331
+</code></pre>
+<p>In another terminal run:</p>
+<pre><code class="language-bash">bin/scnr_agent --port=7333 --peer=127.0.0.1:7332
+</code></pre>
+<p>(It doesn’t matter who the peer is as long as it’s part of the Grid.)</p>
+<p>Now we have a <em>Grid</em> of 3 <em>Agents</em>.</p>
+<p>The point of course is to run each <em>Agent</em> on a different machine in real life.</p>
+<h3 id="client-1"><a class="header" href="#client-1">Client</a></h3>
+<p>Same as <a href="/scanning/distributed/agent.html#client">Agent client</a>.</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="scheduler"><a class="header" href="#scheduler">Scheduler</a></h1>
+<p>To start a <em>Scheduler</em> run the <code>scnr_scheduler</code> CLI executable.</p>
+<p>To see all available options run:</p>
+<pre><code class="language-bash">bin/scnr_scheduler -h
+</code></pre>
+<p>The main role of the <em>Scheduler</em> is to:</p>
+<ol>
+<li>Queue scans based on their assigned priority.</li>
+<li>Run them if there is an available <em>slot</em>.</li>
+<li>Monitor their progress.</li>
+<li>Grab and store reports once scans complete.</li>
+</ol>
+<h2 id="default"><a class="header" href="#default">Default</a></h2>
+<p>By default, scans will run on the same machine as the <em>Scheduler</em>.</p>
+<h2 id="with-agent"><a class="header" href="#with-agent">With Agent</a></h2>
+<p>When a <em>Agent</em> has been provided, <code>spawn</code> calls are going to be issued
+in order to acquire <em>Instances</em> to run the scans.</p>
+<h3 id="grid-1"><a class="header" href="#grid-1">Grid</a></h3>
+<p>In the case where the given <em>Agent</em> is a <em>Grid</em> member, scans will be
+load-balanced across the <em>Grid</em> according the the configured <em>strategy</em>.</p>
+<h2 id="examples-2"><a class="header" href="#examples-2">Examples</a></h2>
+<h3 id="server-2"><a class="header" href="#server-2">Server</a></h3>
+<p>In one terminal run:</p>
+<pre><code class="language-bash">bin/scnr_scheduler
+</code></pre>
+<h3 id="client-2"><a class="header" href="#client-2">Client</a></h3>
+<h4 id="pushing"><a class="header" href="#pushing">Pushing</a></h4>
+<p>In another terminal run:</p>
+<pre><code class="language-bash">bin/scnr_scheduler_push --scheduler-url=localhost:7331 http://testhtml5.vulnweb.com
+</code></pre>
+<p>Then you should see something like:</p>
+<pre><code> [~] Pushed scan with ID: 5fed6c50f3699bacb841cc468cc97094
+</code></pre>
+<h4 id="monitoring"><a class="header" href="#monitoring">Monitoring</a></h4>
+<p>To see what the <em>Scheduler</em> is doing run:</p>
+<pre><code class="language-bash">bin/scnr_scheduler_list localhost:7331
+</code></pre>
+<p>Then you should see something like:</p>
+<pre><code> [~] Queued [0]
+
+
+ [*] Running [1]
+
+[1] 5fed6c50f3699bacb841cc468cc97094: 127.0.0.1:3390/070116f5e2c0acaa0a6432acdcc7230a
+
+ [+] Completed [0]
+
+
+ [-] Failed [0]
+</code></pre>
+<p>If you run the same command after a while and the scan has completed:</p>
+<pre><code> [~] Queued [0]
+
+
+ [*] Running [0]
+
+
+ [+] Completed [1]
+
+[1] 5fed6c50f3699bacb841cc468cc97094: /home/username/.cuboid/reports/5fed6c50f3699bacb841cc468cc97094.crf
+
+ [-] Failed [0]
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="introspector"><a class="header" href="#introspector">Introspector</a></h1>
+<p>The Codename SCNR Introspector is basically middleware for your web application.</p>
+<p>When this middleware is used, advanced execution and data flow information about
+the web application is gathered, allowing for easier identification and remediation of
+each identified issue.</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="ruby"><a class="header" href="#ruby">Ruby</a></h1>
+<h2 id="install"><a class="header" href="#install">Install</a></h2>
+<pre><code class="language-bash">gem install scnr-introspector
+</code></pre>
+<h2 id="use-middleware"><a class="header" href="#use-middleware">Use middleware</a></h2>
+<h3 id="options"><a class="header" href="#options">Options</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Option</th><th>Description</th><th>Default</th><th>Example</th></tr>
+</thead>
+<tbody>
+<tr><td><code>path_start_with</code></td><td>Only instrument classes whose path starts with this prefix</td><td>none</td><td><code>example/</code></td></tr>
+<tr><td><code>path_ends_with</code></td><td>Only instrument classes whose path ends with this suffix</td><td>none</td><td><code>app.rb</code></td></tr>
+<tr><td><code>path_include_patterns</code></td><td>Only instrument classes whose path matches all regex patterns</td><td>none</td><td><code>.*service.*</code></td></tr>
+<tr><td><code>path_exclude_patterns</code></td><td>Exclude classes matching whose path matches any regex patterns</td><td>none</td><td><code>.*test.*</code></td></tr>
+</tbody>
+</table>
+</div>
+<p><code>app.rb</code>:</p>
+<pre><code class="language-ruby">require 'scnr/introspector' # Include!
+require 'sinatra/base'
+
+class MyApp &lt; Sinatra::Base
+    # Use!
+    use SCNR::Introspector, scope: {
+      path_start_with: __FILE__
+    }
+
+    def noop
+    end
+
+    def process_params( params )
+        noop
+        params.values.join( ' ' )
+    end
+
+    get '/' do
+        @instance_variable = {
+            blah: 'foo'
+        }
+        local_variable = 1
+
+        &lt;&lt;EOHTML
+        #{process_params( params )}
+        &lt;a href="?v=stuff"&gt;XSS&lt;/a&gt;
+EOHTML
+    end
+
+    run!
+end
+</code></pre>
+<h2 id="verify"><a class="header" href="#verify">Verify</a></h2>
+<p>Run the Web App:</p>
+<pre><code class="language-bash">bundle exec ruby examples/sinatra/app.rb
+</code></pre>
+<p>You should see this at the beginning:</p>
+<pre><code>[INTROSPECTOR] Codename SCNR Introspector Initialized.
+</code></pre>
+<p>Along with these types of messages:</p>
+<pre><code>[INTROSPECTOR] Injecting trace code for MyApp#process_params in examples/sinatra/app.rb:12
+</code></pre>
+<p>As an integration test, you can run:</p>
+<pre><code class="language-bash">curl -i http://localhost:4567/ -H "X-Scnr-Engine-Scan-Seed:Test" -H "X-Scnr-Introspector-Trace:1" -H "X-SCNR-Request-ID:1"
+</code></pre>
+<p>You should see something like this (the comments are the important part):</p>
+<pre><code class="language-html">HTTP/1.1 200 OK
+Content-Type: text/html;charset=utf-8
+X-XSS-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+Content-Length: 7055
+
+
+&lt;a href="?v=stuff"&gt;XSS&lt;/a&gt;
+&lt;!-- Test
+{"execution_flow":{"points":[{"path":"examples/sinatra/app.rb","line_number":17,"class_name":"MyApp","method_name":"GET /","event":"call","source":"    get '/' do\n","file_contents":"require 'scnr/introspector'\nrequire 'sinatra/base'\n\nclass MyApp &lt; Sinatra::Base\n    use SCNR::Introspector, scope: {\n      path_start_with: __FILE__\n    }\n\n    def noop\n    end\n\n    def process_params( params )\n        noop\n        params.values.join( ' ' )\n    end\n\n    get '/' do\n        @instance_variable = {\n            blah: 'foo'\n        }\n        local_variable = 1\n\n        &lt;&lt;EOHTML\n        #{process_params( params )}\n        &lt;a href=\"?v=stuff\"&gt;XSS&lt;/a&gt;\nEOHTML\n    end\n\n    run!\nend\n"},{"path":"examples/sinatra/app.rb","line_number":19,"class_name":"MyApp","method_name":"GET /","event":"line","source":"            blah: 'foo'\n","file_contents":"require 'scnr/introspector'\nrequire 'sinatra/base'\n\nclass MyApp &lt; Sinatra::Base\n    use SCNR::Introspector, scope: {\n      path_start_with: __FILE__\n    }\n\n    def noop\n    end\n\n    def process_params( params )\n        noop\n        params.values.join( ' ' )\n    end\n\n    get '/' do\n        @instance_variable = {\n            blah: 'foo'\n        }\n        local_variable = 1\n\n        &lt;&lt;EOHTML\n        #{process_params( params )}\n        &lt;a href=\"?v=stuff\"&gt;XSS&lt;/a&gt;\nEOHTML\n    end\n\n    run!\nend\n"},{"path":"examples/sinatra/app.rb","line_number":21,"class_name":"MyApp","method_name":"GET /","event":"line","source":"        local_variable = 1\n","file_contents":"require 'scnr/introspector'\nrequire 'sinatra/base'\n\nclass MyApp &lt; Sinatra::Base\n    use SCNR::Introspector, scope: {\n      path_start_with: __FILE__\n    }\n\n    def noop\n    end\n\n    def process_params( params )\n        noop\n        params.values.join( ' ' )\n    end\n\n    get '/' do\n        @instance_variable = {\n            blah: 'foo'\n        }\n        local_variable = 1\n\n        &lt;&lt;EOHTML\n        #{process_params( params )}\n        &lt;a href=\"?v=stuff\"&gt;XSS&lt;/a&gt;\nEOHTML\n    end\n\n    run!\nend\n"},{"path":"examples/sinatra/app.rb","line_number":23,"class_name":"MyApp","method_name":"GET /","event":"line","source":"        &lt;&lt;EOHTML\n","file_contents":"require 'scnr/introspector'\nrequire 'sinatra/base'\n\nclass MyApp &lt; Sinatra::Base\n    use SCNR::Introspector, scope: {\n      path_start_with: __FILE__\n    }\n\n    def noop\n    end\n\n    def process_params( params )\n        noop\n        params.values.join( ' ' )\n    end\n\n    get '/' do\n        @instance_variable = {\n            blah: 'foo'\n        }\n        local_variable = 1\n\n        &lt;&lt;EOHTML\n        #{process_params( params )}\n        &lt;a href=\"?v=stuff\"&gt;XSS&lt;/a&gt;\nEOHTML\n    end\n\n    run!\nend\n"},{"path":"examples/sinatra/app.rb","line_number":12,"class_name":"MyApp","method_name":"process_params","event":"call","source":"    def process_params( params )\n","file_contents":"require 'scnr/introspector'\nrequire 'sinatra/base'\n\nclass MyApp &lt; Sinatra::Base\n    use SCNR::Introspector, scope: {\n      path_start_with: __FILE__\n    }\n\n    def noop\n    end\n\n    def process_params( params )\n        noop\n        params.values.join( ' ' )\n    end\n\n    get '/' do\n        @instance_variable = {\n            blah: 'foo'\n        }\n        local_variable = 1\n\n        &lt;&lt;EOHTML\n        #{process_params( params )}\n        &lt;a href=\"?v=stuff\"&gt;XSS&lt;/a&gt;\nEOHTML\n    end\n\n    run!\nend\n"},{"path":"examples/sinatra/app.rb","line_number":13,"class_name":"MyApp","method_name":"process_params","event":"line","source":"        noop\n","file_contents":"require 'scnr/introspector'\nrequire 'sinatra/base'\n\nclass MyApp &lt; Sinatra::Base\n    use SCNR::Introspector, scope: {\n      path_start_with: __FILE__\n    }\n\n    def noop\n    end\n\n    def process_params( params )\n        noop\n        params.values.join( ' ' )\n    end\n\n    get '/' do\n        @instance_variable = {\n            blah: 'foo'\n        }\n        local_variable = 1\n\n        &lt;&lt;EOHTML\n        #{process_params( params )}\n        &lt;a href=\"?v=stuff\"&gt;XSS&lt;/a&gt;\nEOHTML\n    end\n\n    run!\nend\n"},{"path":"examples/sinatra/app.rb","line_number":9,"class_name":"MyApp","method_name":"noop","event":"call","source":"    def noop\n","file_contents":"require 'scnr/introspector'\nrequire 'sinatra/base'\n\nclass MyApp &lt; Sinatra::Base\n    use SCNR::Introspector, scope: {\n      path_start_with: __FILE__\n    }\n\n    def noop\n    end\n\n    def process_params( params )\n        noop\n        params.values.join( ' ' )\n    end\n\n    get '/' do\n        @instance_variable = {\n            blah: 'foo'\n        }\n        local_variable = 1\n\n        &lt;&lt;EOHTML\n        #{process_params( params )}\n        &lt;a href=\"?v=stuff\"&gt;XSS&lt;/a&gt;\nEOHTML\n    end\n\n    run!\nend\n"},{"path":"examples/sinatra/app.rb","line_number":14,"class_name":"MyApp","method_name":"process_params","event":"line","source":"        params.values.join( ' ' )\n","file_contents":"require 'scnr/introspector'\nrequire 'sinatra/base'\n\nclass MyApp &lt; Sinatra::Base\n    use SCNR::Introspector, scope: {\n      path_start_with: __FILE__\n    }\n\n    def noop\n    end\n\n    def process_params( params )\n        noop\n        params.values.join( ' ' )\n    end\n\n    get '/' do\n        @instance_variable = {\n            blah: 'foo'\n        }\n        local_variable = 1\n\n        &lt;&lt;EOHTML\n        #{process_params( params )}\n        &lt;a href=\"?v=stuff\"&gt;XSS&lt;/a&gt;\nEOHTML\n    end\n\n    run!\nend\n"},{"path":"examples/sinatra/app.rb","line_number":14,"class_name":"Hash","method_name":"values","event":"c_call","source":"        params.values.join( ' ' )\n","file_contents":"require 'scnr/introspector'\nrequire 'sinatra/base'\n\nclass MyApp &lt; Sinatra::Base\n    use SCNR::Introspector, scope: {\n      path_start_with: __FILE__\n    }\n\n    def noop\n    end\n\n    def process_params( params )\n        noop\n        params.values.join( ' ' )\n    end\n\n    get '/' do\n        @instance_variable = {\n            blah: 'foo'\n        }\n        local_variable = 1\n\n        &lt;&lt;EOHTML\n        #{process_params( params )}\n        &lt;a href=\"?v=stuff\"&gt;XSS&lt;/a&gt;\nEOHTML\n    end\n\n    run!\nend\n"},{"path":"examples/sinatra/app.rb","line_number":14,"class_name":"Array","method_name":"join","event":"c_call","source":"        params.values.join( ' ' )\n","file_contents":"require 'scnr/introspector'\nrequire 'sinatra/base'\n\nclass MyApp &lt; Sinatra::Base\n    use SCNR::Introspector, scope: {\n      path_start_with: __FILE__\n    }\n\n    def noop\n    end\n\n    def process_params( params )\n        noop\n        params.values.join( ' ' )\n    end\n\n    get '/' do\n        @instance_variable = {\n            blah: 'foo'\n        }\n        local_variable = 1\n\n        &lt;&lt;EOHTML\n        #{process_params( params )}\n        &lt;a href=\"?v=stuff\"&gt;XSS&lt;/a&gt;\nEOHTML\n    end\n\n    run!\nend\n"}]},"platforms":["ruby","linux"]}
+--&gt;
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="java"><a class="header" href="#java">Java</a></h1>
+<h2 id="options-1"><a class="header" href="#options-1">Options</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Option</th><th>Description</th><th>Default</th><th>Example</th></tr>
+</thead>
+<tbody>
+<tr><td><code>path_start_with</code></td><td>Only instrument classes whose path starts with this prefix</td><td>none</td><td><code>com/example</code></td></tr>
+<tr><td><code>path_ends_with</code></td><td>Only instrument classes whose path ends with this suffix</td><td>none</td><td><code>Controller</code></td></tr>
+<tr><td><code>path_include_pattern</code></td><td>Only instrument classes matching this regex pattern</td><td>none</td><td><code>.*Service.*</code></td></tr>
+<tr><td><code>path_exclude_pattern</code></td><td>Exclude classes matching this regex pattern</td><td>none</td><td><code>.*Test.*</code></td></tr>
+<tr><td><code>source_directory</code></td><td>Root directory containing source files</td><td><code>src/main/java/</code></td><td><code>/path/to/src</code></td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="download"><a class="header" href="#download">Download</a></h2>
+<p><a href="https://github.com/scnr/introspector-java-releases/releases/latest">Download</a> the latest <code>JAR</code> archive.</p>
+<h2 id="install-middleware"><a class="header" href="#install-middleware">Install Middleware</a></h2>
+<p><code>webapp/WEB-INF/web.xml</code>:</p>
+<pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
+         http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0"&gt;
+
+    &lt;filter&gt;
+        &lt;filter-name&gt;introspectorFilter&lt;/filter-name&gt;
+        &lt;filter-class&gt;com.ecsypno.introspector.middleware.IntrospectorFilter&lt;/filter-class&gt;
+    &lt;/filter&gt;
+    
+    &lt;filter-mapping&gt;
+        &lt;filter-name&gt;introspectorFilter&lt;/filter-name&gt;
+        &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+    &lt;/filter-mapping&gt;
+
+&lt;/web-app&gt;
+</code></pre>
+<h2 id="load-agent-along-with-your-webapp"><a class="header" href="#load-agent-along-with-your-webapp">Load Agent along with your webapp</a></h2>
+<pre><code class="language-bash">MAVEN_OPTS="-javaagent:introspector.jar=path_start_with=com/example" mvn clean package tomcat7:run
+</code></pre>
+<h2 id="verify-1"><a class="header" href="#verify-1">Verify</a></h2>
+<p>You should see this at the beginning:</p>
+<pre><code>[INTROSPECTOR] Initializing Codename SCNR Introspector agent...
+[INTROSPECTOR] Setting up instrumentation.
+</code></pre>
+<p>And messages like this after initialization for each traced line:</p>
+<pre><code>[INTROSPECTOR] Injecting trace code for com/example/XssServlet.&lt;init&gt; line 11 in src/main/java//com/example/XssServlet.java
+</code></pre>
+<p>Finally, for an integration test, to make sure:</p>
+<pre><code class="language-bash">curl -i http://localhost:8080/ -H "X-Scnr-Engine-Scan-Seed:Test" -H "X-Scnr-Introspector-Trace:1" -H "X-SCNR-Request-ID:1"
+</code></pre>
+<p>At the end of the HTTP response you should be seeing something like:</p>
+<pre><code class="language-html">&lt;!-- Test
+{
+    "platforms": ["java"],
+    "execution_flow": {
+        "points": [
+            {
+                "method_name": "doGet",
+                "class_name": "com/example/SampleWebApp",
+                "path": "src/main/java//com/example/SampleWebApp.java",
+                "line_number": 16,
+                "source": "        resp.setContentType(\"text/html\");",
+                "file_contents": "package com.example;\n\nimport java.io.IOException;\nimport javax.servlet.ServletException;\nimport javax.servlet.annotation.WebServlet;\nimport javax.servlet.http.HttpServlet;\nimport javax.servlet.http.HttpServletRequest;\nimport javax.servlet.http.HttpServletResponse;\n\n@WebServlet(\"/\")\npublic class SampleWebApp extends HttpServlet {\n    @Override\n    protected void doGet(HttpServletRequest req, HttpServletResponse resp) \n            throws ServletException, IOException {\n\n        resp.setContentType(\"text/html\");\n\n        resp.getWriter().println(\"&lt;html&gt;&lt;body&gt;\");\n        resp.getWriter().println(\"&lt;ul&gt;\");\n        resp.getWriter().println(\"&lt;li&gt;&lt;a href='/xss'&gt;XSS&lt;/a&gt;&lt;/li&gt;\");\n        resp.getWriter().println(\"&lt;li&gt;&lt;a href='/cmd'&gt;OS Command Injection&lt;/a&gt;&lt;/li&gt;\");\n        resp.getWriter().println(\"&lt;/ul&gt;\");\n        resp.getWriter().println(\"&lt;/body&gt;&lt;/html&gt;\");\n    }\n}"
+            },
+            [...]
+        ]
+    }
+}
+Test --&gt;
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="net"><a class="header" href="#net">.NET</a></h1>
+<h2 id="installation-1"><a class="header" href="#installation-1">Installation</a></h2>
+<h3 id="install-middleware-1"><a class="header" href="#install-middleware-1">Install Middleware</a></h3>
+<p>Add to your project:</p>
+<pre><code>dotnet add package Introspector.Web
+</code></pre>
+<h3 id="install-patcher"><a class="header" href="#install-patcher">Install patcher</a></h3>
+<pre><code>dotnet tool install --global Introspector.CLI
+introspector
+</code></pre>
+<h3 id="use-in-a-web-application"><a class="header" href="#use-in-a-web-application">Use in a Web Application</a></h3>
+<p><code>Ecsypno.TestApp.csproj</code>:</p>
+<pre><code class="language-xml">  &lt;ItemGroup&gt;
+    &lt;PackageReference Include="Introspector.Web"/&gt;
+  &lt;/ItemGroup&gt;
+</code></pre>
+<p><code>Ecsypno.TestApp.cs</code>:</p>
+<pre><code class="language-csharp">using Introspector.Web.Extensions;
+using System.Web;
+
+var builder = WebApplication.CreateBuilder(args);
+
+var app = builder.Build();
+
+// Add Introspector middleware
+app.UseIntrospector();
+
+string ProcessQuery(string input)
+{
+
+    return input;
+}
+
+app.MapGet("/", () =&gt; "Hello, world!");
+app.MapGet("/xss", (HttpContext context) =&gt;
+{
+    var query = ProcessQuery(context.Request.Query["input"]);
+    var response = $@"
+        &lt;html&gt;
+            &lt;body&gt;
+                &lt;h1&gt;XSS Example&lt;/h1&gt;
+                &lt;form method='get' action='/xss'&gt;
+                    &lt;label for='input'&gt;Input:&lt;/label&gt;
+                    &lt;input type='text' id='input' name='input' value='{query}' /&gt;
+                    &lt;button type='submit'&gt;Submit&lt;/button&gt;
+                &lt;/form&gt;
+                &lt;p&gt;{query}&lt;/p&gt;
+            &lt;/body&gt;
+        &lt;/html&gt;";
+    context.Response.ContentType = "text/html";
+    return response;
+});
+
+app.Run();
+
+</code></pre>
+<pre><code class="language-bash">dotnet run --project Ecsypno.TestApp -c Release
+</code></pre>
+<p>Should output <code>[INTROSPECTOR] Codename SCNR Introspector middleware initialized.</code> at the top.</p>
+<h2 id="patch"><a class="header" href="#patch">Patch</a></h2>
+<pre><code class="language-bash">dotnet build Ecsypno.TestApp -c Release # Build first.
+introspector Ecsypno.TestApp/bin/Release/ --path-ends-with Ecsypno.TestApp.dll --path-exclude-pattern "ref|obj"
+# Processing: Ecsypno.TestApp/bin/Release/net8.0/Ecsypno.TestApp.dll
+# Instrumenting Program.&lt;Main&gt;$( args )
+# Instrumenting Program.&lt;Main&gt;$ at /home/zapotek/workspace/scnr/dotnet-instrumentation-example/Ecsypno.TestApp/Program.cs:4
+# Instrumenting Program.&lt;Main&gt;$ at /home/zapotek/workspace/scnr/dotnet-instrumentation-example/Ecsypno.TestApp/Program.cs:6
+# Instrumenting Program.&lt;Main&gt;$ at /home/zapotek/workspace/scnr/dotnet-instrumentation-example/Ecsypno.TestApp/Program.cs:9
+# Instrumenting Program.&lt;Main&gt;$ at /home/zapotek/workspace/scnr/dotnet-instrumentation-example/Ecsypno.TestApp/Program.cs:17
+# Instrumenting Program.&lt;Main&gt;$ at /home/zapotek/workspace/scnr/dotnet-instrumentation-example/Ecsypno.TestApp/Program.cs:20
+# Instrumenting Program.&lt;Main&gt;$ at /home/zapotek/workspace/scnr/dotnet-instrumentation-example/Ecsypno.TestApp/Program.cs:39
+# Instrumenting Program.&lt;&lt;Main&gt;$&gt;g__ProcessQuery|0_0( input )
+# Instrumenting Program.&lt;&lt;Main&gt;$&gt;g__ProcessQuery|0_0 at /home/zapotek/workspace/scnr/dotnet-instrumentation-example/Ecsypno.TestApp/Program.cs:14
+</code></pre>
+<h2 id="verify-2"><a class="header" href="#verify-2">Verify</a></h2>
+<p>Run the Web App again:</p>
+<pre><code class="language-bash">dotnet run --project Ecsypno.TestApp -c Release --no-build
+</code></pre>
+<p>Should output:</p>
+<pre><code>[INTROSPECTOR] Patched assembly loaded: Ecsypno.TestApp/bin/Release/net8.0/Ecsypno.TestApp.dll
+[INTROSPECTOR] Codename SCNR Introspector middleware initialized.
+</code></pre>
+<pre><code class="language-bash">curl -i http://localhost:5055/xss?input=test -H "X-Scnr-Engine-Scan-Seed:Test" -H "X-Scnr-Introspector-Trace:1" -H "X-SCNR-Request-ID:1"
+</code></pre>
+<p>You should see something like this (the comments are the important part):</p>
+<pre><code class="language-html">HTTP/1.1 200 OK
+Content-Length: 2135
+Content-Type: text/html
+Date: Sat, 11 Jan 2025 10:22:46 GMT
+Server: Kestrel
+
+
+        &lt;html&gt;
+            &lt;body&gt;
+                &lt;h1&gt;XSS Example&lt;/h1&gt;
+                &lt;form method='get' action='/xss'&gt;
+                    &lt;label for='input'&gt;Input:&lt;/label&gt;
+                    &lt;input type='text' id='input' name='input' value='test' /&gt;
+                    &lt;button type='submit'&gt;Submit&lt;/button&gt;
+                &lt;/form&gt;
+                &lt;p&gt;test&lt;/p&gt;
+            &lt;/body&gt;
+        &lt;/html&gt;
+&lt;!-- Test
+{
+  "data_flow": [],
+  "execution_flow": {
+    "points": [
+      {
+        "class_name": "Program",
+        "method_name": "\u003C\u003CMain\u003E$\u003Eg__ProcessQuery|0_0",
+        "path": "/home/zapotek/workspace/scnr/dotnet-instrumentation-example/Ecsypno.TestApp/Program.cs",
+        "line_number": 14,
+        "source": "    return input;",
+        "file_contents": "using Introspector.Web.Extensions;\nusing System.Web;\n\nvar builder = WebApplication.CreateBuilder(args);\n\nvar app = builder.Build();\n\n// Add Introspector middleware\napp.UseIntrospector();\n\nstring ProcessQuery(string input)\n{\n\n    return input;\n}\n\napp.MapGet(\u0022/\u0022, () =\u003E \u0022Hello, world!\u0022);\n\n// Add an XSS example route with a form\napp.MapGet(\u0022/xss\u0022, (HttpContext context) =\u003E\n{\n    var query = ProcessQuery(context.Request.Query[\u0022input\u0022]);\n    var response = $@\u0022\n        \u003Chtml\u003E\n            \u003Cbody\u003E\n                \u003Ch1\u003EXSS Example\u003C/h1\u003E\n                \u003Cform method=\u0027get\u0027 action=\u0027/xss\u0027\u003E\n                    \u003Clabel for=\u0027input\u0027\u003EInput:\u003C/label\u003E\n                    \u003Cinput type=\u0027text\u0027 id=\u0027input\u0027 name=\u0027input\u0027 value=\u0027{query}\u0027 /\u003E\n                    \u003Cbutton type=\u0027submit\u0027\u003ESubmit\u003C/button\u003E\n                \u003C/form\u003E\n                \u003Cp\u003E{query}\u003C/p\u003E\n            \u003C/body\u003E\n        \u003C/html\u003E\u0022;\n    context.Response.ContentType = \u0022text/html\u0022;\n    return response;\n});\n\napp.Run();"
+      }
+    ]
+  },
+  "platforms": [
+    "aspx"
+  ]
+}
+Test --&gt;
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="cli"><a class="header" href="#cli">CLI</a></h1>
+<p>Command-line interface executables can be found under the <code>bin/</code> directory and
+at the time of writing are:</p>
+<ol>
+<li><code>scnr</code> – Direct scanning utility.</li>
+<li><code>scnr_console</code> – A <a href="https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop">REPL</a> Ruby console running from the context of <code>SCNR::Engine</code>.</li>
+<li><code>scnr_spawn</code> – Issues <code>spawn</code> calls to <em>Agents</em> to start scans remotely.</li>
+<li><code>scnr_agent</code> – Starts a <em>Agent</em> daemon.</li>
+<li><code>scnr_agent_monitor</code> – Monitors a <em>Agent</em>.</li>
+<li><code>scnr_agent_unplug</code> – Unplugs a <em>Agent</em> from its <em>Grid</em>.</li>
+<li><code>scnr_instance_connect</code> – Utility to connect to an <em>Instance</em>.</li>
+<li><code>scnr_reporter</code> – Generates reports from <code>.crf</code> (Cuboid report file) and <code>.ser</code> (SCNR Engine report) report files.</li>
+<li><code>scnr_reproduce</code> – Reproduces an issue(s) from a given report.</li>
+<li><code>scnr_rest_server</code> – Starts a REST server daemon.</li>
+<li><code>scnr_restore</code> – Restores a suspended scan based on a snapshot file.</li>
+<li><code>scnr_scheduler</code> – Starts a <em>Scheduler</em> daemon.</li>
+<li><code>scnr_scheduler_attach</code> – Attaches a detached <em>Instance</em> to the given <em>Scheduler</em>.</li>
+<li><code>scnr_scheduler_clear</code> – Clears the <em>Scheduler</em> queue.</li>
+<li><code>scnr_scheduler_detach</code> – Detaches an <em>Instance</em> from the <em>Scheduler</em>.</li>
+<li><code>scnr_scheduler_get</code> – Retrieves information for a scheduled scan.</li>
+<li><code>scnr_scheduler_list</code> – Lists information about all scans under the <em>Scheduler</em>’s control.</li>
+<li><code>scnr_scheduler_push</code> – Scheduled a scan.</li>
+<li><code>scnr_scheduler_remove</code> – Removes a scheduled scan from the queue.</li>
+<li><code>scnr_script</code> – Runs a Ruby script under the context of <code>SCNR::Engine</code>.</li>
+<li><code>scnr_shell</code> – Starts a Bash shell under the package environment.</li>
+<li><code>scnr_system_info</code> – Presents system information about the host.</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="ruby-api"><a class="header" href="#ruby-api">Ruby API</a></h1>
+<p>The Ruby API utilizes the <a href="https://github.com/qadron/dsel">DSeL</a> DSL/API
+generator and runner and allows you to:</p>
+<ol>
+<li>Configure scans.</li>
+<li>Add custom components on the fly.</li>
+<li>Create custom scanners.</li>
+</ol>
+<p>The API is separated into the following segments:</p>
+<pre><code class="language-ruby"># Runs the DSL.
+SCNR::Application::API.run do
+
+    Data {
+        Sitemap {}
+        Urls {}
+        Pages {}
+        Issues {}
+    }
+
+    State { }
+
+    Browserpool { }
+    
+    Dom { }
+
+    Http { }
+
+    Input { }
+
+    Logging { }
+
+    Checks { }
+
+    Plugins { }
+
+    Fingerprinters { }
+
+    Scan {
+        Options { }
+
+        Scope { }
+
+        Session { }
+    }
+
+end
+</code></pre>
+<h2 id="examples-3"><a class="header" href="#examples-3">Examples</a></h2>
+<h3 id="as-configuration-1"><a class="header" href="#as-configuration-1">As configuration</a></h3>
+<pre><code class="language-ruby">SCNR::Application::API.run do
+
+    Dom {
+
+        # Allow some time for the modal animation to complete in order for
+        # the login form to appear.
+        # 
+        # (Not actually necessary, this is just an example on how to hande quirks.)
+        on :event do |_, locator, event, *|
+            next if locator.attributes['href'] != '#myModal' || event != :click
+            sleep 1
+        end
+    }
+
+    Checks {
+
+        # This will run from the context of SCNR::Engine::Check::Base; it
+        # basically creates a new check component on the fly.
+        #
+        # Does something really simple, logs an issue for each 404 page.
+        as :not_found,
+           issue: {
+             name:     'Page not found',
+             severity: SCNR::Engine::Issue::Severity::INFORMATIONAL
+           } do
+            response = page.response
+            next if response.code != 404
+
+            log(
+              proof:    response.status_line,
+              vector:   SCNR::Engine::Element::Server.new( response.url ),
+              response: response
+            )
+        end
+
+    }
+
+    Plugins {
+
+        # This will run from the context of SCNR::Engine::Plugin::Base; it
+        # basically creates a new plugin component on the fly.
+        as :my_plugin do
+            # Do stuff then wait until scan completes.
+            wait_while_framework_running
+            # Do stuff after scan completes.
+        end
+
+    }
+
+    Scan {
+
+        Session {
+            to :login do |browser|
+                # Login with whichever interface you prefer.
+                watir    = browser.watir
+                selenium = browser.selenium
+
+                watir.goto SCNR::Engine::Options.url
+
+                watir.link( href: '#myModal' ).click
+
+                form = watir.form( id: 'loginForm' )
+                form.text_field( name: 'username' ).set 'admin'
+                form.text_field( name: 'password' ).set 'admin'
+                form.submit
+            end
+
+            to :check do |async|
+                http_client = SCNR::Engine::HTTP::Client
+                check       = proc { |r| r.body.optimized_include? '&lt;b&gt;admin' }
+
+                # If an async block is passed, then the framework would rather
+                # schedule it to run asynchronously.
+                if async
+                    http_client.get SCNR::Engine::Options.url do |response|
+                        success = check.call( response )
+                        async.call success
+                    end
+                else
+                    response = http_client.get( SCNR::Engine::Options.url, mode: :sync )
+                    check.call( response )
+                end
+            end
+        }
+
+        Scope {
+            # Don't visit resources that will end the session.
+            reject :url do |url|
+                url.path.optimized_include?( 'login' ) ||
+                  url.path.optimized_include?( 'logout' )
+            end
+        }
+    }
+
+end
+</code></pre>
+<p>Supposing the above is saved as <code>html5.config.rb</code>:</p>
+<pre><code class="language-bash">bin/scnr http://testhtml5.vulnweb.com --script=html5.config.rb
+</code></pre>
+<h3 id="standalone-1"><a class="header" href="#standalone-1">Standalone</a></h3>
+<p>This basically creates a custom scanner.</p>
+<pre><code class="language-ruby">require 'scnr/engine/api'
+
+# Mute output messages from the CLI interface, we've got our own output methods.
+SCNR::UI::CLI::Output.mute
+
+SCNR::Application::API.run do
+
+    State {
+        on :change do |state|
+            puts "State\t\t- #{state.status.capitalize}"
+        end
+    }
+
+    Data {
+        Issues {
+            on :new do |issue|
+                puts "Issue\t\t- #{issue.name} from `#{issue.referring_page.dom.url}`" &lt;&lt;
+                       " in `#{issue.vector.type}`."
+            end
+        }
+    }
+
+    Logging {
+        on :error do |error|
+            $stderr.puts "Error\t\t- #{error}"
+        end
+
+        # Way too much noise.
+        # on :exception do |exception|
+        #     ap exception
+        #     ap exception.backtrace
+        # end
+    }
+
+    Dom {
+
+        # Allow some time for the modal animation to complete in order for
+        # the login form to appear.
+        # 
+        # (Not actually necessary, this is just an example on how to hande quirks.)
+        on :event do |_, locator, event, *|
+            next if locator.attributes['href'] != '#myModal' || event != :click
+            sleep 1
+        end
+    }
+
+    Checks {
+
+        # This will run from the context of SCNR::Engine::Check::Base; it
+        # basically creates a new check component on the fly.
+        #
+        # Does something really simple, logs an issue for each 404 page.
+        as :not_found,
+           issue: {
+             name:     'Page not found',
+             severity: SCNR::Engine::Issue::Severity::INFORMATIONAL
+           } do
+            response = page.response
+            next if response.code != 404
+
+            log(
+              proof:    response.status_line,
+              vector:   SCNR::Engine::Element::Server.new( response.url ),
+              response: response
+            )
+        end
+
+    }
+
+    Plugins {
+
+        # This will run from the context of SCNR::Engine::Plugin::Base; it
+        # basically creates a new plugin component on the fly.
+        as :my_plugin do
+            puts "#{shortname}\t- Running..."
+            wait_while_framework_running
+            puts "#{shortname}\t- Done!"
+        end
+
+    }
+
+    Scan {
+        Options {
+            set url:    'http://testhtml5.vulnweb.com',
+                audit:  {
+                  elements: [:links, :forms, :cookies]
+                },
+                checks: ['*']
+        }
+
+        Session {
+            to :login do |browser|
+                print "Session\t\t- Logging in..."
+
+                # Login with whichever interface you prefer.
+                watir    = browser.watir
+                selenium = browser.selenium
+
+                watir.goto SCNR::Engine::Options.url
+
+                watir.link( href: '#myModal' ).click
+
+                form = watir.form( id: 'loginForm' )
+                form.text_field( name: 'username' ).set 'admin'
+                form.text_field( name: 'password' ).set 'admin'
+                form.submit
+
+                if browser.response.body =~ /&lt;b&gt;admin/
+                    puts 'done!'
+                else
+                    puts 'failed!'
+                end
+            end
+
+            to :check do |async|
+                print "Session\t\t- Checking..."
+
+                http_client = SCNR::Engine::HTTP::Client
+                check       = proc { |r| r.body.optimized_include? '&lt;b&gt;admin' }
+
+                # If an async block is passed, then the framework would rather
+                # schedule it to run asynchronously.
+                if async
+                    http_client.get SCNR::Engine::Options.url do |response|
+                        success = check.call( response )
+
+                        puts "logged #{success ? 'in' : 'out'}!"
+
+                        async.call success
+                    end
+                else
+                    response = http_client.get( SCNR::Engine::Options.url, mode: :sync )
+                    success = check.call( response )
+
+                    puts "logged #{success ? 'in' : 'out'}!"
+
+                    success
+                end
+            end
+        }
+
+        Scope {
+            # Don't visit resources that will end the session.
+            reject :url do |url|
+                url.path.optimized_include?( 'login' ) ||
+                  url.path.optimized_include?( 'logout' )
+            end
+        }
+
+        before :page do |page|
+            puts "Processing\t- [#{page.response.code}] #{page.dom.url}"
+        end
+
+        on :page do |page|
+            puts "Scanning\t- [#{page.response.code}] #{page.dom.url}"
+        end
+
+        after :page do |page|
+            puts "Scanned\t\t- [#{page.response.code}] #{page.dom.url}"
+        end
+
+        run! do |report, statistics|
+            puts
+            puts '=' * 80
+            puts
+
+            puts "[#{report.sitemap.size}] Sitemap:"
+            puts
+            report.sitemap.sort_by { |url, _| url }.each do |url, code|
+                puts "\t[#{code}] #{url}"
+            end
+
+            puts
+            puts '-' * 80
+            puts
+
+            puts "[#{report.issues.size}] Issues:"
+            puts
+            report.issues.each.with_index do |issue, idx|
+                s = "\t[#{idx+1}] #{issue.name} in `#{issue.vector.type}`"
+                if issue.vector.respond_to?( :affected_input_name ) &amp;&amp;
+                  issue.vector.affected_input_name
+                    s &lt;&lt; " input `#{issue.vector.affected_input_name}`"
+                end
+                puts s &lt;&lt; '.'
+
+                puts "\t\tAt `#{issue.page.dom.url}` from `#{issue.referring_page.dom.url}`."
+
+                if issue.proof
+                    puts "\t\tProof:\n\t\t\t#{issue.proof.gsub( "\n", "\n\t\t\t" )}"
+                end
+
+                puts
+            end
+
+            puts
+            puts '-' * 80
+            puts
+
+            puts "Statistics:"
+            puts
+            puts "\t" &lt;&lt; statistics.ai.gsub( "\n", "\n\t" )
+        end
+    }
+
+end
+</code></pre>
+<p>Supposing the above is saved as <code>html5.scanner.rb</code>:</p>
+<pre><code class="language-bash">bin/scnr_script html5.scanner.rb
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="data"><a class="header" href="#data">Data</a></h1>
+<p>Encapsulates functionality that has to do with the data of <code>SCNR::Engine</code>.</p>
+<pre><code class="language-ruby">SCNR::Application::API.run do
+
+    Data {
+        Sitemap {}
+        Urls {}
+        Pages {}
+        Issues {}
+    }
+
+end
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="sitemap"><a class="header" href="#sitemap">Sitemap</a></h1>
+<pre><code class="language-ruby">SCNR::Application::API.run do
+
+    Data {
+        Sitemap {
+            on :new do |entry|
+                p entry
+                # =&gt; { "http://example.com" =&gt; 200 }
+                #           URL             =&gt; HTTP code
+            end
+        }
+    }
+
+end
+</code></pre>
+<h2 id="example-2"><a class="header" href="#example-2">Example</a></h2>
+<pre><code class="language-bash">bin/scnr http://example.com/ --checks=- --script=sitemap.rb
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="urls"><a class="header" href="#urls">Urls</a></h1>
+<pre><code class="language-ruby">SCNR::Application::API.run do
+
+    Data {
+        Urls {
+            on :new do |url|
+                p url
+                # =&gt; "http://example.com"
+            end
+        }
+    }
+
+end
+</code></pre>
+<h2 id="example-3"><a class="header" href="#example-3">Example</a></h2>
+<pre><code class="language-bash">bin/scnr http://example.com/ --checks=- --script=urls.rb
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="pages"><a class="header" href="#pages">Pages</a></h1>
+<pre><code class="language-ruby">SCNR::Application::API.run do
+
+    Data {
+        Pages {
+            on :new do |page|
+                p page
+                # =&gt; #&lt;SCNR::Engine::Page:7240 @url="http://testhtml5.vulnweb.com/ajax/popular?offset=0" @dom=#&lt;SCNR::Engine::Page::DOM:7260 @url="http://testhtml5.vulnweb.com/ajax/popular?offset=0" @transitions=1 @data_flow_sinks=0 @execution_flow_sinks=0&gt;&gt;
+            end
+        }
+    }
+
+end
+</code></pre>
+<h2 id="example-4"><a class="header" href="#example-4">Example</a></h2>
+<pre><code class="language-bash">bin/scnr http://testhtml5.vulnweb.com/ --checks=- --script=pages.rb
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="issues"><a class="header" href="#issues">Issues</a></h1>
+<pre><code class="language-ruby">SCNR::Application::API.run do
+
+    Data {
+        Issues {
+            on :new do |issue|
+                p issue
+                # =&gt; #&lt;SCNR::Engine::Issue:0x00007f8c50d825a0 @name="Allowed HTTP methods", @description="\nThere are a number of HTTP methods that can be used on a webserver (`OPTIONS`,\n`HEAD`, `GET`, `POST`, `PUT`, `DELETE` etc.).  Each of these methods perform a\ndifferent function and each have an associated level of risk when their use is\npermitted on the webserver.\n\nA client can use the `OPTIONS` method within a request to query a server to\ndetermine which methods are allowed.\n\nCyber-criminals will almost always perform this simple test as it will give a\nvery quick indication of any high-risk methods being permitted by the server.\n\nSCNR::Engine discovered that several methods are supported by the server.\n", @references={"Apache.org"=&gt;"http://httpd.apache.org/docs/2.2/mod/core.html#limitexcept"}, @tags=["http", "methods", "options"], @severity=#&lt;SCNR::Engine::Issue::Severity::Base:0x00007f8c50dccee8 @severity=:informational&gt;, @remedy_guidance="\nIt is recommended that a whitelisting approach be taken to explicitly permit the\nHTTP methods required by the application and block all others.\n\nTypically the only HTTP methods required for most applications are `GET` and\n`POST`. All other methods perform actions that are rarely required or perform\nactions that are inherently risky.\n\nThese risky methods (such as `PUT`, `DELETE`, etc) should be protected by strict\nlimitations, such as ensuring that the channel is secure (SSL/TLS enabled) and\nonly authorised and trusted clients are permitted to use them.\n", @check={:name=&gt;"Allowed methods", :description=&gt;"Checks for supported HTTP methods.", :elements=&gt;[SCNR::Engine::Element::Server], :cost=&gt;1, :author=&gt;"Tasos \"Zapotek\" Laskos &lt;tasos.laskos@gmail.com&gt;", :version=&gt;"0.2", :shortname=&gt;"allowed_methods"}, @vector=#&lt;SCNR::Engine::Element::Server url="http://example.com/"&gt;, @proof="OPTIONS, GET, HEAD, POST", @referring_page=#&lt;SCNR::Engine::Page:6560 @url="http://example.com/" @dom=#&lt;SCNR::Engine::Page::DOM:6580 @url="http://example.com/" @transitions=0 @data_flow_sinks=0 @execution_flow_sinks=0&gt;&gt;, @platform_name=nil, @platform_type=nil, @page=#&lt;SCNR::Engine::Page:6600 @url="http://example.com/" @dom=#&lt;SCNR::Engine::Page::DOM:6620 @url="http://example.com/" @transitions=0 @data_flow_sinks=0 @execution_flow_sinks=0&gt;&gt;, @remarks={}, @trusted=true&gt;
+            end
+
+            # Disables Issue storage.
+            disable :storage
+        }
+    }
+
+end
+</code></pre>
+<h2 id="example-5"><a class="header" href="#example-5">Example</a></h2>
+<pre><code class="language-bash">bin/scnr http://example.com/ --checks=allowed_methods --script=issues.rb
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="state"><a class="header" href="#state">State</a></h1>
+<pre><code class="language-ruby">SCNR::Application::API.run do
+
+    State {
+        on :change do |state|
+            p state.status
+            # =&gt; :preparing
+        end
+    }
+
+end
+</code></pre>
+<h2 id="example-6"><a class="header" href="#example-6">Example</a></h2>
+<pre><code class="language-bash">bin/scnr http://example.com/ --checks=- --script=state.rb
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="browserpool"><a class="header" href="#browserpool">Browserpool</a></h1>
+<pre><code class="language-ruby">SCNR::Application::API.run do
+
+    Browserpool {
+      
+        # When a job is queued.
+        on :job do |job|
+            p job
+            # =&gt; #&lt;SCNR::Engine::BrowserPool::Jobs::DOMExploration:6140 @resource=#&lt;SCNR::Engine::Page::DOM:6160 @url="http://testhtml5.vulnweb.com/" @transitions=0 @data_flow_sinks=0 @execution_flow_sinks=0&gt; time= timed_out=false&gt;
+        end
+
+        # When a job has completed.
+        on :job_done do |job|
+            p job
+            # =&gt; #&lt;SCNR::Engine::BrowserPool::Jobs::DOMExploration:6140 @resource=#&lt;SCNR::Engine::Page::DOM:6160 @url="http://testhtml5.vulnweb.com/" @transitions=0 @data_flow_sinks=0 @execution_flow_sinks=0&gt; time=2.805975399 timed_out=false&gt;
+        end
+        
+        # When a job has yielded a result.
+        on :result do |result|
+            p result
+            # =&gt; #&lt;SCNR::Engine::BrowserPool::Jobs::DOMExploration::Result:0x00007f51a167c218 @page=#&lt;SCNR::Engine::Page:7340 @url="http://testhtml5.vulnweb.com/ajax/popular?offset=0" @dom=#&lt;SCNR::Engine::Page::DOM:7360 @url="http://testhtml5.vulnweb.com/ajax/popular?offset=0" @transitions=1 @data_flow_sinks=0 @execution_flow_sinks=0&gt;&gt;, @job=#&lt;SCNR::Engine::BrowserPool::Jobs::DOMExploration:7320 @resource= time= timed_out=false&gt;&gt;
+        end
+    }
+
+end
+</code></pre>
+<h2 id="example-7"><a class="header" href="#example-7">Example</a></h2>
+<pre><code class="language-bash">bin/scnr http://html5.vulnweb.com/ --checks=- --script=browserpool.rb
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="dom"><a class="header" href="#dom">Dom</a></h1>
+<pre><code class="language-ruby">SCNR::Application::API.run do
+
+    Dom {
+      
+        before :load do |resource, options, browser|
+            p resource
+            # =&gt; #&lt;SCNR::Engine::Page::DOM:6160 @url="http://testhtml5.vulnweb.com/" @transitions=0 @data_flow_sinks=0 @execution_flow_sinks=0&gt;
+            p options
+            # =&gt; {:take_snapshot=&gt;true}
+            p browser
+            # =&gt; #&lt;SCNR::Engine::BrowserPool::Worker pid= job=#&lt;SCNR::Engine::BrowserPool::Jobs::DOMExploration:6140 @resource=#&lt;SCNR::Engine::Page::DOM:6160 @url="http://testhtml5.vulnweb.com/" @transitions=0 @data_flow_sinks=0 @execution_flow_sinks=0&gt; time= timed_out=false&gt; last-url=nil transitions=0&gt;
+        end
+        
+        before :event do |locator, event, options, browser|
+            p locator
+            # =&gt; &lt;li class="active" id="popularLi"&gt;
+            p event
+            # =&gt; :click
+            p options
+            # =&gt; {}
+            p browser
+            # =&gt; #&lt;SCNR::Engine::BrowserPool::Worker pid= job=#&lt;SCNR::Engine::BrowserPool::Jobs::DOMExploration::EventTrigger:7760 @resource=#&lt;SCNR::Engine::Page::DOM:7720 @url="http://testhtml5.vulnweb.com/#/popular" @transitions=17 @data_flow_sinks=0 @execution_flow_sinks=0&gt; time= timed_out=false&gt; last-url="http://testhtml5.vulnweb.com/" transitions=17&gt;
+        end
+        
+        on :event do |success, locator, event, options, browser|
+            p success
+            # =&gt; true
+            p locator
+            # =&gt; &lt;li class="active" id="popularLi"&gt;
+            p event
+            # =&gt; :click
+            p options
+            # =&gt; {}
+            p browser
+            # =&gt; #&lt;SCNR::Engine::BrowserPool::Worker pid= job=#&lt;SCNR::Engine::BrowserPool::Jobs::DOMExploration::EventTrigger:7760 @resource=#&lt;SCNR::Engine::Page::DOM:7720 @url="http://testhtml5.vulnweb.com/#/popular" @transitions=17 @data_flow_sinks=0 @execution_flow_sinks=0&gt; time= timed_out=false&gt; last-url="http://testhtml5.vulnweb.com/" transitions=17&gt;
+        end
+        
+        after :load do |resource, options, browser|
+            p resource
+            # =&gt; #&lt;SCNR::Engine::Page::DOM:6160 @url="http://testhtml5.vulnweb.com/" @transitions=0 @data_flow_sinks=0 @execution_flow_sinks=0&gt;
+            p options
+            # =&gt; {:take_snapshot=&gt;true}
+            p browser
+            # =&gt; #&lt;SCNR::Engine::BrowserPool::Worker pid= job=#&lt;SCNR::Engine::BrowserPool::Jobs::DOMExploration:6140 @resource=#&lt;SCNR::Engine::Page::DOM:6160 @url="http://testhtml5.vulnweb.com/" @transitions=0 @data_flow_sinks=0 @execution_flow_sinks=0&gt; time= timed_out=false&gt; last-url="http://testhtml5.vulnweb.com/" transitions=17&gt;
+        end
+        
+        after :event do |transition, locator, event, options, browser|
+            p transition
+            # =&gt; #&lt;SCNR::Engine::Page::DOM::Transition:0x00007f50fc0739c0 @options={}, @event=:click, @element=&lt;a data-scnr-engine-id="1270713017" href="#/popular"&gt;, @clock=nil, @time=0.036003384&gt;
+            p locator
+            # =&gt; &lt;a data-scnr-engine-id="1270713017" href="#/popular"&gt;
+            p event
+            # =&gt; :click
+            p options
+            # =&gt; {}
+            p browser
+            # =&gt; #&lt;SCNR::Engine::BrowserPool::Worker pid= job=#&lt;SCNR::Engine::BrowserPool::Jobs::DOMExploration::EventTrigger:7680 @resource=#&lt;SCNR::Engine::Page::DOM:7620 @url="http://testhtml5.vulnweb.com/#/popular" @transitions=17 @data_flow_sinks=0 @execution_flow_sinks=0&gt; time= timed_out=false&gt; last-url="http://testhtml5.vulnweb.com/" transitions=17&gt;
+        end
+        
+    }
+
+end
+</code></pre>
+<h2 id="example-8"><a class="header" href="#example-8">Example</a></h2>
+<pre><code class="language-bash">bin/scnr http://html5.vulnweb.com/ --checks=- --script=dom.rb
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="http"><a class="header" href="#http">Http</a></h1>
+<pre><code class="language-ruby">SCNR::Application::API.run do
+
+    Http {
+      
+        on :request do |request|
+            p request
+            # =&gt; #&lt;SCNR::Engine::HTTP::Request @id= @mode=async @method=get @url="https://wordpress.com/" @parameters={} @high_priority= @performer=#&lt;SCNR::Engine::Framework (scanning) runtime=0.805773919 found-pages=0 audited-pages=0 issues=0 checks= plugins=autothrottle,healthmap,discovery,timing_attacks,uniformity&gt;&gt;
+        end
+        
+        on :response do |response|
+            p response
+            # =&gt; #&lt;SCNR::Engine::HTTP::Response:0x00007fd6e75923b8 ..&gt;
+        end
+        
+        on :cookies do |cookies|
+            p cookies
+            # =&gt; [#&lt;SCNR::Engine::Element::Cookie (get) url="https://wordpress.com/start/?ref=logged-out-homepage-lp" action="https://wordpress.com/start/?ref=logged-out-homepage-lp" default-inputs={"country_code"=&gt;"GR"} inputs={"country_code"=&gt;"GR"} raw_inputs=[] &gt;]
+        end
+        
+        # Block to run after each HTTP request batch run.
+        after :run do
+        end
+        
+    }
+
+end
+</code></pre>
+<h2 id="example-9"><a class="header" href="#example-9">Example</a></h2>
+<pre><code class="language-bash">bin/scnr https://wordpress.com --checks=- --script=http.rb
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="input"><a class="header" href="#input">Input</a></h1>
+<pre><code class="language-ruby">SCNR::Application::API.run do
+
+    Input {
+
+        # Fill-in values for the given element; must return Hash not alter the element.
+        values do |element|
+            p element
+            # =&gt; #&lt;SCNR::Engine::Element::Form (post) auditor=SCNR::Engine::Trainer::SinkTracer url="http://testhtml5.vulnweb.com/" action="http://testhtml5.vulnweb.com/login" default-inputs={"username"=&gt;"admin", "password"=&gt;"", "loginFormSubmit"=&gt;""} inputs={"username"=&gt;"admin", "password"=&gt;"5543!%scnr_engine_secret", "loginFormSubmit"=&gt;"1"} raw_inputs=[] &gt;
+            element.inputs
+        end
+   
+    }
+
+end
+</code></pre>
+<h2 id="example-10"><a class="header" href="#example-10">Example</a></h2>
+<pre><code class="language-bash">bin/scnr https://testhtml5.vulnweb.com --checks=xss --script=input.rb
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="logging"><a class="header" href="#logging">Logging</a></h1>
+<pre><code class="language-ruby">SCNR::Application::API.run do
+
+    Logging {
+      
+        # Will get called for each error message that is logged.
+        on :error do |error|
+            p error
+            # =&gt; "Error string"
+        end
+
+        # Will get called for each exception that is created, even if safely handled.
+        on :exception do |exception|
+            p exception
+            # =&gt; #&lt;SCNR::Engine::URICommon::Error: Failed to parse URL.&gt;
+        end
+        
+    }
+
+end
+</code></pre>
+<h2 id="example-11"><a class="header" href="#example-11">Example</a></h2>
+<pre><code class="language-bash">bin/scnr https://example.com --checks=- --script=logging.rb
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="checks"><a class="header" href="#checks">Checks</a></h1>
+<pre><code class="language-ruby">SCNR::Application::API.run do
+
+    Checks {
+      
+        # Will get called for each check that is run.
+        on :run do |check|
+            p check
+            # =&gt; #&lt;SCNR::Engine::Checks::BackupDirectories:0x00007f2d55c66bf8 @page=#&lt;SCNR::Engine::Page:7920 @url="http://testhtml5.vulnweb.com/" @dom=#&lt;SCNR::Engine::Page::DOM:7940 @url="http://testhtml5.vulnweb.com/" @transitions=0 @data_flow_sinks=0 @execution_flow_sinks=0&gt;&gt;&gt;
+        end
+
+        # This will run from the context of SCNR::Engine::Check::Base; it
+        # basically creates a new check component on the fly.
+        #
+        # This one does something really simple, logs an issue for each 404 page.
+        as :not_found,
+           issue: {
+             name:     'Page not found',
+             severity: SCNR::Engine::Issue::Severity::INFORMATIONAL
+           } do
+            response = page.response
+            next if response.code != 404
+
+            log(
+              proof:    response.status_line,
+              vector:   SCNR::Engine::Element::Server.new( response.url ),
+              response: response
+            )
+        end
+
+    }
+
+end
+</code></pre>
+<h2 id="example-12"><a class="header" href="#example-12">Example</a></h2>
+<pre><code class="language-bash">bin/scnr http://testhtml5.vulnweb.com --script=checks.rb
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="plugins"><a class="header" href="#plugins">Plugins</a></h1>
+<pre><code class="language-ruby">SCNR::Application::API.run do
+
+    Plugins {
+
+        # Will get called upon plugin class initialization.
+        on :initialize do |plugin|
+            p plugin
+            # =&gt; #&lt;SCNR::Engine::Plugins::AutoThrottle:0x00007f8896ccacd8 @options={}&gt;
+        end
+
+        # Will get called when each plugin's #prepare method is called.
+        on :prepare do |plugin|
+        end
+
+        # Will get called when each plugin's #run method is called.
+        on :run do |plugin|
+        end
+
+        # Will get called when each plugin's #clean_up method is called.
+        on :clean_up do |plugin|
+        end
+
+        # Will get called when each plugin is done running.
+        on :done do |plugin|
+        end
+        
+        # This will run from the context of SCNR::Engine::Plugin::Base; it
+        # basically creates a new plugin component on the fly.
+        as :my_plugin do
+            # Do stuff then wait until scan completes.
+            wait_while_framework_running
+            # Do stuff after scan completes.
+        end
+
+    }
+
+end
+</code></pre>
+<h2 id="example-13"><a class="header" href="#example-13">Example</a></h2>
+<pre><code class="language-bash">bin/scnr http://testhtml5.vulnweb.com --checks=- --script=plugins.rb
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="fingerprinters"><a class="header" href="#fingerprinters">Fingerprinters</a></h1>
+<pre><code class="language-ruby">SCNR::Application::API.run do
+
+    Fingerprinters {
+
+        # Identify `*.x` resources as PHP.
+        as :x_as_php do
+            next unless extension == 'x'
+            platforms &lt;&lt; :php
+        end
+    }
+
+end
+</code></pre>
+<h2 id="example-14"><a class="header" href="#example-14">Example</a></h2>
+<pre><code class="language-bash">bin/scnr http://testhtml5.vulnweb.com --checks=- --script=fingerprinters.rb
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="scan"><a class="header" href="#scan">Scan</a></h1>
+<p>Encapsulates functionality that has to do with the scan.</p>
+<pre><code class="language-ruby">SCNR::Application::API.run do
+
+    Scan {
+        Options {}
+        Scope {}
+        Sesion {}
+        
+        # Called before each page audit.
+        before :page do |page|
+        end
+
+        # Called on page audit.
+        on :page do |page|
+        end
+
+        # Called after a page audit.
+        after :page do |page|
+        end
+        
+        # Perform the scan.
+        run! do |report, statistics|
+        end
+
+        # Perform the scan.
+        report, statistics = self.run
+        
+        # Get scan progress.
+        progress = self.progress
+
+        # Get scan progress updates for session :my_session (any user-provided session ID will do).
+        progress = self.session_progress( :my_session )
+        
+        sitemap = self.sitemap
+
+        status = self.status
+
+        issues = self.issues
+
+        statistics = self.statistics
+
+        is_running  = self.running?
+        is_scanning = self.scanning?
+
+        # Pauses the scan.
+        self.pause!
+        # Resumes the scan.
+        self.resume!
+        # Aborts the scan.
+        self.abort!
+        # Suspends the scan.
+        self.suspend!
+        
+        is_pausing    = self.pausing?
+        is_paused     = self.paused?
+        is_suspending = self.suspending?
+        is_suspended  = self.suspended?
+        
+        # Restores a scan.
+        self.restore!( snapshot_path )
+        
+        # Get a scan report.
+        report = self.generate_report
+    }
+
+end
+</code></pre>
+<h2 id="example-15"><a class="header" href="#example-15">Example</a></h2>
+<pre><code class="language-ruby">SCNR::UI::CLI::Output.mute
+
+api = SCNR::Application::API.new
+
+api.scan.options.set url: 'http://testhtml5.vulnweb.com',
+                     checks: %w(allowed_methods interesting_responses)
+
+api.state.on :change do |state|
+    puts "Status:"
+    ap state.status
+end
+
+api.data.sitemap.on :new do |entry|
+    puts "Sitemap entry:"
+    ap entry
+end
+api.data.issues.on :new do |issue|
+    puts "New issue:"
+    ap issue
+end
+
+scan_thread = Thread.new { api.scan.run }
+
+while scan_thread.alive?
+    puts "Progress update:"
+    ap api.scan.session_progress( :session )
+    sleep 1
+end
+
+ap api.scan.generate_report
+</code></pre>
+<p>Assuming the above is saved as <code>html5.scanner.rb</code>:</p>
+<pre><code>bin/scnr_script html5.scanner.rb
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="options-2"><a class="header" href="#options-2">Options</a></h1>
+<pre><code class="language-ruby">SCNR::Application::API.run do
+
+    Scan {
+        Options {
+
+            # Sets options.
+            set({
+                  url: 'http://testhtml5.vulnweb.com',
+                  audit: {
+                    parameter_values: true,
+                    paranoia: :medium,
+                    exclude_vector_patterns: [],
+                    include_vector_patterns: [],
+                    link_templates: []
+                  },
+                  device: {
+                    visible: false,
+                    width: 1600,
+                    height: 1200,
+                    user_agent: "Mozilla/5.0 (Gecko) SCNR::Engine/v1.0dev",
+                    pixel_ratio: 1.0,
+                    touch: false
+                  },
+                  dom: {
+                    engine: :chrome,
+                    local_storage: {},
+                    session_storage: {},
+                    wait_for_elements: {},
+                    pool_size: 4,
+                    job_timeout: 60,
+                    worker_time_to_live: 250,
+                    wait_for_timers: false
+                  },
+                  http: {
+                    request_timeout: 20000,
+                    request_redirect_limit: 5,
+                    request_concurrency: 10,
+                    request_queue_size: 50,
+                    request_headers: {},
+                    response_max_size: 500000,
+                    cookies: {},
+                    authentication_type: "auto"
+                  },
+                  input: {
+                    values: {},
+                    default_values: {
+                      "name" =&gt; "scnr_engine_name",
+                      "user" =&gt; "scnr_engine_user",
+                      "usr" =&gt; "scnr_engine_user",
+                      "pass" =&gt; "5543!%scnr_engine_secret",
+                      "txt" =&gt; "scnr_engine_text",
+                      "num" =&gt; "132",
+                      "amount" =&gt; "100",
+                      "mail" =&gt; "scnr_engine@email.gr",
+                      "account" =&gt; "12",
+                      "id" =&gt; "1"
+                    },
+                    without_defaults: false,
+                    force: false
+                  },
+                  scope: {
+                    directory_depth_limit: 10,
+                    auto_redundant_paths: 15,
+                    redundant_path_patterns: {},
+                    dom_depth_limit: 4,
+                    dom_event_limit: 500,
+                    dom_event_inheritance_limit: 500,
+                    exclude_file_extensions: [],
+                    exclude_path_patterns: [],
+                    exclude_content_patterns: [],
+                    include_path_patterns: [],
+                    restrict_paths: [],
+                    extend_paths: [],
+                    url_rewrites: {}
+                  },
+                  session: {},
+                  checks: [
+                    "*"
+                  ],
+                  platforms: [],
+                  plugins: {},
+                  no_fingerprinting: false,
+                  authorized_by: nil
+            })
+            
+        }
+    }
+
+end
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="scope"><a class="header" href="#scope">Scope</a></h1>
+<p>Determines which resources are in or out of scope. All return values will be cast
+to boolean.</p>
+<pre><code class="language-ruby">SCNR::Application::API.run do
+
+    Scan {
+        Scope {
+          
+            select :url do |url|
+            end
+
+            select :page do |page|
+            end
+
+            select :element do |element|
+            end
+
+            select :event do |locator, event, options, browser|
+            end
+
+            reject :url do |url|
+            end
+
+            reject :page do |page|
+            end
+
+            reject :element do |element|
+            end
+
+            reject :event do |locator, event, options, browser|
+            end
+
+        }
+    }
+
+end
+</code></pre>
+<h2 id="example-16"><a class="header" href="#example-16">Example</a></h2>
+<pre><code class="language-bash">bin/scnr http://testhtml5.vulnweb.com --checks=- --script=scope.rb
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="session"><a class="header" href="#session">Session</a></h1>
+<pre><code class="language-ruby">SCNR::Application::API.run do
+
+    Scan {
+
+        Session {
+          
+            to :login do |browser|
+                # Login with whichever interface you prefer.
+                watir    = browser.watir
+                selenium = browser.selenium
+
+                watir.goto SCNR::Engine::Options.url
+
+                watir.link( href: '#myModal' ).click
+
+                form = watir.form( id: 'loginForm' )
+                form.text_field( name: 'username' ).set 'admin'
+                form.text_field( name: 'password' ).set 'admin'
+                form.submit
+            end
+
+            to :check do |async|
+                http_client = SCNR::Engine::HTTP::Client
+                check       = proc { |r| r.body.optimized_include? '&lt;b&gt;admin' }
+
+                # If an async block is passed, then the framework would rather
+                # schedule it to run asynchronously.
+                if async
+                    http_client.get SCNR::Engine::Options.url do |response|
+                        success = check.call( response )
+                        async.call success
+                    end
+                else
+                    response = http_client.get( SCNR::Engine::Options.url, mode: :sync )
+                    check.call( response )
+                end
+            end
+            
+        }
+
+    }
+
+end
+</code></pre>
+<h2 id="example-17"><a class="header" href="#example-17">Example</a></h2>
+<pre><code class="language-bash">bin/scnr http://testhtml5.vulnweb.com --checks=- --script=session.rb
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="rest"><a class="header" href="#rest">REST</a></h1>
+<h2 id="server-3"><a class="header" href="#server-3">Server</a></h2>
+<p>To start the REST server:</p>
+<pre><code class="language-bash">bin/scnr_rest_server
+</code></pre>
+<p>To see REST server options:</p>
+<pre><code class="language-bash">bin/scnr_rest_server -h
+</code></pre>
+<h2 id="api"><a class="header" href="#api">API</a></h2>
+<h3 id="scan-1"><a class="header" href="#scan-1">Scan</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Method</th><th>Resource</th><th>Parameters</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>GET</code></td><td><code>/instances/:id/scan/progress</code></td><td></td><td>Get scan progress.</td></tr>
+<tr><td><code>GET</code></td><td><code>/instances/:id/scan/session</code></td><td></td><td>Get scan session of a completed/aborted scan.</td></tr>
+<tr><td><code>GET</code></td><td><code>/instances/:id/scan/report.json</code></td><td></td><td>Get the scan report.</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="instances"><a class="header" href="#instances">Instances</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Method</th><th>Resource</th><th>Parameters</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>GET</code></td><td><code>/instances</code></td><td></td><td>List all <em>Instances</em>.</td></tr>
+<tr><td><code>POST</code></td><td><code>/instances</code></td><td>Scan options (<code>Hash</code>)</td><td>Create a new <em>Instance</em> with the given scan options.</td></tr>
+<tr><td><code>POST</code></td><td><code>/instances/restore</code></td><td><code>{ 'session': 'path' }</code></td><td>Create a new <em>Instance</em> from a restored <em>Scan</em> session.</td></tr>
+<tr><td><code>GET</code></td><td><code>/instances/:id</code></td><td></td><td>Get progress info for <em>Instance</em>.</td></tr>
+<tr><td><code>PUT</code></td><td><code>/instances/:id/scheduler</code></td><td></td><td>If a <em>Scheduler</em> has been set, put the <em>Instance</em> under its purview.</td></tr>
+<tr><td><code>PUT</code></td><td><code>/instances/:id/pause</code></td><td></td><td>Pause the <em>Instance</em>.</td></tr>
+<tr><td><code>PUT</code></td><td><code>/instances/:id/resume</code></td><td></td><td>Resume the <em>Instance</em>.</td></tr>
+<tr><td><code>PUT</code></td><td><code>/instances/:id/abort</code></td><td></td><td>Abort the <em>Instance</em>.</td></tr>
+<tr><td><code>DELETE</code></td><td><code>/instances/:id</code></td><td></td><td>Abort and shutdown the <em>Instance</em>.</td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="scan-options"><a class="header" href="#scan-options">Scan options</a></h4>
+<pre><code>{
+  "url": "http://testhtml5.vulnweb.com",
+  "session": {
+  },
+  "audit": {
+    "parameter_values": true,
+    "mode": "moderate",
+    "exclude_vector_patterns": [
+
+    ],
+    "include_vector_patterns": [
+
+    ],
+    "link_templates": [
+
+    ],
+    "links": true,
+    "forms": true,
+    "cookies": true,
+    "headers": true,
+    "ui_inputs": true,
+    "ui_forms": true
+  },
+  "scope": {
+    "directory_depth_limit": 10,
+    "auto_redundant_paths": 15,
+    "redundant_path_patterns": {
+    },
+    "depth_limit": 10,
+    "dom_depth_limit": 4,
+    "dom_event_limit": 500,
+    "dom_event_inheritance_limit": 500,
+    "exclude_file_extensions": [
+      "gif",
+      "bmp",
+      "tif",
+      "tiff",
+      "jpg",
+      "jpeg",
+      "jpe",
+      "pjpeg",
+      "png",
+      "ico",
+      "psd",
+      "xcf",
+      "3dm",
+      "max",
+      "svg",
+      "eps",
+      "drw",
+      "ai",
+      "asf",
+      "rm",
+      "mpg",
+      "mpeg",
+      "mpe",
+      "3gp",
+      "3g2",
+      "avi",
+      "flv",
+      "mov",
+      "mp4",
+      "swf",
+      "vob",
+      "wmv",
+      "aif",
+      "mp3",
+      "mpa",
+      "ra",
+      "wav",
+      "wma",
+      "mid",
+      "m4a",
+      "ogg",
+      "flac",
+      "zip",
+      "zipx",
+      "tar",
+      "gz",
+      "7z",
+      "rar",
+      "bz2",
+      "bin",
+      "cue",
+      "dmg",
+      "iso",
+      "mdf",
+      "vcd",
+      "raw",
+      "exe",
+      "apk",
+      "app",
+      "jar",
+      "pkg",
+      "deb",
+      "rpm",
+      "msi",
+      "ttf",
+      "otf",
+      "woff",
+      "woff2",
+      "fon",
+      "fnt",
+      "css",
+      "js",
+      "pdf",
+      "docx",
+      "xlsx",
+      "pptx",
+      "odt",
+      "odp"
+    ],
+    "exclude_path_patterns": [
+
+    ],
+    "exclude_content_patterns": [
+
+    ],
+    "include_path_patterns": [
+
+    ],
+    "restrict_paths": [
+
+    ],
+    "extend_paths": [
+
+    ],
+    "url_rewrites": {
+    }
+  },
+  "http": {
+    "request_timeout": 20000,
+    "request_redirect_limit": 5,
+    "request_concurrency": 10,
+    "request_queue_size": 50,
+    "request_headers": {
+    },
+    "response_max_size": 500000,
+    "cookies": {
+    },
+    "authentication_type": "auto"
+  },
+  "device": {
+    "visible": false,
+    "width": 1600,
+    "height": 1200,
+    "user_agent": "Mozilla/5.0 (Gecko) SCNR::Engine/v1.0dev",
+    "pixel_ratio": 1.0,
+    "touch": false
+  },
+  "dom": {
+    "engine": "chrome",
+    "local_storage": {
+    },
+    "session_storage": {
+    },
+    "wait_for_elements": {
+    },
+    "pool_size": 10,
+    "job_timeout": 120,
+    "worker_time_to_live": 1000,
+    "wait_for_timers": false
+  },
+  "input": {
+    "values": {
+    }
+  },
+  "checks": [
+
+  ],
+  "platforms": [
+
+  ],
+  "plugins": {
+  },
+  "no_fingerprinting": false,
+  "authorized_by": null
+}
+</code></pre>
+<h3 id="agent-1"><a class="header" href="#agent-1">Agent</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Method</th><th>Resource</th><th>Parameters</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>GET</code></td><td><code>/agent/url</code></td><td></td><td>Get the configured <em>Agent</em> URL.</td></tr>
+<tr><td><code>PUT</code></td><td><code>/agent/url</code></td><td>URL (<code>String</code>)</td><td>Set the <em>Agent</em> URL.</td></tr>
+<tr><td><code>DELETE</code></td><td><code>/agent/url</code></td><td></td><td>Remove the <em>Agent</em>.</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="grid-2"><a class="header" href="#grid-2">Grid</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Method</th><th>Resource</th><th>Parameters</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>GET</code></td><td><code>/grid</code></td><td></td><td>Get <em>Grid</em> info.</td></tr>
+<tr><td><code>GET</code></td><td><code>/grid/:agent</code></td><td></td><td>Get info of <em>Grid</em> member by URL.</td></tr>
+<tr><td><code>DELETE</code></td><td><code>/grid/:agent</code></td><td></td><td>Unplug <em>Agent</em> from the <em>Grid</em> by URL.</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="scheduler-1"><a class="header" href="#scheduler-1">Scheduler</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Method</th><th>Resource</th><th>Parameters</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>GET</code></td><td><code>/scheduler</code></td><td></td><td>Get <em>Scheduler</em> info.</td></tr>
+<tr><td><code>GET</code></td><td><code>/scheduler/url</code></td><td></td><td>Get <em>Scheduler</em> URL.</td></tr>
+<tr><td><code>PUT</code></td><td><code>/scheduler/url</code></td><td>URL (<code>String</code>)</td><td>Set the <em>Scheduler</em> URL.</td></tr>
+<tr><td><code>DELETE</code></td><td><code>/scheduler/url</code></td><td></td><td>Remove the configured <em>Scheduler</em>.</td></tr>
+<tr><td><code>GET</code></td><td><code>/scheduler/running</code></td><td></td><td>Get running <em>Instances</em>.</td></tr>
+<tr><td><code>GET</code></td><td><code>/scheduler/completed</code></td><td></td><td>Get completed <em>Instances</em>.</td></tr>
+<tr><td><code>GET</code></td><td><code>/scheduler/failed</code></td><td></td><td>Get failed <em>Instances</em>.</td></tr>
+<tr><td><code>GET</code></td><td><code>/scheduler/size</code></td><td></td><td>Get queue size.</td></tr>
+<tr><td><code>DELETE</code></td><td><code>/scheduler/</code></td><td></td><td>Clear <em>Scheduler</em> queue.</td></tr>
+<tr><td><code>POST</code></td><td><code>/scheduler/</code></td><td>Scan options (<code>Hash</code>)</td><td>Push a scan to the <em>Scheduler</em> queue.</td></tr>
+<tr><td><code>GET</code></td><td><code>/scheduler/:instance</code></td><td></td><td>Get <em>Instance</em> info.</td></tr>
+<tr><td><code>PUT</code></td><td><code>/scheduler/:instance/detach</code></td><td></td><td>Detach the given <em>Instance</em> from the <em>Scheduler</em>.</td></tr>
+<tr><td><code>DELETE</code></td><td><code>/scheduler/:instance</code></td><td></td><td>Remove queued <em>Instance</em> job from the <em>Scheduler</em> queue.</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="examples-4"><a class="header" href="#examples-4">Examples</a></h2>
+<h3 id="starting-the-rest-server"><a class="header" href="#starting-the-rest-server">Starting the REST server</a></h3>
+<p>Start the server by issuing the following command:</p>
+<p><code>bin/scnr_rest_server</code></p>
+<h3 id="client-3"><a class="header" href="#client-3">Client</a></h3>
+<pre><code class="language-ruby">#!/usr/bin/env ruby
+
+require 'pp'
+require_relative 'http-helpers'
+
+# Create a new scanner Instance (process) and run a scan with the following options.
+request :post, 'instances', {
+
+  # Scan this URL.
+  url:    'http://testhtml5.vulnweb.com',
+
+  # Audit all element types.
+  audit:  {
+    elements: [:links, :forms, :cookies, :headers, :jsons, :xmls, :ui_inputs, :ui_forms]
+  },
+
+  # Load all active checks.
+  checks: 'active/*'
+}
+
+# The ID is used to represent that instance and allow us to manage it from here on out.
+instance_id = response_data['id']
+
+while sleep( 1 )
+  request :get, "instances/#{instance_id}/scan/progress", {
+    # Include these types of objects only.
+    with: [:issues, :sitemap, :errors]
+  }
+
+  # Print out instance progress.
+  pp response_data
+
+  # Continue looping while instance status is 'busy'.
+  request :get, "instances/#{instance_id}"
+  break if !response_data['busy']
+end
+
+puts '*' * 88
+
+# Get the scan report.
+request :get, "instances/#{instance_id}/scan/report.json"
+# Print out the report.
+pp response_data
+
+# Shutdown the Instance.
+request :delete, "instances/#{instance_id}"
+</code></pre>
+<h4 id="http-helpers"><a class="header" href="#http-helpers">HTTP helpers</a></h4>
+<p>This client example included some helpers for the HTTP requests:</p>
+<pre><code class="language-ruby">require 'json'
+require 'tmpdir'
+require 'typhoeus'
+
+def response
+  if @last_response.headers['Content-Type'].include? 'json'
+    data = JSON.load( @last_response.body )
+  else
+    data = @last_response.body
+  end
+  {
+    code: @last_response.code,
+    data: data
+  }
+end
+
+def response_data
+  response[:data]
+end
+
+def request( method, resource = nil, parameters = nil )
+  options = {}
+
+  if parameters
+    if method == :get
+      options[:params] = parameters
+    else
+      options[:body] = parameters.to_json
+    end
+  end
+
+  options[:cookiejar]  = "#{Dir.tmpdir}/cookiejar.txt"
+  options[:cookiefile] = options[:cookiejar]
+
+  @last_response = Typhoeus.send(
+    method,
+    "http://127.0.0.1:7331/#{resource}",
+    options
+  )
+end
+</code></pre>
+<h3 id="incremental-scans-using-sessions"><a class="header" href="#incremental-scans-using-sessions">Incremental scans using sessions</a></h3>
+<p>In order to save valuable time on subsequent scans, Codename SCNR allows you to extract a session file from
+completed/aborted scans, in order to allow for incremental re-scans.</p>
+<p>This means that only newly introduced input vectors will be audited the next time around, which can save immense amounts
+of time.</p>
+<pre><code class="language-ruby"># Utility method that polls for progress and prints out the report once the scan is done.
+def monitor_and_report( instance_id )
+    print 'Scanning.'
+    while sleep( 1 )
+        request :get, "instances/#{instance_id}/scan/progress", {
+          with: [:issues, :sitemap, :errors]
+        }
+        # pp response_data
+
+        print '.'
+
+        # Continue looping while instance status is 'busy'.
+        request :get, "instances/#{instance_id}"
+        break if !response_data['busy']
+    end
+
+    puts
+
+    # Get the scan report.
+    request :get, "instances/#{instance_id}/scan/report.json"
+    # Print out the report.
+    pp response_data
+end
+
+# Create a new scanner Instance (process) and run a scan with the following options.
+request :post, 'instances', {
+
+  # Scan this URL.
+  url:    'https://ginandjuice.shop/',
+
+  # Audit the following element types.
+  audit:  {
+    elements: [:links, :forms, :cookies, :headers, :jsons, :xmls, :ui_inputs, :ui_forms]
+  },
+
+  # Load all active checks.
+  checks: ['*']
+}
+
+# The ID is used to represent that instance and allow us to manage it from here on out.
+instance_id = response_data['id']
+
+monitor_and_report( instance_id )
+
+########################################################################################################################
+# Get the location of the scan session file, to later restore it, in order to save loads of time on rescans by only
+# checking for new input vectors.
+########################################################################################################################
+request :get, "instances/#{instance_id}/scan/session"
+session = response_data['session']
+
+# Shutdown the Instance.
+request :delete, "instances/#{instance_id}"
+
+#########################################################################################
+# Create a new Instance and restore the previous session to check new input vectors only.
+#########################################################################################
+puts '-' * 88
+puts 'RESCANNING'
+puts '-' * 88
+
+request :post, 'instances/restore', session: session
+instance_id = response_data['id']
+
+monitor_and_report( instance_id )
+
+# Shutdown the Instance.
+request :delete, "instances/#{instance_id}"
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="web-ui"><a class="header" href="#web-ui">Web UI</a></h1>
+<p>The WebUI allows you to easily run, manage and schedule scans and their results via an intuitive web interface.</p>
+<h2 id="boot-up"><a class="header" href="#boot-up">Boot-up</a></h2>
+<p>To boot the Pro interface please run:</p>
+<pre><code>bin/scnr_pro
+</code></pre>
+<p>After boot-up, you can <a href="http://localhost:9292">visit</a> the interface via your browser of choice.</p>
+<h2 id="features"><a class="header" href="#features">Features</a></h2>
+<ul>
+<li>Live scan progress.</li>
+<li>Scan coverage display.</li>
+<li>Parallel scans.</li>
+<li>Recurring scans – incremental scanning with automated issue reviews:
+<ul>
+<li>Fixed issues – Issues that don’t appear in subsequent scans.</li>
+<li>Regressions – Fixed issues that re-appeared in subsequent scans.</li>
+</ul>
+</li>
+<li>Scheduled scans.
+<ul>
+<li>Simple frequency configuration.</li>
+<li>Cronline frequency configuration support.</li>
+<li>Identification of conflicting future scans in calendar.</li>
+</ul>
+</li>
+<li>Server/scanner/network health display.</li>
+<li>Powerful yet intuitive filtering.</li>
+<li>Website role management.
+<ul>
+<li>Form login.</li>
+<li>Script login.</li>
+</ul>
+</li>
+<li>Device emulation.</li>
+<li>Scan profiles.</li>
+<li>Extensive scan log.</li>
+</ul>
+<h2 id="screenshots"><a class="header" href="#screenshots">Screenshots</a></h2>
+<h3 id="sites"><a class="header" href="#sites">Sites</a></h3>
+<h4 id="list"><a class="header" href="#list">List</a></h4>
+<p><a href="interfaces/web/screenshots/Screenshot_20220504_082733.png"><img src="interfaces/web/screenshots/Screenshot_20220504_082733.png" alt="Sites list"></a>
+<a href="interfaces/web/screenshots/Screenshot_20220504_083434.png"><img src="interfaces/web/screenshots/Screenshot_20220504_083434.png" alt="Sites list"></a></p>
+<h4 id="settings"><a class="header" href="#settings">Settings</a></h4>
+<p><a href="interfaces/web/screenshots/Screenshot_20220504_082801.png"><img src="interfaces/web/screenshots/Screenshot_20220504_082801.png" alt="Sites settings"></a>
+<a href="interfaces/web/screenshots/Screenshot_20220504_082829.png"><img src="interfaces/web/screenshots/Screenshot_20220504_082829.png" alt="Sites settings"></a></p>
+<h4 id="scans"><a class="header" href="#scans">Scans</a></h4>
+<p><a href="interfaces/web/screenshots/Screenshot_20220504_082949.png"><img src="interfaces/web/screenshots/Screenshot_20220504_082949.png" alt="Scans"></a></p>
+<h5 id="new"><a class="header" href="#new">New</a></h5>
+<p><a href="interfaces/web/screenshots/Screenshot_20220504_083006.png"><img src="interfaces/web/screenshots/Screenshot_20220504_083006.png" alt="New scan"></a></p>
+<h5 id="summary"><a class="header" href="#summary">Summary</a></h5>
+<p><a href="interfaces/web/screenshots/Screenshot_20220504_083050.png"><img src="interfaces/web/screenshots/Screenshot_20220504_083050.png" alt="Scan summary"></a></p>
+<h5 id="issues-1"><a class="header" href="#issues-1">Issues</a></h5>
+<p><a href="interfaces/web/screenshots/Screenshot_20220329_123849.png"><img src="interfaces/web/screenshots/Screenshot_20220329_123849.png" alt="Issues list"></a></p>
+<h6 id="issue"><a class="header" href="#issue">Issue</a></h6>
+<p><a href="interfaces/web/screenshots/Screenshot_20220504_083144.png"><img src="interfaces/web/screenshots/Screenshot_20220504_083144.png" alt="Scan issue"></a>
+<a href="interfaces/web/screenshots/Screenshot_20220504_083154.png"><img src="interfaces/web/screenshots/Screenshot_20220504_083154.png" alt="Scan issue"></a>
+<a href="interfaces/web/screenshots/Screenshot_20220504_083210.png"><img src="interfaces/web/screenshots/Screenshot_20220504_083210.png" alt="Scan issue"></a>
+<a href="interfaces/web/screenshots/Screenshot_20220504_083243.png"><img src="interfaces/web/screenshots/Screenshot_20220504_083243.png" alt="Scan issue"></a>
+<a href="interfaces/web/screenshots/Screenshot_20220504_083304.png"><img src="interfaces/web/screenshots/Screenshot_20220504_083304.png" alt="Scan issue"></a></p>
+<h5 id="coverage"><a class="header" href="#coverage">Coverage</a></h5>
+<p><a href="interfaces/web/screenshots/Screenshot_20220504_083104.png"><img src="interfaces/web/screenshots/Screenshot_20220504_083104.png" alt="Scan coverage"></a>
+<a href="interfaces/web/screenshots/Screenshot_20220504_083509.png"><img src="interfaces/web/screenshots/Screenshot_20220504_083509.png" alt="Scan coverage"></a></p>
+<h5 id="health"><a class="header" href="#health">Health</a></h5>
+<p><a href="interfaces/web/screenshots/Screenshot_20220504_083113.png"><img src="interfaces/web/screenshots/Screenshot_20220504_083113.png" alt="Scan health"></a></p>
+<h5 id="events"><a class="header" href="#events">Events</a></h5>
+<p><a href="interfaces/web/screenshots/Screenshot_20220504_083127.png"><img src="interfaces/web/screenshots/Screenshot_20220504_083127.png" alt="Scan events"></a></p>
+<h4 id="user-roles"><a class="header" href="#user-roles">User roles</a></h4>
+<h5 id="list-1"><a class="header" href="#list-1">List</a></h5>
+<p><a href="interfaces/web/screenshots/Screenshot_20220504_082852.png"><img src="interfaces/web/screenshots/Screenshot_20220504_082852.png" alt="User roles list"></a></p>
+<h5 id="new-1"><a class="header" href="#new-1">New</a></h5>
+<p><a href="interfaces/web/screenshots/Screenshot_20220504_082906.png"><img src="interfaces/web/screenshots/Screenshot_20220504_082906.png" alt="User roles new"></a>
+<a href="interfaces/web/screenshots/Screenshot_20220504_082914.png"><img src="interfaces/web/screenshots/Screenshot_20220504_082914.png" alt="User roles new"></a>
+<a href="interfaces/web/screenshots/Screenshot_20220504_082926.png"><img src="interfaces/web/screenshots/Screenshot_20220504_082926.png" alt="User roles new"></a>
+<a href="interfaces/web/screenshots/Screenshot_20220504_082934.png"><img src="interfaces/web/screenshots/Screenshot_20220504_082934.png" alt="User roles new"></a></p>
+<h3 id="profiles"><a class="header" href="#profiles">Profiles</a></h3>
+<h4 id="list-2"><a class="header" href="#list-2">List</a></h4>
+<p><a href="interfaces/web/screenshots/Screenshot_20220504_083319.png"><img src="interfaces/web/screenshots/Screenshot_20220504_083319.png" alt="Profiles list"></a></p>
+<h4 id="show"><a class="header" href="#show">Show</a></h4>
+<p><a href="interfaces/web/screenshots/Screenshot_20220504_083330.png"><img src="interfaces/web/screenshots/Screenshot_20220504_083330.png" alt="Profile show"></a></p>
+<h3 id="devices"><a class="header" href="#devices">Devices</a></h3>
+<h4 id="list-3"><a class="header" href="#list-3">List</a></h4>
+<p><a href="interfaces/web/screenshots/Screenshot_20220504_083347.png"><img src="interfaces/web/screenshots/Screenshot_20220504_083347.png" alt="Devices list"></a></p>
+<h3 id="settings-1"><a class="header" href="#settings-1">Settings</a></h3>
+<p><a href="interfaces/web/screenshots/Screenshot_20220504_083407.png"><img src="interfaces/web/screenshots/Screenshot_20220504_083407.png" alt="Settings"></a></p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="run-air-gapped"><a class="header" href="#run-air-gapped">Run air-gapped</a></h1>
+<p>In order to run Codename SCNR in an air-gapped environment you need to:</p>
+<ul>
+<li>Run an instance of <code>bin/scnr_check_server</code> in your local network – Provides functionality needed for SSRF types of checks.
+<ul>
+<li>Set the <code>SCNR_CHECK_SERVER</code> environment variable to the check server URL – ex. <code>http://10.1.1.1:9292</code>.</li>
+</ul>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="generate-reports"><a class="header" href="#generate-reports">Generate reports</a></h1>
+<h2 id="pro"><a class="header" href="#pro">Pro</a></h2>
+<p>You can export scan results in several formats from the “Export” tab of an aborted or completed revision scan.</p>
+<h2 id="cli-1"><a class="header" href="#cli-1">CLI</a></h2>
+<p>There are 2 reference report format types that you may encounter when using SCNR:</p>
+<ol>
+<li><code>*.crf</code> – Cuboid report file.</li>
+<li><code>*.ser</code> – <code>SCNR::Engine</code> report.</li>
+</ol>
+<p>Both of these files can be handled by the CLI <code>scnr_reporter</code> utility in order
+to convert them to a multitude of formats or print the results to <code>STDOUT</code>.</p>
+<p>For example, to generate an HTML report:</p>
+<p><code>bin/scnr_reporter --report=html:outfile=my_report.html.zip /home/user/.scnr/reports/report.ser</code></p>
+<p>Or, to just print the report to STDOUT:</p>
+<p><code>bin/scnr_reporter --report=stdout /home/user/.scnr/reports/report.ser</code></p>
+<p>At the time of writing, <code>bin/scnr_reporter --reporters-list</code> yields:</p>
+<pre><code> [~] Available reports:
+
+ [*] ap:
+--------------------
+Name:           AP
+Description:
+Awesome prints a scan report hash.
+
+Author:         Tasos "Zapotek" Laskos &lt;tasos.laskos@gmail.com&gt;
+Version:        0.1.1
+
+ [*] html:
+--------------------
+Name:           HTML
+Description:
+Exports the audit results as a compressed HTML report.
+
+Options:
+ [~]    outfile - Where to save the report.
+ [~]    Type:        string
+ [~]    Default:     2022-01-24 23_17_13 +0200.html.zip
+ [~]    Required?:   false
+
+Author:         Tasos "Zapotek" Laskos &lt;tasos.laskos@gmail.com&gt;
+Version:        0.4.4
+
+ [*] json:
+--------------------
+Name:           JSON
+Description:
+Exports the audit results as a JSON (.json) file.
+
+Options:
+ [~]    outfile - Where to save the report.
+ [~]    Type:        string
+ [~]    Default:     2022-01-24 23_17_13 +0200.json
+ [~]    Required?:   false
+
+Author:         Tasos "Zapotek" Laskos &lt;tasos.laskos@gmail.com&gt;
+Version:        0.1.3
+
+ [*] marshal:
+--------------------
+Name:           Marshal
+Description:
+Exports the audit results as a Marshal (.marshal) file.
+
+Options:
+ [~]    outfile - Where to save the report.
+ [~]    Type:        string
+ [~]    Default:     2022-01-24 23_17_13 +0200.marshal
+ [~]    Required?:   false
+
+Author:         Tasos "Zapotek" Laskos &lt;tasos.laskos@gmail.com&gt;
+Version:        0.1.1
+
+ [*] stdout:
+--------------------
+Name:           Stdout
+Description:
+Prints the results to standard output.
+
+Author:         Tasos "Zapotek" Laskos &lt;tasos.laskos@gmail.com&gt;
+Version:        0.3.3
+
+ [*] txt:
+--------------------
+Name:           Text
+Description:
+Exports the audit results as a text (.txt) file.
+
+Options:
+ [~]    outfile - Where to save the report.
+ [~]    Type:        string
+ [~]    Default:     2022-01-24 23_17_13 +0200.txt
+ [~]    Required?:   false
+
+Author:         Tasos "Zapotek" Laskos &lt;tasos.laskos@gmail.com&gt;
+Version:        0.2.1
+
+ [*] xml:
+--------------------
+Name:           XML
+Description:
+Exports the audit results as an XML (.xml) file.
+
+Options:
+ [~]    outfile - Where to save the report.
+ [~]    Type:        string
+ [~]    Default:     2022-01-24 23_17_13 +0200.xml
+ [~]    Required?:   false
+
+Author:         Tasos "Zapotek" Laskos &lt;tasos.laskos@gmail.com&gt;
+Version:        0.3.7
+
+ [*] yaml:
+--------------------
+Name:           YAML
+Description:
+Exports the audit results as a YAML (.yaml) file.
+
+Options:
+ [~]    outfile - Where to save the report.
+ [~]    Type:        string
+ [~]    Default:     2022-01-24 23_17_13 +0200.yaml
+ [~]    Required?:   false
+
+Author:         Tasos "Zapotek" Laskos &lt;tasos.laskos@gmail.com&gt;
+Version:        0.2
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="optimize-scans"><a class="header" href="#optimize-scans">Optimize scans</a></h1>
+<p>Left to its own devices, Codename SCNR will try to optimize itself to match any given
+circumstance, but there are limitations to what it can do automatically.</p>
+<p>If a scan is taking too long, chances are that there are ways to make it go much
+faster by taking a couple of minutes to configure the system to closer match your needs.</p>
+<p>In addition to performance, the following options also affect resource usage so
+you can experiment with them to better match your available resources as well.</p>
+<ol>
+<li><a href="#only-enable-security-checks-that-concern-you">Only enable security checks that concern you</a></li>
+<li><a href="#tailor-the-audit-process-to-the-platforms-of-the-web-application">Tailor the audit process to the platforms of the web application</a></li>
+<li><a href="#ensure-server-responsiveness">Ensure server responsiveness</a></li>
+<li><a href="#balance-ram-consumption-and-performance">Balance RAM consumption and performance</a></li>
+<li><a href="#reduce-ram-consumption-by-avoiding-large-resources">Reduce RAM consumption by avoiding large resources</a></li>
+<li><a href="#dont-follow-redundant-pages">Don’t follow redundant pages</a></li>
+<li><a href="#adjust-the-amount-of-browser-workers">Adjust the amount of browser workers</a></li>
+<li><a href="#pick-the-audit-mode-that-suits-you-best">Pick the audit mode that suits you best</a></li>
+<li><a href="#scan-incrementally">Scan incrementally</a></li>
+</ol>
+<h2 id="only-enable-security-checks-that-concern-you"><a class="header" href="#only-enable-security-checks-that-concern-you">Only enable security checks that concern you</a></h2>
+<p>By default, SCNR will load <strong>all</strong> checks, which may not be what you want.</p>
+<p>If you are interested in high severity vulnerabilities or don’t care for things
+like discovery of common files and directories, and the like, you should disable
+the superfluous checks.</p>
+<p>You can enable only <code>active</code> checks with:</p>
+<pre><code>--checks=active/* 
+</code></pre>
+<p>Or skip the inefficient <code>passive</code> ones with:</p>
+<pre><code>--checks=*,-common_*,-backup_*,-backdoors
+</code></pre>
+<h2 id="tailor-the-audit-process-to-the-platforms-of-the-web-application"><a class="header" href="#tailor-the-audit-process-to-the-platforms-of-the-web-application">Tailor the audit process to the platforms of the web application</a></h2>
+<p>By default, the system will fingerprint the web application in order to deduce
+what platforms power it, thus enabling it to only send applicable payloads
+(instead of everything) which results in less server stress and bandwidth usage.</p>
+<p>However, it is a good idea to explicitly set the platforms, if you know them,
+so as to play it safe and get the best possible results – especially since
+database platforms can’t be fingerprinted prior to the audit and their payloads
+are a large part of the overall scan.</p>
+<p>You can specify platforms with:</p>
+<pre><code>--platforms=linux,mysql,php,apache
+</code></pre>
+<h2 id="ensure-server-responsiveness"><a class="header" href="#ensure-server-responsiveness">Ensure server responsiveness</a></h2>
+<p>By default, SCNR will monitor the response times of the server and throttle
+itself down if it detects that the server is getting stressed.
+This happens in order to keep the server alive and responsive and maintain a
+stable connection to it.</p>
+<p>However, there are times with weak servers when they die before SCNR gets a
+chance to adjust itself.</p>
+<p>You can bring up the scan statistics on the CLI screen by hitting <code>Enter</code>, in
+which case you’ll see something like:</p>
+<pre><code> [~] Currently auditing          http://testhtml5.vulnweb.com/ajax/popular?offset=0                                 
+ [~] Burst response time sum     6.861 seconds                                                                      
+ [~] Burst response count        29                                                                                 
+ [~] Burst average response time 1.759 seconds                                                                      
+ [~] Burst average               0 requests/second                                                              
+ [~] Original max concurrency    10                                                                                 
+ [~] Throttled max concurrency   2                                                                                                                                             
+</code></pre>
+<p>We can see that the server is having a hard time from the following values:</p>
+<ul>
+<li>Burst average: 3 requests/second</li>
+<li>Burst average response time  1.759</li>
+<li>Burst average: 0 requests/second</li>
+<li>Throttled max concurrency: 2</li>
+</ul>
+<p>The response times were so high (1.75 seconds) that SCNR had to throttle its
+HTTP request concurrency from 10 requests to 2 requests, which would result in a
+drastically increased scan time.</p>
+<p>You can lower the default HTTP concurrency and try again to make sure that the
+server at no point gets a stressful load:</p>
+<pre><code>--http-request-concurrency=5
+</code></pre>
+<h2 id="balance-ram-consumption-and-performance"><a class="header" href="#balance-ram-consumption-and-performance">Balance RAM consumption and performance</a></h2>
+<p>Most excessive RAM consumption issues are caused by large (or a lot of) HTTP requests,
+which need to be temporarily stored in memory in order for them to later be scheduled
+in a way that achieves optimal network concurrency.</p>
+<p>To cut this short, having a lot of HTTP requests in the queue allows SCNR to
+be better at performing a lot of them at the same time, and thus makes better
+use of your available bandwidth. So, a large queue means better network performance.</p>
+<p>However, a large queue can lead to some serious RAM consumption, depending on
+the website and type of audit and a lot of other factors.</p>
+<p>As a compromise between preventing RAM consumption issues but still getting
+decent performance, the default queue size is set to <code>50</code>.
+You can adjust this number to better suit your needs depending on the situation.</p>
+<p>You can adjust the HTTP request queue size via the <code>--http-request-queue-size</code> option.</p>
+<h2 id="reduce-ram-consumption-by-avoiding-large-resources"><a class="header" href="#reduce-ram-consumption-by-avoiding-large-resources">Reduce RAM consumption by avoiding large resources</a></h2>
+<p>SCNR performs a large number of analysis operations on each web page.
+This is usually not a problem, except for when dealing with web pages of large sizes.</p>
+<p>If you are in a RAM constrained environment, you can configure SCNR to not
+download and analyze pages which exceed a certain size limit – by default, that
+limit is 500KB.</p>
+<p>You can adjust the maximm allows size of HTTP response via the <code>--http-response-max-size</code> option.</p>
+<h2 id="dont-follow-redundant-pages"><a class="header" href="#dont-follow-redundant-pages">Don’t follow redundant pages</a></h2>
+<p>A lot of websites have redundant pages like galleries, calendars, directory
+listings etc. which are basically the same page with the same inputs but just
+presenting different data.</p>
+<p>Auditing the first (or first few) of such pages is
+often enough and trying to follow and audit them all can sometimes result in an
+infinite crawl, as can be the case with calendars.</p>
+<p>SCNR provides 2 features to help deal with that:</p>
+<ul>
+<li>Redundancy filters: Specify <code>pattern</code> and <code>counter</code> pairs, pages matching the
+<code>pattern</code> will be followed the amount of times specified by the <code>counter</code>.
+<ul>
+<li><code>--scope-redundant-path-pattern</code></li>
+</ul>
+</li>
+<li>Auto-redundant: Follow URLs with the same combinations of query parameters a
+limited amount of times.
+<ul>
+<li><code>--scope-auto-redundant</code> – Default is <code>10</code>.</li>
+</ul>
+</li>
+</ul>
+<h2 id="adjust-the-amount-of-browser-workers"><a class="header" href="#adjust-the-amount-of-browser-workers">Adjust the amount of browser workers</a></h2>
+<p>SCNR uses real browsers to support technologies such as HTML5, AJAX and DOM
+manipulation and perform deep analysis of client-side code.</p>
+<p>Even though browser operations are performed in parallel using a pool of workers,
+the default pool size is modest and operations can be time consuming.</p>
+<p>By increasing the amount of workers in the pool, scan durations can be dramatically shortened,
+especially when scanning web applications that make heavy use of client-side technologies.</p>
+<p>Finding the optimal pool size depends on the resources of your machine (especially
+the amount of CPU cores) and will probably require some experimentation; on average,
+1-2 browsers for each logical CPU core serves as a good starting point.</p>
+<p>However, do keep in mind that more workers may lead to higher RAM consumption as
+they will also accelerate workload generation.</p>
+<p>You can set this option via <code>--dom-pool-size</code>.
+The default is calculated based on the amount of available CPU cores your system has.</p>
+<h2 id="pick-the-audit-mode-that-suits-you-best"><a class="header" href="#pick-the-audit-mode-that-suits-you-best">Pick the audit mode that suits you best</a></h2>
+<p>This is a <em>Time</em> vs <em>Thoroughness</em> balancing option.</p>
+<p><code>--audit-mode</code>:</p>
+<ul>
+<li><code>quick</code> – For a quick scan, complex or rare payloads will be omitted.</li>
+<li><code>moderate</code> (default) – Balanced payloads.</li>
+<li><code>super</code> – All payloads, more DOM probing, disabled attack optimization heuristics.</li>
+</ul>
+<h2 id="scan-incrementally"><a class="header" href="#scan-incrementally">Scan incrementally</a></h2>
+<p>In order to save valuable time on subsequent scans, Codename SCNR allows you to extract a session file from
+completed/aborted scans, in order to allow for incremental re-scans.</p>
+<p>This means that only newly introduced input vectors will be audited the next time around, which can save immense amounts
+of time.</p>
+<p>The location of the session file is printed at the end of each scan and can be restored via:</p>
+<pre><code>./bin/scnr_restore SESSION_FILE
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="maintain-a-valid-session"><a class="header" href="#maintain-a-valid-session">Maintain a valid session</a></h1>
+<p>Codename SCNR supports automated logout detection and re-login, as well as improved login procedures.</p>
+<ul>
+<li><a href="#login_form-plugin">Form-based login</a></li>
+<li><a href="#login_script-plugin">Script-based login</a></li>
+<li><a href="#proxy-plugin">Proxy-based login</a></li>
+<li><a href="#cookie-jar">Cookie-jar login</a></li>
+</ul>
+<h2 id="login_form-plugin"><a class="header" href="#login_form-plugin">login_form plugin</a></h2>
+<p>The <code>login_form</code> plugin expects for following options:</p>
+<ul>
+<li><code>url</code> – The URL containing the login form;</li>
+<li><code>parameters</code> – A URL-query-like string of form parameters;</li>
+<li><code>check</code> – A pattern to be matched against the response body after requesting
+the supplied URL in order to verify a successful login.</li>
+</ul>
+<p>After a successful login, the plugin will configure the system-wide session manager
+and let it know of the procedure it needs to follow in order to be able to login
+automatically, in case it gets logged out during the scan or the session expires.</p>
+<p><strong>Hint:</strong> If the response of the form submission doesn’t contain the <code>check</code>,
+you can set a different check URL via the global <code>--session-check-url</code> option,
+this will also require that a <code>--session-check-pattern</code> be set as well (it can
+be the same as the autologin <code>check</code> option).</p>
+<h3 id="limitations"><a class="header" href="#limitations">Limitations</a></h3>
+<p>This plugin operates a browser just like a regular user would and is thus limited
+to the same extent.</p>
+<p>For example, if the login form is by default hidden and requires a sequence of UI
+interactions in order to become visible, this plugin will not be able to submit it.</p>
+<p>For more complex sequences please use the <a href="#login_script-plugin">login_script</a> plugin.</p>
+<h3 id="example-18"><a class="header" href="#example-18">Example</a></h3>
+<pre><code>bin/scnr http://testfire.net --plugin=login_form:url=http://testfire.net/bank/login.aspx,parameters="uid=jsmith&amp;passw=Demo1234",check="Sign Off|MY ACCOUNT" --scope-exclude-pattern=logout
+</code></pre>
+<p>The login form found in <code>http://testfire.net/bank/login.aspx</code> which contains the
+<code>uid</code> and <code>passw</code> inputs will be <strong>updated</strong> with the given values and submitted.</p>
+<p>After that, the response will be matched against the <code>check</code> pattern – which will
+also be used for the duration of the scan to check whether or not the session is still valid.</p>
+<p>(Since the “Sign Off” and “MY ACCOUNT” strings only appear when the user is logged-in,
+they are a reliable way to check the validity of the session.)</p>
+<p>Lastly, we <strong>exclude</strong> (<code>--scope-exclude-pattern</code>) the logout link from the audit in order to avoid getting logged out.</p>
+<h2 id="login_script-plugin"><a class="header" href="#login_script-plugin">login_script plugin</a></h2>
+<p>The <code>login_script</code> plugin can be used to specify custom login procedures, as simple
+Ruby or JS scripts, to be executed prior to the scan and each time a logout is detected.</p>
+<p>The script will be run under the context of a plugin, which means that it will
+have access to all system components, allowing you to login in the most optimal
+way – be that via a real browser, via HTTP requests, by loading an external
+cookie-jar file and many more.</p>
+<h3 id="with-browser"><a class="header" href="#with-browser">With browser</a></h3>
+<p>If a <a href="http://watir.com/">browser</a> is available, it will be exposed to the script
+via the <code>browser</code> variable. Otherwise, that variable will have a value of <code>nil</code>.</p>
+<p>If you require access to Selenium, <code>browser.wd</code> will provide you access to the appropriate <code>WebDriver</code>.</p>
+<pre><code class="language-ruby">browser.goto 'http://testfire.net/bank/login.aspx'
+
+form = browser.form( id: 'login' )
+form.text_field( name: 'uid' ).set 'jsmith'
+form.text_field( name: 'passw' ).set 'Demo1234'
+
+form.submit
+
+# You can also configure the session check from the script, dynamically,
+# if you don't want to set static options via the user interface.
+SCNR::Engine::Options.session.check_url     = browser.url
+SCNR::Engine::Options.session.check_pattern = /Sign Off|MY ACCOUNT/
+</code></pre>
+<h3 id="with-http-client"><a class="header" href="#with-http-client">With HTTP Client</a></h3>
+<p>If a real browser environment is not required for the login operation, then using
+the system-wide HTTP interface is preferable, as it will be much faster and consume
+much less resources.</p>
+<pre><code class="language-ruby">response = http.post( 'http://testfire.net/bank/login.aspx',
+    parameters:     {
+        'uid'   =&gt; 'jsmith',
+        'passw' =&gt; 'Demo1234'
+    },
+    mode:           :sync,
+    update_cookies: true
+)
+
+SCNR::Engine::Options.session.check_url     = to_absolute( response.headers.location, response.url )
+SCNR::Engine::Options.session.check_pattern = /Sign Off|MY ACCOUNT/
+</code></pre>
+<h3 id="from-cookie-jar"><a class="header" href="#from-cookie-jar">From cookie-jar</a></h3>
+<p>If an external process is used to manage sessions, you can keep SCNR in sync by
+loading cookies from a shared Netscape-style cookie-jar file.</p>
+<pre><code class="language-ruby">http.cookie_jar.load 'cookies.txt'
+</code></pre>
+<h3 id="advanced-session-check-configuration"><a class="header" href="#advanced-session-check-configuration">Advanced session check configuration</a></h3>
+<p>In addition to just setting the <code>check_url</code> and <code>check_pattern</code> options, you can
+also set arbitrary HTTP request options for the login check, to cover cases where
+extra tokens or a method other than <code>GET</code> must be used.</p>
+<pre><code class="language-ruby">framework.session.check_options = {
+    # :get, :post, :put, :delete
+    method:     :post,
+
+    # URL query parameters.
+    parameters: {
+        'param1' =&gt; 'value'
+    },
+
+    # Request body parameters -- can also be a String instead of Hash.
+    body:       {
+        'body_param1' =&gt; 'value'
+    },
+
+    cookies:    {
+        'custom_cookie' =&gt; 'value'
+    },
+
+    headers:    {
+        'X-Custom-Header' =&gt; 'value'
+    }
+}
+</code></pre>
+<h2 id="proxy-plugin"><a class="header" href="#proxy-plugin">Proxy plugin</a></h2>
+<p>The <code>proxy</code> plugin can be used to train the system by inspecting the traffic
+exchanged between the browser and the web application. From that traffic, it can
+extract input vectors like links, forms and cookies from both sides – i.e. from
+server responses as well as browser requests.</p>
+<p>Since the proxy can inspect all this traffic, it can be instructed to record a
+login sequence and then deduce the login form and the values with which it was filled.</p>
+<p>Like the <code>form_login</code> plugin, the <code>proxy</code> plugin will configure the system accordingly.</p>
+<h3 id="example-1-1"><a class="header" href="#example-1-1">Example</a></h3>
+<pre><code>bin/scnr http://testfire.net --plugin=proxy --scope-exclude-pattern=logout
+</code></pre>
+<p>You then need to configure your browser to use this proxy when connecting to the
+webapp, press the <em>record</em> button just before logging in and the <em>stop</em> button after.</p>
+<p>You’ll then be presented with a simple wizard which will guide you through configuring
+a login check and verifying that the deduced login sequence works properly.</p>
+<p>Lastly, we <strong>exclude</strong> (<code>--scope-exclude-pattern=logout</code>) the logout link from the audit in order to avoid getting logged out.</p>
+<h2 id="cookie-jar"><a class="header" href="#cookie-jar">Cookie-jar</a></h2>
+<p>If the aforementioned techniques don’t work for you, you can pass a cookie-jar and manually configure the login-check using the following options:</p>
+<ul>
+<li><code>--http-cookie-jar</code></li>
+<li><code>--session-check-url</code></li>
+<li><code>--session-check-pattern</code></li>
+</ul>
+<p>This way SCNR will still be able to know if it gets logged out (which is helpful to several system components) but won’t be able to log-in automatically.</p>
+<p>Of course, you should still exclude any path that can lead to the destruction of the session.</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="scan-services"><a class="header" href="#scan-services">Scan services</a></h1>
+<p>At the moment the are no specialized service crawlers, however auditing web
+services is possible by first training the system via its <code>proxy</code> plugin.</p>
+<h2 id="capturing-inputs"><a class="header" href="#capturing-inputs">Capturing inputs</a></h2>
+<p>The best way to capture web service inputs is by running your service test-suite
+and having its HTTP requests go through the <code>proxy</code> plugin.</p>
+<h3 id="proxy-plugin-setup"><a class="header" href="#proxy-plugin-setup">Proxy plugin setup</a></h3>
+<p>You can setup the proxy like so:</p>
+<pre><code>bin/scnr http://target-url --scope-page-limit=0 --checks=*,-passive/* --plugin=proxy --audit-jsons --audit-xmls
+</code></pre>
+<p>The default proxy URL will be: <code>http://localhost:8282</code></p>
+<p>The <code>--scope-page-limit=0</code> option tells the system to not do any sort of crawl
+and only use what has been made visible via the proxy.</p>
+<p>The <code>--checks</code> option tells the system to load all but irrelevant checks for
+service scans – common files and directories and the like don’t really apply in this case.</p>
+<p>The <code>--audit-jsons --audit-xmls</code> options restrict the scan to only JSON and XML inputs.</p>
+<h3 id="test-suite-setup"><a class="header" href="#test-suite-setup">Test-suite setup</a></h3>
+<p>Test-suite configurations vary, however you can usually export the proxy setting
+as an environmental variable, prior to running your test-suite, like so:</p>
+<pre><code class="language-bash">export http_proxy=http://localhost:8282
+</code></pre>
+<p>If this global setting is ignored, you will need to explicitly configure your test-suite.</p>
+<h3 id="exporting-the-input-vectors"><a class="header" href="#exporting-the-input-vectors">Exporting the input vectors</a></h3>
+<p>After running the test-suite, the system will have been trained with the input
+vectors of the web service.
+Thus, it would be a good idea to export that data, in order to avoid having to
+run the training scenarios prior to each scan.</p>
+<p>The data can be retrieved with:</p>
+<pre><code class="language-bash">http_proxy=http://localhost:8282 curl http://scnr.engine.proxy/panel/vectors.yml -o vectors.yml
+</code></pre>
+<h3 id="starting-the-scan"><a class="header" href="#starting-the-scan">Starting the scan</a></h3>
+<p>In order for the scan to start you will need to shutdown the proxy:</p>
+<pre><code class="language-bash">http_proxy=http://localhost:8282 curl http://scnr.engine.proxy/shutdown
+</code></pre>
+<h2 id="re-using-input-vector-data"><a class="header" href="#re-using-input-vector-data">Re-using input vector data</a></h2>
+<p>Data exported via the proxy plugin can be imported via the <code>vector_feed</code> plugin, like so:</p>
+<pre><code>bin/scnr http://target-url --scope-page-limit=0 --checks=*,-passive/* --plugin=vector_feed:yaml_file=vectors.yml
+</code></pre>
+<p>Thus, you only have to run your test-suite scenarios once, for the initial training
+and then reuse the exported vector data for subsequent scans.</p>
+<h2 id="debugging"><a class="header" href="#debugging">Debugging</a></h2>
+<p>You can debug the proxy manually via simple <code>curl</code> commands, like so:</p>
+<pre><code class="language-bash">http_proxy=http://localhost:8282 curl -H "Content-Type: application/json" -X POST -d '{ "input": "value" }' http://target-url/my-resource
+</code></pre>
+<p>Then, in SCNR’s terminal you’ll see something like:</p>
+<pre><code>[*] Proxy: Requesting http://target-url/my-resource
+[~] Proxy:  *  0 forms
+[~] Proxy:  *  0 links
+[~] Proxy:  *  0 cookies
+[~] Proxy:  *  1 JSON
+[~] Proxy:  *  0 XML
+</code></pre>
+<p>If you require further information, you can enable the <code>--output-debug</code> option;
+acceptable verbosity values range from <code>1</code> to <code>3</code>, <code>1</code> being the default.</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="scale"><a class="header" href="#scale">Scale</a></h1>
+<p>SCNR can be configured into a <em>Grid</em>, in order to combine the resources of multiple
+nodes and thus perform large amounts of scans simultaneously or complete individual
+scans faster.</p>
+<p>Its <em>Grid</em> can distribute workload horizontally and vertically and can also easily
+scale up and/or down.</p>
+<p>In essence, <em>Grids</em> are created by connecting multiple <em>Agents</em> together, at which
+point a mesh network of <em>Agents</em> is formed.
+Doing so requires no configuration, other than specifying an already running <em>Agent</em>
+when booting up a new one.</p>
+<p>This allows for creating a private Cloud of scanners, with minimal configuration,
+that can handle an indefinite amount of workload.</p>
+<p>Prior to continuing, it would be best if you took a look at SCNR’s
+<a href="/deployment/distributed/index.html">distributed architecture</a>.</p>
+<h2 id="strategies-1"><a class="header" href="#strategies-1">Strategies</a></h2>
+<p>Scaling strategies can be configured via the <code>--strategy</code> option of <em>Agents</em>,
+like so:</p>
+<pre><code class="language-bash">bin/scnr_agent --strategy=horizonstal
+</code></pre>
+<pre><code class="language-bash">bin/scnr_agent --strategy=vertical
+</code></pre>
+<h3 id="horizontal-default-1"><a class="header" href="#horizontal-default-1">Horizontal (default)</a></h3>
+<p>SCNR <em>Instances</em> will be provided by the least burdened <em>Agent</em>, i.e. the
+<em>Agent</em> with the least utilization of its <em>slots</em>.</p>
+<p>This strategy helps to keep the overall <em>Grid</em> health good by spreading the
+workload across as many nodes as possible.</p>
+<h3 id="vertical-1"><a class="header" href="#vertical-1">Vertical</a></h3>
+<p>SCNR <em>Instances</em> will be provided by the most burdened <em>Agent</em>, i.e. the
+<em>Agent</em> with the most utilization of its <em>slots</em>.</p>
+<p>This strategy helps to keep the overall <em>Grid</em> size (and thus cost) low by
+utilizing as few <em>Grid</em> nodes as possible.</p>
+<p>It will also let you know if you have over-provisioned as extra nodes will not
+be receiving any workload.</p>
+<h2 id="creating-a-grid"><a class="header" href="#creating-a-grid">Creating a Grid</a></h2>
+<p>In one terminal run:</p>
+<pre><code class="language-bash">bin/scnr_agent
+</code></pre>
+<p>This is the initial <em>Agent</em>.</p>
+<h3 id="scaling-up"><a class="header" href="#scaling-up">Scaling up</a></h3>
+<p>To scale up just boot more <em>Agents</em> and specify a peer.</p>
+<p>So, in another terminal run:</p>
+<pre><code class="language-bash">bin/scnr_agent --port=7332 --peer=127.0.0.1:7331
+</code></pre>
+<p>Lastly, in yet another terminal run:</p>
+<pre><code class="language-bash">bin/scnr_agent --port=7333 --peer=127.0.0.1:7332
+</code></pre>
+<p>(It doesn’t matter who the peer is as long as it’s part of the Grid.)</p>
+<p>Now we have a <em>Grid</em> of 3 <em>Agents</em>.</p>
+<p>The point of course is to run each <em>Agent</em> on a different machine in real life,
+but this will do for now.</p>
+<h3 id="scaling-down"><a class="header" href="#scaling-down">Scaling down</a></h3>
+<p>You can scale down by <em>unplugging</em> an <em>Agent</em> from its <em>Grid</em> using:</p>
+<pre><code class="language-bash">bin/scnr_agent_unplug 127.0.0.1:7332
+</code></pre>
+<h2 id="running-grid-scans"><a class="header" href="#running-grid-scans">Running Grid scans</a></h2>
+<p>To start a scan that will be load-balanced across the <em>Grid</em>, simply issue
+a <code>spawn</code> request on any of the <em>Grid</em> members.</p>
+<p>Like so:</p>
+<pre><code class="language-bash">bin/scnr_spawn --agent-url=127.0.0.1:7331 http://testhtml5.vulnweb.com
+</code></pre>
+<p>The above will run a scan with the default options against
+<a href="http://testhtml5.vulnweb.com">http://testhtml5.vulnweb.com</a>, originating from
+whichever node is optimal at any given time.</p>
+<p>If the <em>Grid</em> is out of <em>slots</em> you will see the following message:</p>
+<pre><code>[~] Agent is at maximum utilization, please try again later.
+</code></pre>
+<p>In which case you can keep retrying until a <em>slot</em> opens up.</p>
+<h3 id="running-multi-instance-scans"><a class="header" href="#running-multi-instance-scans">Running multi-Instance scans</a></h3>
+<p>The above is useful when you have multiple scans to run and you want to run them
+at the same time; another cool feature of SCNR though is that it can parallelize
+individual scans across the <em>Grid</em> thus resulting in huge single-scan performance gains.</p>
+<p>For example, this would be useful if you were to scan a site with tens of thousands,
+hundreds of thousands or even millions of pages.</p>
+<p>Even better, doing so is as easy as:</p>
+<pre><code class="language-bash">bin/scnr_spawn --agent-url=127.0.0.1:7331 http://testhtml5.vulnweb.com --multi-instances=5
+</code></pre>
+<p>The <code>--multi-instances=5</code> option will instruct SCNR to use 5 <em>Instances</em> to run this
+particular scan, with the aforementioned <em>Instances</em> being of course load-balanced
+across the <em>Grid</em>.</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="copyright"><a class="header" href="#copyright">Copyright</a></h1>
+<p>Copyright 2024 <a href="https://ecsypno.com">Ecsypno</a>.</p>
+<p>All rights reserved.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-c2a407aa.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+
+    </div>
+    </body>
+</html>
