@@ -1,1 +1,1 @@
-gem 'rack'
+gem 'rack', github: 'rack/rack'

@@ -1,13 +1,18 @@
+GIT
+  remote: https://github.com/rack/rack.git
+  revision: da573f3ffefa47f48dcf8207ee95181c3f9dcd78
+  specs:
+    rack (3.2.0)
+
 GEM
   specs:
-    rack (3.2.4)
 
 PLATFORMS
   ruby
   x86_64-linux
 
 DEPENDENCIES
-  rack
+  rack!
 
 BUNDLED WITH
    2.6.9
