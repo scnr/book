@@ -1,3 +1,5 @@
+![alt text](gfx/velox-scan-banner.png)
+
 # Introduction
 
 ## Description
