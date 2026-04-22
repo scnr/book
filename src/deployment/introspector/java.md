@@ -50,7 +50,7 @@ MAVEN_OPTS="-javaagent:introspector.jar=path_start_with=com/example" mvn clean p
 You should see this at the beginning:
 
 ```
-[INTROSPECTOR] Initializing Velox Scan Introspector agent...
+[INTROSPECTOR] Initializing Spectre Scan Introspector agent...
 [INTROSPECTOR] Setting up instrumentation.
 ```
 

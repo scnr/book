@@ -64,7 +64,7 @@ bundle exec ruby examples/sinatra/app.rb
 You should see this at the beginning:
 
 ```
-[INTROSPECTOR] Velox Scan Introspector Initialized.
+[INTROSPECTOR] Spectre Scan Introspector Initialized.
 ```
 
 Along with these types of messages:

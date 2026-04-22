@@ -1,6 +1,6 @@
 # Optimize scans
 
-Left to its own devices, Velox Scan will try to optimize itself to match any given
+Left to its own devices, Spectre Scan will try to optimize itself to match any given
 circumstance, but there are limitations to what it can do automatically.
 
 If a scan is taking too long, chances are that there are ways to make it go much 
@@ -172,7 +172,7 @@ This is a _Time_ vs _Thoroughness_ balancing option.
 
 ## Scan incrementally
 
-In order to save valuable time on subsequent scans, Velox Scan allows you to extract a session file from
+In order to save valuable time on subsequent scans, Spectre Scan allows you to extract a session file from
 completed/aborted scans, in order to allow for incremental re-scans.
 
 This means that only newly introduced input vectors will be audited the next time around, which can save immense amounts

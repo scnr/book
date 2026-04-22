@@ -70,7 +70,7 @@ app.Run();
 dotnet run --project Ecsypno.TestApp -c Release
 ```
 
-Should output `[INTROSPECTOR] Velox Scan Introspector middleware initialized.` at the top.
+Should output `[INTROSPECTOR] Spectre Scan Introspector middleware initialized.` at the top.
 
 ## Patch
 
@@ -101,7 +101,7 @@ Should output:
 
 ```
 [INTROSPECTOR] Patched assembly loaded: Ecsypno.TestApp/bin/Release/net8.0/Ecsypno.TestApp.dll
-[INTROSPECTOR] Velox Scan Introspector middleware initialized.
+[INTROSPECTOR] Spectre Scan Introspector middleware initialized.
 ```
 
 

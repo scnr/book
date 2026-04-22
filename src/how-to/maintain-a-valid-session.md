@@ -1,6 +1,6 @@
 # Maintain a valid session
 
-Velox Scan supports automated logout detection and re-login, as well as improved login procedures.
+Spectre Scan supports automated logout detection and re-login, as well as improved login procedures.
 
 * [Form-based login](#login_form-plugin)
 * [Script-based login](#login_script-plugin)

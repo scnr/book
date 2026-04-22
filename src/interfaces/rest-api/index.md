@@ -367,7 +367,7 @@ end
 
 ### Incremental scans using sessions
 
-In order to save valuable time on subsequent scans, Velox Scan allows you to extract a session file from
+In order to save valuable time on subsequent scans, Spectre Scan allows you to extract a session file from
 completed/aborted scans, in order to allow for incremental re-scans.
 
 This means that only newly introduced input vectors will be audited the next time around, which can save immense amounts
