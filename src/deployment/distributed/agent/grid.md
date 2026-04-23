@@ -62,4 +62,4 @@ The point of course is to run each _Agent_ on a different machine in real life.
 
 ### Client
 
-Same as [Agent client](/scanning/distributed/agent.md#client).
+Same as [Agent client](../agent.md#client).
