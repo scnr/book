@@ -1,3 +1,3 @@
 # Installation
 
-For installation instructions please refer to the [installer](https://github.com/ecsypno/Spectre-scan).
+For installation instructions please refer to the [installer](https://github.com/ecsypno/spectre-scan).
