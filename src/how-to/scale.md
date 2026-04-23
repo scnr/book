@@ -1,6 +1,6 @@
 # Scale
 
-SCNR can be configured into a _Grid_, in order to combine the resources of multiple
+Spectre Scan can be configured into a _Grid_, in order to combine the resources of multiple
 nodes and thus perform large amounts of scans simultaneously or complete individual 
 scans faster.
 
@@ -15,7 +15,7 @@ when booting up a new one.
 This allows for creating a private Cloud of scanners, with minimal configuration,
 that can handle an indefinite amount of workload.
 
-Prior to continuing, it would be best if you took a look at SCNR's 
+Prior to continuing, it would be best if you took a look at Spectre Scan's 
 [distributed architecture](/deployment/distributed/index.md).
 
 ## Strategies
@@ -33,7 +33,7 @@ bin/scnr_agent --strategy=vertical
 
 ### Horizontal (default)
 
-SCNR _Instances_ will be provided by the least burdened _Agent_, i.e. the
+Spectre Scan _Instances_ will be provided by the least burdened _Agent_, i.e. the
 _Agent_ with the least utilization of its _slots_.
 
 This strategy helps to keep the overall _Grid_ health good by spreading the
@@ -41,7 +41,7 @@ workload across as many nodes as possible.
 
 ### Vertical
 
-SCNR _Instances_ will be provided by the most burdened _Agent_, i.e. the
+Spectre Scan _Instances_ will be provided by the most burdened _Agent_, i.e. the
 _Agent_ with the most utilization of its _slots_.
 
 This strategy helps to keep the overall _Grid_ size (and thus cost) low by
@@ -118,7 +118,7 @@ In which case you can keep retrying until a _slot_ opens up.
 ### Running multi-Instance scans
 
 The above is useful when you have multiple scans to run and you want to run them
-at the same time; another cool feature of SCNR though is that it can parallelize
+at the same time; another cool feature of Spectre Scan though is that it can parallelize
 individual scans across the _Grid_ thus resulting in huge single-scan performance gains.
 
 For example, this would be useful if you were to scan a site with tens of thousands,
@@ -130,6 +130,6 @@ Even better, doing so is as easy as:
 bin/scnr_spawn --agent-url=127.0.0.1:7331 http://testhtml5.vulnweb.com --multi-instances=5
 ```
 
-The `--multi-instances=5` option will instruct SCNR to use 5 _Instances_ to run this
+The `--multi-instances=5` option will instruct Spectre Scan to use 5 _Instances_ to run this
 particular scan, with the aforementioned _Instances_ being of course load-balanced
 across the _Grid_.

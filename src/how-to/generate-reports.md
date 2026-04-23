@@ -6,10 +6,10 @@ You can export scan results in several formats from the "Export" tab of an abort
 
 ## CLI
 
-There are 2 reference report format types that you may encounter when using SCNR:
+There are 2 reference report format types that you may encounter when using Spectre Scan:
 
 1. `*.crf` -- Cuboid report file.
-1. `*.ser` -- `SCNR::Engine` report.
+1. `*.ser` -- Spectre Scan report.
 
 Both of these files can be handled by the CLI `scnr_reporter` utility in order
 to convert them to a multitude of formats or print the results to `STDOUT`.

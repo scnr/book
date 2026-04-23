@@ -73,7 +73,7 @@ You can debug the proxy manually via simple `curl` commands, like so:
 http_proxy=http://localhost:8282 curl -H "Content-Type: application/json" -X POST -d '{ "input": "value" }' http://target-url/my-resource
 ```
 
-Then, in SCNR's terminal you'll see something like:
+Then, in Spectre Scan's terminal you'll see something like:
 
 ```
 [*] Proxy: Requesting http://target-url/my-resource

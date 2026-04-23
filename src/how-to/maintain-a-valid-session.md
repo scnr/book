@@ -104,7 +104,7 @@ SCNR::Engine::Options.session.check_pattern = /Sign Off|MY ACCOUNT/
 
 ### From cookie-jar
 
-If an external process is used to manage sessions, you can keep SCNR in sync by
+If an external process is used to manage sessions, you can keep Spectre Scan in sync by
 loading cookies from a shared Netscape-style cookie-jar file.
 
 ```ruby
@@ -174,6 +174,6 @@ If the aforementioned techniques don't work for you, you can pass a cookie-jar a
 * `--session-check-url`
 * `--session-check-pattern`
 
-This way SCNR will still be able to know if it gets logged out (which is helpful to several system components) but won't be able to log-in automatically.
+This way Spectre Scan will still be able to know if it gets logged out (which is helpful to several system components) but won't be able to log-in automatically.
 
 Of course, you should still exclude any path that can lead to the destruction of the session.

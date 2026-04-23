@@ -10,7 +10,7 @@ at the time of writing are:
 1. `scnr_agent_monitor` -- Monitors a _Agent_.
 1. `scnr_agent_unplug` -- Unplugs a _Agent_ from its _Grid_.
 1. `scnr_instance_connect` -- Utility to connect to an _Instance_.
-1. `scnr_reporter` -- Generates reports from `.crf` (Cuboid report file) and `.ser` (SCNR Engine report) report files.
+1. `scnr_reporter` -- Generates reports from `.crf` (Cuboid report file) and `.ser` (Spectre Scan report) report files.
 1. `scnr_reproduce` -- Reproduces an issue(s) from a given report.
 1. `scnr_rest_server` -- Starts a REST server daemon.
 1. `scnr_restore` -- Restores a suspended scan based on a snapshot file.
