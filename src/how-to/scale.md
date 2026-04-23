@@ -1,6 +1,6 @@
 # Scale
 
-SCNR can be configured into a _Grid_, in order to combine the resources of multiple
+Spectre Scan can be configured into a _Grid_, in order to combine the resources of multiple
 nodes and thus perform large amounts of scans simultaneously or complete individual 
 scans faster.
 
