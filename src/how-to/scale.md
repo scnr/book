@@ -16,7 +16,7 @@ This allows for creating a private Cloud of scanners, with minimal configuration
 that can handle an indefinite amount of workload.
 
 Prior to continuing, it would be best if you took a look at Spectre Scan's 
-[distributed architecture](/deployment/distributed/index.md).
+[distributed architecture](../deployment/distributed/index.md).
 
 ## Strategies
 
