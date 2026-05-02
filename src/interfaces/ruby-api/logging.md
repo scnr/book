@@ -25,5 +25,5 @@ end
 ## Example
 
 ```bash
-bin/scnr https://example.com --checks=- --script=logging.rb
+bin/spectre https://example.com --checks=- --script=logging.rb
 ```

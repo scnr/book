@@ -24,11 +24,11 @@ Scaling strategies can be configured via the `--strategy` option of _Agents_,
 like so:
 
 ```bash
-bin/scnr_agent --strategy=horizonstal
+bin/spectre_agent --strategy=horizonstal
 ```
 
 ```bash
-bin/scnr_agent --strategy=vertical
+bin/spectre_agent --strategy=vertical
 ```
 
 ### Horizontal (default)
@@ -55,7 +55,7 @@ be receiving any workload.
 In one terminal run:
 
 ```bash
-bin/scnr_agent
+bin/spectre_agent
 ```
 
 This is the initial _Agent_.
@@ -67,13 +67,13 @@ To scale up just boot more _Agents_ and specify a peer.
 So, in another terminal run:
 
 ```bash
-bin/scnr_agent --port=7332 --peer=127.0.0.1:7331
+bin/spectre_agent --port=7332 --peer=127.0.0.1:7331
 ```
 
 Lastly, in yet another terminal run:
 
 ```bash
-bin/scnr_agent --port=7333 --peer=127.0.0.1:7332
+bin/spectre_agent --port=7333 --peer=127.0.0.1:7332
 ```
 
 (It doesn't matter who the peer is as long as it's part of the Grid.)
@@ -89,7 +89,7 @@ but this will do for now.
 You can scale down by _unplugging_ an _Agent_ from its _Grid_ using:
 
 ```bash
-bin/scnr_agent_unplug 127.0.0.1:7332
+bin/spectre_agent_unplug 127.0.0.1:7332
 ```
 
 ## Running Grid scans
@@ -100,7 +100,7 @@ a `spawn` request on any of the _Grid_ members.
 Like so:
 
 ```bash
-bin/scnr_spawn --agent-url=127.0.0.1:7331 http://testhtml5.vulnweb.com
+bin/spectre_spawn --agent-url=127.0.0.1:7331 http://testhtml5.vulnweb.com
 ```
 
 The above will run a scan with the default options against
@@ -127,7 +127,7 @@ hundreds of thousands or even millions of pages.
 Even better, doing so is as easy as:
 
 ```bash
-bin/scnr_spawn --agent-url=127.0.0.1:7331 http://testhtml5.vulnweb.com --multi-instances=5
+bin/spectre_spawn --agent-url=127.0.0.1:7331 http://testhtml5.vulnweb.com --multi-instances=5
 ```
 
 The `--multi-instances=5` option will instruct Spectre Scan to use 5 _Instances_ to run this

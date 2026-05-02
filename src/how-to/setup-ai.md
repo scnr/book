@@ -5,7 +5,7 @@ Spectre Scan relies on [OpenAI](https://openai.com/) to intelligently analyse is
 ## CLI
 
 ```
-bin/scnr --plugin=openai:apikey=YOUR_API_KEY [URL]
+bin/spectre --plugin=openai:apikey=YOUR_API_KEY [URL]
 ```
 
 ## Web UI

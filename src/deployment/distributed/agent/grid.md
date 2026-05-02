@@ -39,19 +39,19 @@ be receiving any workload.
 In one terminal run:
 
 ```bash
-bin/scnr_agent
+bin/spectre_agent
 ```
 
 In another terminal run:
 
 ```bash
-bin/scnr_agent --port=7332 --peer=127.0.0.1:7331
+bin/spectre_agent --port=7332 --peer=127.0.0.1:7331
 ```
 
 In another terminal run:
 
 ```bash
-bin/scnr_agent --port=7333 --peer=127.0.0.1:7332
+bin/spectre_agent --port=7333 --peer=127.0.0.1:7332
 ```
 
 (It doesn't matter who the peer is as long as it's part of the Grid.)

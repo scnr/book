@@ -12,7 +12,7 @@ and having its HTTP requests go through the `proxy` plugin.
 
 You can setup the proxy like so:
 
-    bin/scnr http://target-url --scope-page-limit=0 --checks=*,-passive/* --plugin=proxy --audit-jsons --audit-xmls
+    bin/spectre http://target-url --scope-page-limit=0 --checks=*,-passive/* --plugin=proxy --audit-jsons --audit-xmls
 
 The default proxy URL will be: `http://localhost:8282`
 
@@ -60,7 +60,7 @@ http_proxy=http://localhost:8282 curl http://scnr.engine.proxy/shutdown
 
 Data exported via the proxy plugin can be imported via the `vector_feed` plugin, like so:
 
-    bin/scnr http://target-url --scope-page-limit=0 --checks=*,-passive/* --plugin=vector_feed:yaml_file=vectors.yml
+    bin/spectre http://target-url --scope-page-limit=0 --checks=*,-passive/* --plugin=vector_feed:yaml_file=vectors.yml
 
 Thus, you only have to run your test-suite scenarios once, for the initial training
 and then reuse the exported vector data for subsequent scans.

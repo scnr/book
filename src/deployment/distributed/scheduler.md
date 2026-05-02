@@ -5,7 +5,7 @@ To start a _Scheduler_ run the `scnr_scheduler` CLI executable.
 To see all available options run:
 
 ```bash
-bin/scnr_scheduler -h
+bin/spectre_scheduler -h
 ```
 
 The main role of the _Scheduler_ is to:
@@ -36,7 +36,7 @@ load-balanced across the _Grid_ according the the configured _strategy_.
 In one terminal run:
 
 ```bash
-bin/scnr_scheduler
+bin/spectre_scheduler
 ```
 
 ### Client
@@ -46,7 +46,7 @@ bin/scnr_scheduler
 In another terminal run:
 
 ```bash
-bin/scnr_scheduler_push --scheduler-url=localhost:7331 http://testhtml5.vulnweb.com
+bin/spectre_scheduler_push --scheduler-url=localhost:7331 http://testhtml5.vulnweb.com
 ```
 
 Then you should see something like:
@@ -60,7 +60,7 @@ Then you should see something like:
 To see what the _Scheduler_ is doing run:
 
 ```bash
-bin/scnr_scheduler_list localhost:7331
+bin/spectre_scheduler_list localhost:7331
 ```
 
 Then you should see something like:

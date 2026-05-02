@@ -108,5 +108,5 @@ ap api.scan.generate_report
 Assuming the above is saved as `html5.scanner.rb`:
 
 ```
-bin/scnr_script html5.scanner.rb
+bin/spectre_script html5.scanner.rb
 ```

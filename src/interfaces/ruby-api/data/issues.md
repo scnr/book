@@ -21,5 +21,5 @@ end
 ## Example
 
 ```bash
-bin/scnr http://example.com/ --checks=allowed_methods --script=issues.rb
+bin/spectre http://example.com/ --checks=allowed_methods --script=issues.rb
 ```

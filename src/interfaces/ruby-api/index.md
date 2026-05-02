@@ -154,7 +154,7 @@ end
 Supposing the above is saved as `html5.config.rb`:
 
 ```bash
-bin/scnr http://testhtml5.vulnweb.com --script=html5.config.rb
+bin/spectre http://testhtml5.vulnweb.com --script=html5.config.rb
 ```
 
 ### Standalone
@@ -373,5 +373,5 @@ end
 Supposing the above is saved as `html5.scanner.rb`:
 
 ```bash
-bin/scnr_script html5.scanner.rb
+bin/spectre_script html5.scanner.rb
 ```

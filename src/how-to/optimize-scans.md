@@ -180,4 +180,4 @@ of time.
 
 The location of the session file is printed at the end of each scan and can be restored via:
 
-    ./bin/scnr_restore SESSION_FILE
+    ./bin/spectre_restore SESSION_FILE

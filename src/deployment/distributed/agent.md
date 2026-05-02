@@ -5,7 +5,7 @@ To start an _Agent_ run the `scnr_agent` CLI executable.
 To see all available options run:
 
 ```bash
-bin/scnr_agent -h
+bin/spectre_agent -h
 ```
 
 Each _Agent_ should run on a different machine and its main role is to
@@ -24,7 +24,7 @@ _Instance_.
 In one terminal run:
 
 ```bash
-bin/scnr_agent
+bin/spectre_agent
 ```
 
 The default port at the time of writing is `7331`, so you should see something like:
@@ -43,7 +43,7 @@ CLI executable.
 In another terminal run:
 
 ```bash
-bin/scnr_spawn --agent-url=127.0.0.1:7331 http://testhtml5.vulnweb.com
+bin/spectre_spawn --agent-url=127.0.0.1:7331 http://testhtml5.vulnweb.com
 ```
 
 The above will run a scan with the default options against

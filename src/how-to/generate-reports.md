@@ -16,13 +16,13 @@ to convert them to a multitude of formats or print the results to `STDOUT`.
 
 For example, to generate an HTML report:
 
-`bin/scnr_reporter --report=html:outfile=my_report.html.zip /home/user/.scnr/reports/report.ser`
+`bin/spectre_reporter --report=html:outfile=my_report.html.zip /home/user/.scnr/reports/report.ser`
 
 Or, to just print the report to STDOUT:
 
-`bin/scnr_reporter --report=stdout /home/user/.scnr/reports/report.ser`
+`bin/spectre_reporter --report=stdout /home/user/.scnr/reports/report.ser`
 
-At the time of writing, `bin/scnr_reporter --reporters-list` yields:
+At the time of writing, `bin/spectre_reporter --reporters-list` yields:
 
 ```
  [~] Available reports:

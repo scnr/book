@@ -5,13 +5,13 @@
 To start the REST server:
 
 ```bash
-bin/scnr_rest_server
+bin/spectre_rest_server
 ```
 
 To see REST server options:
 
 ```bash
-bin/scnr_rest_server -h
+bin/spectre_rest_server -h
 ```
 
 
@@ -265,7 +265,7 @@ bin/scnr_rest_server -h
 
 Start the server by issuing the following command:
 
-`bin/scnr_rest_server`
+`bin/spectre_rest_server`
 
 ### Client
 

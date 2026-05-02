@@ -16,5 +16,5 @@ end
 ## Example
 
 ```bash
-bin/scnr http://example.com/ --checks=- --script=state.rb
+bin/spectre http://example.com/ --checks=- --script=state.rb
 ```

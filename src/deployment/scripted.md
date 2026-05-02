@@ -239,7 +239,7 @@ end
 Supposing the above is saved as `html5.config.rb`:
 
 ```bash
-bin/scnr http://testhtml5.vulnweb.com --script=html5.config.rb
+bin/spectre http://testhtml5.vulnweb.com --script=html5.config.rb
 ```
 
 ### Standalone
@@ -254,7 +254,7 @@ and not just serve as configuration.
 When a scan script is large-ish and/or complicated it's better to split it into the main file and helper handler methods.
 
 ```bash
-bin/scnr_script scanner.rb
+bin/spectre_script scanner.rb
 ```
 
 `scanner.rb`:
@@ -856,5 +856,5 @@ end
 Supposing the above is saved as `html5.scanner.rb`:
 
 ```bash
-bin/scnr_script html5.scanner.rb
+bin/spectre_script html5.scanner.rb
 ```

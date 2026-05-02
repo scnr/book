@@ -37,7 +37,7 @@ For more complex sequences please use the [login_script](#login_script-plugin) p
 
 ### Example
 
-    bin/scnr http://testfire.net --plugin=login_form:url=http://testfire.net/bank/login.aspx,parameters="uid=jsmith&passw=Demo1234",check="Sign Off|MY ACCOUNT" --scope-exclude-pattern=logout
+    bin/spectre http://testfire.net --plugin=login_form:url=http://testfire.net/bank/login.aspx,parameters="uid=jsmith&passw=Demo1234",check="Sign Off|MY ACCOUNT" --scope-exclude-pattern=logout
 
 The login form found in `http://testfire.net/bank/login.aspx` which contains the
 `uid` and `passw` inputs will be **updated** with the given values and submitted.
@@ -156,7 +156,7 @@ Like the `form_login` plugin, the `proxy` plugin will configure the system accor
 
 ### Example
 
-    bin/scnr http://testfire.net --plugin=proxy --scope-exclude-pattern=logout
+    bin/spectre http://testfire.net --plugin=proxy --scope-exclude-pattern=logout
 
 You then need to configure your browser to use this proxy when connecting to the
 webapp, press the _record_ button just before logging in and the _stop_ button after.

@@ -32,5 +32,5 @@ end
 ## Example
 
 ```bash
-bin/scnr https://wordpress.com --checks=- --script=http.rb
+bin/spectre https://wordpress.com --checks=- --script=http.rb
 ```
