@@ -294,7 +294,7 @@ their own state.
 
 ### Introspector
 
-A dedicated view for DOM-level findings: source → sink data-flow
+A dedicated view for server-side findings: source → sink data-flow
 trace, captured stack frames and the rendered page snapshot.
 
 ![Introspector — flow (1)](screenshots/spectre-introspector-1.png)
