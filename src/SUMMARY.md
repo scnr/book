@@ -42,6 +42,7 @@
      - [Scope](./interfaces/ruby-api/scan/scope.md)
      - [Session](./interfaces/ruby-api/scan/session.md)
  - [REST API](./interfaces/rest-api/index.md)
+ - [MCP](./interfaces/mcp/index.md)
  - [Web UI](./interfaces/web/index.md)
  
 

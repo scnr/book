@@ -12,7 +12,8 @@ at the time of writing are:
 1. `spectre_instance_connect` -- Utility to connect to an _Instance_.
 1. `spectre_reporter` -- Generates reports from `.crf` (Cuboid report file) and `.ser` (Spectre Scan report) report files.
 1. `spectre_reproduce` -- Reproduces an issue(s) from a given report.
-1. `spectre_rest_server` -- Starts a REST server daemon.
+1. `spectre_rest_server` -- Starts a [REST](./rest-api/index.md) server daemon.
+1. `spectre_mcp_server` -- Starts an [MCP](./mcp/index.md) server daemon.
 1. `spectre_restore` -- Restores a suspended scan based on a snapshot file.
 1. `spectre_scheduler` -- Starts a _Scheduler_ daemon.
 1. `spectre_scheduler_attach` -- Attaches a detached _Instance_ to the given _Scheduler_.
