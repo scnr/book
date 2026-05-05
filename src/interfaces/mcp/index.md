@@ -59,16 +59,26 @@ don't speak typed outputs) _and_ `structuredContent` matching the schema
 
 ### Framework tools
 
-| Tool             | Required        | Optional                | Returns (`structuredContent`) |
-|------------------|-----------------|-------------------------|-------------------------------|
-| `list_instances` | —               | —                       | `{ instances: { <id>: { url } } }` |
-| `spawn_instance` | —               | `options`, `start=true` | `{ instance_id, url }`        |
-| `kill_instance`  | `instance_id`   | —                       | `{ killed: <id> }`            |
+| Tool             | Required        | Optional                              | Returns (`structuredContent`) |
+|------------------|-----------------|---------------------------------------|-------------------------------|
+| `list_instances` | —               | —                                     | `{ instances: { <id>: { url } } }` |
+| `spawn_instance` | —               | `options`, `start=true`, `live=true`  | `{ instance_id, url, live? }` |
+| `kill_instance`  | `instance_id`   | —                                     | `{ killed: <id> }`            |
 
 `spawn_instance.options` is forwarded to `instance.run(...)` — same
 shape as the [REST API](../rest-api/index.md) `POST /instances` body. To
 spawn an _Instance_ without running anything, pass `start: false`;
 passing `options: {}` does **not** skip the run.
+
+`live` is on by default — when the call arrives over an MCP session
+that supports notifications, the server attaches a per-instance
+loopback receiver and the engine pushes every issue / sitemap entry /
+error / status change / final report back to the calling session as
+a brand-derived JSON-RPC notification. The response's `live`
+sub-object tells the client which notification method to subscribe
+to (e.g. `notifications/spectre/live`). See
+[Live events](#live-events) for the envelope shape and the
+end-to-end flow. Pass `live: false` to opt out and poll instead.
 
 For the full options surface, read the
 [`spectre://options/reference`](#resources) resource (covered below) or
@@ -166,6 +176,10 @@ If you're an AI seeing this server for the first time, do this once:
    their URL gives you a full operator script.
 4. `tools/list` → discover the 11 tools. `outputSchema` on each tells
    you exactly what `structuredContent` to expect.
+5. Open the GET-SSE channel on `/mcp` (with the same `mcp-session-id`)
+   to receive [live events](#live-events). The default `spawn_instance`
+   call will start streaming on it — you do not need to poll unless
+   you opt out of live with `live: false`.
 
 After that, drive the scan with no further out-of-band knowledge.
 
@@ -201,10 +215,103 @@ ready ──► preparing ──► scanning ──► auditing ──► cleanu
 
 **Treat anything other than `done` / `aborted` as still in flight.**
 
+## Live events
+
+The canonical way to track a scan is the live channel — `spawn_instance`
+attaches it by default. Every interesting state change inside the
+engine is pushed to the calling MCP session as a brand-derived
+JSON-RPC notification (`notifications/spectre/live` for Spectre);
+your client subscribes once on the SSE half of the Streamable HTTP
+transport and receives them as they happen, with no polling.
+
+### Subscribing
+
+Streamable HTTP is one URL with two halves: `POST /mcp` for
+request/response and `GET /mcp` (with `Accept: text/event-stream`)
+for server-initiated notifications. Open the GET once after
+`initialize`, before any `spawn_instance`, and keep it open for the
+life of the scan. Use the **same** `mcp-session-id` you got from
+`initialize` on both halves — that's how the server routes the
+notifications back to the right client.
+
+The exact notification method to listen for is
+brand-derived; `spawn_instance`'s response includes
+`live.notification_method` so the client doesn't have to hard-code
+it. Bare-cuboid builds emit `notifications/cuboid/live`.
+
+### Envelope shape
+
+Each notification's `params` is a single envelope:
+
+```jsonc
+{
+  "jsonrpc": "2.0",
+  "method":  "notifications/spectre/live",
+  "params": {
+    "type":        "issue",            // see type enum below
+    "payload":     { … },              // type-specific body, see below
+    "timestamp":   "2026-05-05T10:48:01.715Z",
+    "status":      "auditing",         // current scan status at emit time
+    "running":     true,
+    "statistics":  { … },              // SCNR::Engine::Data.statistics snapshot
+    "metadata":    { … },              // caller-supplied JSON object, if any (see below)
+    "instance_id": "f8cd1a0a…"         // stamped on every event so a single
+                                       // session can fan in multiple scans
+  }
+}
+```
+
+`type` is one of:
+
+| `type`           | `payload` shape                                              | when |
+|------------------|--------------------------------------------------------------|------|
+| `status`         | string — new lifecycle status (`scanning`, `auditing`, …)    | every status transition |
+| `sitemap_entry`  | `{ url: string, code: integer }`                             | every newly-crawled URL |
+| `issue`          | full issue Hash (`name`, `severity`, `vector`, `proof`, `digest`, …) | every new finding (post-deduplication) |
+| `error`          | string — one or more engine error lines, joined with newlines | rescued exceptions, coalesced over a 200 ms quiet window so a single backtrace becomes one event instead of 30+ |
+| `report`         | full final report Hash (issues + sitemap + statistics + plugins) | once at scan-end, after `clean_up` |
+
+`statistics` is the live counter snapshot at the moment the event
+fired — issue totals by severity, page-queue depth, browser-pool
+status, etc. Receivers can keep a running dashboard without ever
+calling `scan_progress`.
+
+### Tagging events with caller metadata
+
+`spawn_instance` may include `plugins.live.metadata` (a JSON string).
+At scan-start the plugin parses it once; every envelope thereafter
+carries the decoded value verbatim under `metadata`. Use this to
+correlate when one receiver fans in events from many concurrent
+scans — e.g. `metadata = "{\"scan_id\":\"abc\",\"env\":\"staging\"}"`.
+Invalid JSON in `metadata` aborts the scan at validation time
+(`Component::Options::Error::Invalid`) — typos fail fast.
+
+### Wire format
+
+The live envelope is encoded in `messagepack` by default —
+significantly smaller than JSON for the report payload (which
+carries the full sitemap and issue set). The MCP server decodes it
+internally and re-emits it as a normal JSON-RPC notification, so
+clients see plain JSON. The format is opaque to clients.
+
+### When to opt out
+
+Pass `live: false` to `spawn_instance` if:
+
+- You're driving from a stateless / non-MCP integration (no SSE
+  channel to push to).
+- You want a simpler client implementation that just polls.
+- You're running under Apex — `live` is rejected at the application
+  layer (Apex's sink-trace recon would flood the channel).
+
+In any of those cases the [polling cadence](#polling-cadence)
+section below is still valid.
+
 ## Polling cadence
 
-5 seconds is the default cadence the `quick_scan` prompt suggests, and
-it's a sensible floor:
+Polling via `scan_progress` is the fallback when `live: false` (or
+under Apex). 5 seconds is the default cadence the `quick_scan`
+prompt suggests, and it's a sensible floor:
 
 - Faster than ~2 s burns context tokens for almost no new state.
 - `scan_progress` with `without_statistics: true` is cheap; the
@@ -330,9 +437,6 @@ The tool / prompt / resource descriptions are deliberately self-grounding:
 
 For honesty — places where you'd still need out-of-band knowledge:
 
-- **Live progress streaming.** The MCP spec supports
-  `notifications/progress` for long-running operations; this server
-  doesn't emit them yet. You poll.
 - **Structured error codes.** Errors come back as text. If you want to
   branch on "bad option key" vs "engine crashed" vs "auth failed",
   you're parsing the text.
@@ -369,7 +473,7 @@ If your client only speaks stdio (older Claude Desktop builds), use any
 community stdio↔HTTP MCP bridge in front. Cursor, Claude Code, and
 Continue speak Streamable HTTP natively.
 
-## End-to-end example — curl
+## End-to-end example — curl (live)
 
 Initialize, capture the session id, acknowledge:
 
@@ -394,8 +498,20 @@ curl -X POST http://127.0.0.1:7331/mcp \
   --data '{ "jsonrpc": "2.0", "method": "notifications/initialized" }'
 ```
 
+Open the SSE channel for live events — keep this connection open
+for the life of the scan. Run it in another terminal (or
+backgrounded) so the next POSTs can fire while it's tailing:
+
+```bash
+curl -sS -N -X GET http://127.0.0.1:7331/mcp \
+  -H 'Accept: text/event-stream' \
+  -H "Mcp-Session-Id: $SID"
+# stream of `data: { "jsonrpc": "2.0", "method": "notifications/spectre/live", … }`
+```
+
 Spawn a scan against `http://testfire.net/` using the quick-scan
-defaults:
+defaults — `live: true` is the default so the engine starts
+streaming events to the SSE channel above immediately:
 
 ```bash
 curl -X POST http://127.0.0.1:7331/mcp \
@@ -409,51 +525,57 @@ curl -X POST http://127.0.0.1:7331/mcp \
       "arguments": {
         "options": {
           "url":     "http://testfire.net/",
-          "checks":  ["*"],
-          "plugins": ["defaults/*"]
-        },
-        "start": true
+          "checks":  ["*"]
+        }
       }
     }
   }'
-# → result.structuredContent: { instance_id, url }
+# → result.structuredContent:
+#   { "instance_id": "<IID>",
+#     "url":         "127.0.0.1:<engine-port>",
+#     "live":        { "notification_method": "notifications/spectre/live" } }
 ```
 
-Poll progress, fetching deltas only after the first call:
+The SSE stream now emits one envelope per event — `status`
+transitions, every newly-crawled `sitemap_entry`, every `issue`,
+and a final `report` when status reaches `done`.
+
+Tear down once the `report` event has landed:
 
 ```bash
-curl -X POST http://127.0.0.1:7331/mcp \
-  -H 'Content-Type: application/json' \
-  -H 'Accept: application/json, text/event-stream' \
-  -H "Mcp-Session-Id: $SID" \
-  --data '{
-    "jsonrpc": "2.0", "id": 3, "method": "tools/call",
-    "params": {
-      "name": "scan_progress",
-      "arguments": {
-        "instance_id":         "'$IID'",
-        "issues_seen":         [3162940604, 1457298731],
-        "errors_since":        12,
-        "sitemap_since":       37,
-        "without_statistics":  true
-      }
-    }
-  }'
-```
-
-Fetch issues and tear down:
-
-```bash
-curl -X POST http://127.0.0.1:7331/mcp ... \
-  --data '{ "jsonrpc": "2.0", "id": 4, "method": "tools/call",
-            "params": { "name": "scan_issues",
-                        "arguments": { "instance_id": "'$IID'" } } }'
-
 curl -X POST http://127.0.0.1:7331/mcp ... \
   --data '{ "jsonrpc": "2.0", "id": 5, "method": "tools/call",
             "params": { "name": "kill_instance",
                         "arguments": { "instance_id": "'$IID'" } } }'
 ```
 
-The same loop expressed as a `quick_scan` prompt expansion is one
+### Polling fallback
+
+If you'd rather poll, pass `"live": false` on `spawn_instance` and
+loop with `scan_progress` / `scan_issues`:
+
+```bash
+# spawn with live disabled
+curl -X POST http://127.0.0.1:7331/mcp ... \
+  --data '{ "jsonrpc": "2.0", "id": 2, "method": "tools/call",
+            "params": { "name": "spawn_instance",
+                        "arguments": {
+                          "options": { "url": "http://testfire.net/", "checks": ["*"] },
+                          "live":    false
+                        } } }'
+
+# poll, fetching deltas only after the first call
+curl -X POST http://127.0.0.1:7331/mcp ... \
+  --data '{ "jsonrpc": "2.0", "id": 3, "method": "tools/call",
+            "params": { "name": "scan_progress",
+                        "arguments": {
+                          "instance_id":        "'$IID'",
+                          "issues_seen":        [3162940604, 1457298731],
+                          "errors_since":       12,
+                          "sitemap_since":      37,
+                          "without_statistics": true
+                        } } }'
+```
+
+The same loops expressed as a `quick_scan` prompt expansion are one
 `prompts/get` call away.
