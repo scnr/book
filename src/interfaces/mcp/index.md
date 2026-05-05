@@ -334,7 +334,7 @@ delta for each block.
 
 ## Instance lifetime
 
-Every `spawn_instance` forks a daemonised SCNR engine subprocess on the
+Every `spawn_instance` forks a daemonised Spectre Scan engine subprocess on the
 host (or, if a Cuboid Agent is configured, allocates one over the grid).
 The `instance_id` is the engine's RPC token. Things to know:
 
