@@ -13,6 +13,7 @@ You can access Spectre Scan via multiple interfaces, such as:
 
 * [CLI](./interfaces/cli.md)
 * [Ruby API](./interfaces/ruby-api/index.md)
+* [REST API](./interfaces/rest-api/index.md)
 * [MCP API](./interfaces/mcp/index.md)
 * [Web UI](./interfaces/web/index.md)
 
