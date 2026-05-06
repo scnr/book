@@ -64,6 +64,13 @@ don't speak typed outputs) _and_ `structuredContent` matching the schema
 | `list_instances` | —               | —                                     | `{ instances: { <id>: { url } } }` |
 | `spawn_instance` | —               | `options`, `start=true`, `live=true`  | `{ instance_id, url, live? }` |
 | `kill_instance`  | `instance_id`   | —                                     | `{ killed: <id> }`            |
+| `list_checks`    | —               | `severities[]`, `tags[]`              | `{ checks: [{ shortname, name, description, severity, elements[], tags[], platforms[] }] }` |
+
+`list_checks` is the catalog tool — call it BEFORE `spawn_instance` to
+discover what's available and pick the `shortname`s you want to scope
+into `options.checks`. Filterable by `severities` (e.g. just `high`) or
+`tags` (e.g. `xss`, `sqli`). The response is sorted high-severity-first
+then by name.
 
 `spawn_instance.options` is forwarded to `instance.run(...)` — same
 shape as the [REST API](../rest-api/index.md) `POST /instances` body. To
@@ -174,8 +181,11 @@ If you're an AI seeing this server for the first time, do this once:
 3. `prompts/list` → you'll see `quick_scan`. If the user's intent
    matches it ("scan this URL for issues"), use it: `prompts/get` with
    their URL gives you a full operator script.
-4. `tools/list` → discover the 11 tools. `outputSchema` on each tells
-   you exactly what `structuredContent` to expect.
+4. `tools/list` → discover the 12 tools. `outputSchema` on each tells
+   you exactly what `structuredContent` to expect. `list_checks` (no
+   `instance_id` required) hands back the full check catalog so you
+   can scope `spawn_instance.options.checks` deliberately instead of
+   defaulting to `["*"]`.
 5. Open the GET-SSE channel on `/mcp` (with the same `mcp-session-id`)
    to receive [live events](#live-events). The default `spawn_instance`
    call will start streaming on it — you do not need to poll unless
@@ -465,7 +475,7 @@ Most clients accept a Streamable HTTP server entry verbatim:
 
 That's all. After `initialize`, the client sees:
 
-- 11 tools (3 framework + 8 per-scan), each with input + output schema.
+- 12 tools (4 framework + 8 per-scan), each with input + output schema.
 - 1 prompt (`quick_scan`).
 - 3 resources.
 
