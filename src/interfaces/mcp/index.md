@@ -289,11 +289,42 @@ Each notification's `params` is a single envelope:
 
 | `type`           | `payload` shape                                              | when |
 |------------------|--------------------------------------------------------------|------|
-| `status`         | string — new lifecycle status (`scanning`, `auditing`, …)    | every status transition |
+| `status`         | string — see status payload sequence below                   | every status transition + the synthetic `started` / `exited` bookends |
 | `sitemap_entry`  | `{ url: string, code: integer }`                             | every newly-crawled URL |
 | `issue`          | full issue Hash (`name`, `severity`, `vector`, `proof`, `digest`, …) | every new finding (post-deduplication) |
 | `error`          | string — one or more engine error lines, joined with newlines | rescued exceptions, coalesced over a 200 ms quiet window so a single backtrace becomes one event instead of 30+ |
-| `report`         | full final report Hash (issues + sitemap + statistics + plugins) | once at scan-end, after `clean_up` |
+| `report`         | full final report Hash (issues + sitemap + statistics + plugins) | once during `cleanup`, before the engine subprocess exits |
+
+#### Status payload sequence
+
+A typical run emits the following `status` payloads, in order:
+
+```
+started      ← synthetic — fired the moment the live plugin attaches,
+                before the engine starts crawling. Useful as an "alive"
+                signal: if the client never sees this, the spawn never
+                got past plugin load.
+preparing    ← engine loading checks/plugins, opening the seed URL
+scanning     ← crawl in flight
+auditing     ← payload exchange against discovered inputs
+cleanup      ← engine finalising state; this is when `report` fires
+done         ← terminal lifecycle status (or `aborted`)
+exited       ← synthetic — fired from the live plugin's at_exit hook
+                when the engine subprocess actually exits.
+```
+
+**`exited` is not automatic at `done`.** The engine subprocess stays
+alive after `done` so subsequent `scan_report` calls keep working. It
+only exits when the client calls `kill_instance` (or the host
+terminates the process). Even then, the hook only fires on a graceful
+unwind — a hard kill (SIGKILL, host crash, OOM) bypasses Ruby's
+at_exit chain entirely, and no `exited` will ever land. Treat `done`
+as "scan finished, results are stable" and `exited` as a best-effort
+"engine subprocess is gone too." Don't block client teardown on
+`exited` arriving.
+
+`paused` and `resumed` can appear between `scanning`/`auditing` and
+`cleanup` if the operator hits `scan_pause` / `scan_resume`.
 
 `statistics` is the live counter snapshot at the moment the event
 fired — issue totals by severity, page-queue depth, browser-pool
