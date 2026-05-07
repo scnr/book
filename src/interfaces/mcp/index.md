@@ -1290,11 +1290,11 @@ For honesty — places where you'd still need out-of-band knowledge:
 - **Structured error codes.** Errors come back as text. If you want to
   branch on "bad option key" vs "engine crashed" vs "auth failed",
   you're parsing the text.
-- **Plugin / check catalogue.** There's no `list_checks` tool; if a
-  user asks "which checks would run for this scan", you'd have to know
-  the bundled set out of band, or fall back to running with
-  `checks: ["*"]` and reading `scan_report`'s `plugins` block
-  afterwards.
+- **Plugin catalogue.** There's no `list_plugins` tool; if a user
+  asks "which plugins would load", you'd have to know the bundled
+  default set out of band, or read `scan_report`'s `plugins` block
+  after a run to see which actually fired. (Checks have a catalogue —
+  call the `list_checks` tool.)
 
 Each of those is on the roadmap. Until they land, the resources +
 prompt expansion are the supported way to ground a model.
