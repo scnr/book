@@ -86,12 +86,22 @@ don't speak typed outputs) _and_ `structuredContent` matching the schema
 | `spawn_instance` | —               | `options`, `start=true`, `live=true`  | `{ instance_id, url, live? }` |
 | `kill_instance`  | `instance_id`   | —                                     | `{ killed: <id> }`            |
 | `list_checks`    | —               | `severities[]`, `tags[]`              | `{ checks: [{ shortname, name, description, severity, elements[], tags[], platforms[] }] }` |
+| `list_plugins`   | —               | —                                     | `{ plugins: [{ shortname, name, description, default, options[] }] }` |
 
 `list_checks` is the catalog tool — call it BEFORE `spawn_instance` to
 discover what's available and pick the `shortname`s you want to scope
 into `options.checks`. Filterable by `severities` (e.g. just `high`) or
 `tags` (e.g. `xss`, `sqli`). The response is sorted high-severity-first
 then by name.
+
+`list_plugins` is the parallel catalog for plugins — shortname + name
++ description + per-plugin config schema. Plugins flagged
+`default: true` auto-load on every scan; you can name additional ones
+in `options.plugins` (array form: `["webhook_notify"]`) or pass config
+inline (hash form: `{ "webhook_notify": { "url": "https://..." } }`)
+using the keys in each plugin's `options[]` array. The `live` plugin
+is intentionally hidden — it's auto-attached by the MCP server when
+the session supports notifications, not a knob clients toggle.
 
 `spawn_instance.options` is forwarded to `instance.run(...)`. To
 spawn an _Instance_ without running anything, pass `start: false`;
@@ -1290,11 +1300,6 @@ For honesty — places where you'd still need out-of-band knowledge:
 - **Structured error codes.** Errors come back as text. If you want to
   branch on "bad option key" vs "engine crashed" vs "auth failed",
   you're parsing the text.
-- **Plugin catalogue.** There's no `list_plugins` tool; if a user
-  asks "which plugins would load", you'd have to know the bundled
-  default set out of band, or read `scan_report`'s `plugins` block
-  after a run to see which actually fired. (Checks have a catalogue —
-  call the `list_checks` tool.)
 
 Each of those is on the roadmap. Until they land, the resources +
 prompt expansion are the supported way to ground a model.
