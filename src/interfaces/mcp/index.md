@@ -156,7 +156,7 @@ clear pull path for the data — it doesn't need to memorise option names.
 | URI                                       | Mime               | Contents                                                                          |
 |-------------------------------------------|--------------------|-----------------------------------------------------------------------------------|
 | `spectre://glossary`                      | `text/markdown`    | Domain terms (issue, digest, status, sitemap, statistics, check, scope, audit.elements). Read once before driving a scan. |
-| `spectre://options/reference`             | `text/markdown`    | Concrete keys for `spawn_instance.options` (url, scope, audit, checks, http, browser_cluster, plugins, authorized_by). |
+| `spectre://options/reference`             | `text/markdown`    | Concrete keys for `spawn_instance.options` (url, scope, audit, checks, http, dom, plugins, authorized_by). |
 | `spectre://option-presets/quick-scan`     | `application/json` | JSON template — every audit element, every check, default plugins, **`scope.page_limit: 50`** so a real-site smoke test finishes in minutes. Bump / drop the cap (or switch to `full-scan`) for a longer run. |
 | `spectre://option-presets/full-scan`      | `application/json` | Same shape as `quick-scan` minus the page cap — uncapped audit. Use when you want a complete run and accept a long wait. |
 
