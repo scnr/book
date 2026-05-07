@@ -1,6 +1,6 @@
 # Agent
 
-To start an _Agent_ run the `scnr_agent` CLI executable.
+To start an _Agent_ run the `spectre_agent` CLI executable.
 
 To see all available options run:
 
@@ -15,7 +15,7 @@ The _Agent_ will also split the available resources of the machine on which
 it runs into _slots_, with each _slot_ corresponding to enough space for one
 _Instance_.
 
-(To see how many slots a machine has you can use the `scnr_system_info` utility.)
+(To see how many slots a machine has you can use the `spectre_system_info` utility.)
 
 # Example
 
@@ -37,7 +37,7 @@ I, [2022-01-23T09:54:21.849730 #1121060]  INFO -- System: Listening on 127.0.0.1
 ## Client
 
 To start a scan originating from that _Agent_ you must issue a `spawn`
-call in order to obtain an _Instance_; this can be achieved using the `scnr_spawn`
+call in order to obtain an _Instance_; this can be achieved using the `spectre_spawn`
 CLI executable.
 
 In another terminal run:
@@ -50,7 +50,7 @@ The above will run a scan with the default options against
 [http://testhtml5.vulnweb.com](http://testhtml5.vulnweb.com), originating from
 the _Agent_ node.
 
-The `scnr_spawn` utility largely accepts the same options as `scnr`.
+The `spectre_spawn` utility largely accepts the same options as `spectre`.
 
 If the _Agent_ is out of _slots_ you will see the following message:
 

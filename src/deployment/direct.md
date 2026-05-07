@@ -1,6 +1,6 @@
 # Direct
 
-The easiest approach is a direct scan using the `scnr` CLI executable.
+The easiest approach is a direct scan using the `spectre` CLI executable.
 
 To see all available options run:
 

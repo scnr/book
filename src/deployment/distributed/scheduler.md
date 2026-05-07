@@ -1,6 +1,6 @@
 # Scheduler
 
-To start a _Scheduler_ run the `scnr_scheduler` CLI executable.
+To start a _Scheduler_ run the `spectre_scheduler` CLI executable.
 
 To see all available options run:
 
