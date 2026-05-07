@@ -5,11 +5,11 @@ Spectre Scan ships a [Model Context Protocol][mcp] server so an AI client
 drive scans directly: spawn an _Instance_, watch its progress, fetch
 issues and reports, and tear it down again — over a single HTTP endpoint.
 
-It is the same conceptual surface as the [REST API](../rest-api/index.md),
-but exposed as MCP _tools_, _prompts_, and _resources_, and described to
-the client via the protocol's own discovery calls (`tools/list`,
-`prompts/list`, `resources/list`). Whatever the model sees in its context
-is exactly what the surface advertises — the descriptions _are_ the docs.
+The full surface is exposed as MCP _tools_, _prompts_, and _resources_,
+and described to the client via the protocol's own discovery calls
+(`tools/list`, `prompts/list`, `resources/list`). Whatever the model
+sees in its context is exactly what the surface advertises — the
+descriptions _are_ the docs.
 
 This page is the canonical reference. It is the only document an AI
 needs to understand and drive the surface end to end; everything else
@@ -93,8 +93,7 @@ into `options.checks`. Filterable by `severities` (e.g. just `high`) or
 `tags` (e.g. `xss`, `sqli`). The response is sorted high-severity-first
 then by name.
 
-`spawn_instance.options` is forwarded to `instance.run(...)` — same
-shape as the [REST API](../rest-api/index.md) `POST /instances` body. To
+`spawn_instance.options` is forwarded to `instance.run(...)`. To
 spawn an _Instance_ without running anything, pass `start: false`;
 passing `options: {}` does **not** skip the run.
 
@@ -109,8 +108,9 @@ to (e.g. `notifications/spectre/live`). See
 end-to-end flow. Pass `live: false` to opt out and poll instead.
 
 For the full options surface, read the
-[`spectre://options/reference`](#resources) resource (covered below) or
-the [REST API options reference](../rest-api/index.md#scan-options).
+[`spectre://options/reference`](#resources) resource (covered below)
+or the inlined [Options reference](#options-reference) further down
+this page.
 
 ### Per-scan tools
 
@@ -187,13 +187,11 @@ Pulled in-band, this gives an AI client everything it needs to schematise
 ## Options reference
 
 > Same content is served at
-> [`spectre://options/reference`](#resources) and is documented
-> identically on the [REST API page](../rest-api/index.md#options-reference).
+> [`spectre://options/reference`](#resources).
 
 
-The full option surface accepted by `spawn_instance.options`
-(over MCP) and by the `POST /instances` body (over REST). Hash,
-all keys optional.
+The full option surface accepted by `spawn_instance.options`.
+Hash, all keys optional.
 
 The bare engine defaults leave every audit element OFF and every
 check unloaded; only `bin/spectre_scan` (and the option presets)
@@ -203,9 +201,9 @@ or use `spectre://option-presets/quick-scan`.
 
 ### Wire shape
 
-This is what gets POSTed to `/instances` (REST) or sent as
-`spawn_instance.options` (MCP) — a single nested JSON object,
-all groups optional, every leaf documented further down. Each
+This is what gets sent as `spawn_instance.options` — a single
+nested JSON object, all groups optional, every leaf documented
+further down. Each
 top-level key is its own JSON object (`audit`, `scope`, `http`,
 `dom`, `device`, `input`, `session`, `timeout`); the
 top-level scalars (`url`, `checks`, `plugins`, `authorized_by`,
@@ -377,9 +375,9 @@ key called `audit.elements`.
 *(string, required for a real scan)*
 
 The target. Anything reachable over HTTP(S). Required for any
-`POST /instances` (or `spawn_instance` with `start: true`); the
-only spawn path where it can be omitted is `start: false` (an
-idle instance set up to be configured later).
+`spawn_instance` with `start: true`; the only spawn path where
+it can be omitted is `start: false` (an idle instance set up to
+be configured later).
 
 ```json
 { "url": "http://example.com/" }
@@ -960,8 +958,8 @@ Wall-clock cap on the run. All keys nest under `"timeout"`:
 - **`timeout.duration`** *(int, sec)* — stop the scan after this
   many seconds.
 - **`timeout.suspend`** *(boolean, default: false)* — when the
-  timeout fires, suspend to a snapshot file (loadable later via
-  `POST /instances/restore`). Without this the run is aborted.
+  timeout fires, suspend to a snapshot file (loadable later out of
+  band). Without this the run is aborted.
 
 ---
 
@@ -1196,16 +1194,15 @@ The `instance_id` is the engine's RPC token. Things to know:
 - The instance does **not** survive an MCP-server restart cleanly. The
   daemonised engine keeps running but the MCP server's in-memory
   `@@instances` map is empty after a restart, so you can't
-  `kill_instance` it through MCP any more (you'd need REST or a
-  process-level kill). **Don't restart the MCP server while scans are
-  mid-flight.**
+  `kill_instance` it through MCP any more (you'd need a process-level
+  kill). **Don't restart the MCP server while scans are mid-flight.**
 - Each instance reserves about 2 GB RAM and 4 GB disk by default. On a
   laptop, parallel scans are bounded by RAM; the host won't proactively
   refuse a third spawn if the second one is still warming up.
-- `start: false` is rare in practice. It registers an idle instance that
-  sits there waiting for a `run`, and the only way to `run` is via
-  REST/RPC — MCP's `spawn_instance` doesn't have a separate "start now"
-  tool. Use it when something else is going to drive the run.
+- `start: false` is rare in practice. It registers an idle instance
+  that sits there waiting for a `run`, and MCP's `spawn_instance`
+  doesn't have a separate "start now" tool — driving the run requires
+  out-of-band RPC. Use it when something else is going to drive the run.
 
 ## Error idiom
 
